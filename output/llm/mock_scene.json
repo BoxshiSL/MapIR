@@ -1,0 +1,340 @@
+{
+  "ir_type": "scene",
+  "version": "0.1",
+  "scene_id": "mock_scene",
+  "name": "Mock Night Alley",
+  "description": null,
+  "scene_type": "exterior_location",
+  "preset": "urban_alley",
+  "standalone": true,
+  "parent_world_id": null,
+  "parent_scene_slot_id": null,
+  "bounds": {
+    "width_m": 80.0,
+    "depth_m": 45.0,
+    "height_m": 25.0
+  },
+  "theme": "neon_urban_night",
+  "tags": [
+    "alley",
+    "stealth",
+    "mock"
+  ],
+  "zones": [
+    {
+      "id": "main_alley",
+      "name": "Main Alley",
+      "zone_type": "path",
+      "polygon": {
+        "points": [
+          {
+            "x": 4.672000000000001,
+            "y": 2.628
+          },
+          {
+            "x": 36.928,
+            "y": 2.628
+          },
+          {
+            "x": 36.928,
+            "y": 20.772
+          },
+          {
+            "x": 4.672000000000001,
+            "y": 20.772
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "main_path"
+      ],
+      "gameplay_tags": []
+    },
+    {
+      "id": "service_yard",
+      "name": "Service Yard",
+      "zone_type": "service_area",
+      "polygon": {
+        "points": [
+          {
+            "x": 43.072,
+            "y": 2.628
+          },
+          {
+            "x": 75.32799999999999,
+            "y": 2.628
+          },
+          {
+            "x": 75.32799999999999,
+            "y": 20.772
+          },
+          {
+            "x": 43.072,
+            "y": 20.772
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "dumpsters"
+      ],
+      "gameplay_tags": []
+    },
+    {
+      "id": "combat_pocket",
+      "name": "Combat Pocket",
+      "zone_type": "combat_space",
+      "polygon": {
+        "points": [
+          {
+            "x": 4.672000000000001,
+            "y": 24.228
+          },
+          {
+            "x": 36.928,
+            "y": 24.228
+          },
+          {
+            "x": 36.928,
+            "y": 42.372
+          },
+          {
+            "x": 4.672000000000001,
+            "y": 42.372
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [],
+      "gameplay_tags": []
+    }
+  ],
+  "entrances": [
+    {
+      "id": "ent_main",
+      "name": "Street Main",
+      "position": {
+        "x": 1.6,
+        "y": 11.25
+      },
+      "entrance_type": "main",
+      "connects_to": null,
+      "tags": []
+    },
+    {
+      "id": "ent_side",
+      "name": "Side Door",
+      "position": {
+        "x": 40.0,
+        "y": 44.1
+      },
+      "entrance_type": "side",
+      "connects_to": null,
+      "tags": []
+    },
+    {
+      "id": "ent_service",
+      "name": "Service Back",
+      "position": {
+        "x": 78.4,
+        "y": 33.75
+      },
+      "entrance_type": "backdoor",
+      "connects_to": null,
+      "tags": []
+    }
+  ],
+  "paths": [
+    {
+      "id": "main_route",
+      "name": "Main Route",
+      "path_type": "main_route",
+      "points": [
+        {
+          "x": 1.6,
+          "y": 11.25
+        },
+        {
+          "x": 78.4,
+          "y": 33.75
+        }
+      ],
+      "width_m": 3.0,
+      "tags": []
+    },
+    {
+      "id": "escape_side",
+      "name": "Escape via Side",
+      "path_type": "escape_route",
+      "points": [
+        {
+          "x": 20.799999999999997,
+          "y": 11.7
+        },
+        {
+          "x": 40.0,
+          "y": 44.1
+        }
+      ],
+      "width_m": 2.0,
+      "tags": []
+    },
+    {
+      "id": "escape_service",
+      "name": "Escape via Service",
+      "path_type": "escape_route",
+      "points": [
+        {
+          "x": 20.799999999999997,
+          "y": 11.7
+        },
+        {
+          "x": 78.4,
+          "y": 33.75
+        }
+      ],
+      "width_m": 2.0,
+      "tags": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "dumpster_1",
+      "name": "Dumpster A",
+      "object_type": "container",
+      "transform": {
+        "position": {
+          "x": 27.2,
+          "y": 22.5,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.8,
+        "depth_m": 1.2,
+        "height_m": 1.4
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [],
+      "locked": false
+    },
+    {
+      "id": "dumpster_2",
+      "name": "Dumpster B",
+      "object_type": "container",
+      "transform": {
+        "position": {
+          "x": 52.8,
+          "y": 22.5,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.8,
+        "depth_m": 1.2,
+        "height_m": 1.4
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [],
+      "locked": false
+    }
+  ],
+  "gameplay_markers": [
+    {
+      "id": "cover_a",
+      "marker_type": "cover",
+      "position": {
+        "x": 20.0,
+        "y": 14.4
+      },
+      "radius_m": 1.2,
+      "tags": []
+    },
+    {
+      "id": "cover_b",
+      "marker_type": "cover",
+      "position": {
+        "x": 39.6,
+        "y": 14.700000000000001
+      },
+      "radius_m": 1.2,
+      "tags": []
+    },
+    {
+      "id": "cover_c",
+      "marker_type": "cover",
+      "position": {
+        "x": 59.199999999999996,
+        "y": 15.0
+      },
+      "radius_m": 1.2,
+      "tags": []
+    },
+    {
+      "id": "cover_d",
+      "marker_type": "cover",
+      "position": {
+        "x": 21.2,
+        "y": 29.7
+      },
+      "radius_m": 1.2,
+      "tags": []
+    },
+    {
+      "id": "cover_e",
+      "marker_type": "cover",
+      "position": {
+        "x": 40.8,
+        "y": 30.0
+      },
+      "radius_m": 1.2,
+      "tags": []
+    },
+    {
+      "id": "ambush_1",
+      "marker_type": "ambush",
+      "position": {
+        "x": 58.4,
+        "y": 30.3
+      },
+      "radius_m": null,
+      "tags": []
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c_min_entrances",
+      "constraint_type": "must_have_min_entrances",
+      "target_id": null,
+      "params": {
+        "min": 3
+      },
+      "severity": "error"
+    },
+    {
+      "id": "c_min_escape",
+      "constraint_type": "must_have_min_escape_routes",
+      "target_id": null,
+      "params": {
+        "min": 2
+      },
+      "severity": "error"
+    },
+    {
+      "id": "c_min_cover",
+      "constraint_type": "must_have_min_cover_markers",
+      "target_id": null,
+      "params": {
+        "min": 5
+      },
+      "severity": "error"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mapir.local/schemas/asset_registry.schema.json",
+  "title": "AssetRegistry",
+  "type": "object",
+  "required": ["assets"],
+  "properties": {
+    "version": { "type": "string" },
+    "name": { "type": "string" },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_id", "name", "category", "footprint"],
+        "properties": {
+          "asset_id": { "type": "string" },
+          "name": { "type": "string" },
+          "category": {
+            "enum": ["building", "prop", "vegetation", "road_piece", "wall", "bridge",
+                     "landmark", "furniture", "container", "door", "window", "stairs", "light"]
+          },
+          "source_path": { "type": ["string", "null"] },
+          "preview_path": { "type": ["string", "null"] },
+          "footprint": {
+            "type": "object",
+            "required": ["width_m", "depth_m", "height_m"],
+            "properties": {
+              "width_m":  { "type": "number", "exclusiveMinimum": 0 },
+              "depth_m":  { "type": "number", "exclusiveMinimum": 0 },
+              "height_m": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "allowed_scene_types": { "type": "array", "items": { "enum": ["exterior_location", "interior"] } },
+          "allowed_district_types": { "type": "array", "items": { "type": "string" } },
+          "gameplay_tags": { "type": "array", "items": { "type": "string" } },
+          "technical": {
+            "type": "object",
+            "properties": {
+              "collision": { "enum": ["none", "simple", "complex"] },
+              "lod": { "type": "boolean" },
+              "nanite": { "type": ["boolean", "null"] },
+              "unit": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

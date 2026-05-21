@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mapir.local/schemas/world_ir.schema.json",
+  "title": "WorldIR",
+  "description": "MapIR World intermediate representation. This is a human-readable reference; the source of truth is the pydantic model in mapir.core.models.WorldIR.",
+  "type": "object",
+  "required": ["ir_type", "world_id", "name", "scale", "theme"],
+  "properties": {
+    "ir_type": { "const": "world" },
+    "version": { "type": "string" },
+    "world_id": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": ["string", "null"] },
+    "scale": { "$ref": "#/$defs/Size2D" },
+    "theme": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+
+    "districts":    { "type": "array", "items": { "$ref": "#/$defs/District" } },
+    "roads":        { "type": "array", "items": { "$ref": "#/$defs/Road" } },
+    "water_bodies": { "type": "array", "items": { "$ref": "#/$defs/WaterBody" } },
+    "pois":         { "type": "array", "items": { "$ref": "#/$defs/POI" } },
+    "scene_slots":  { "type": "array", "items": { "$ref": "#/$defs/SceneSlot" } },
+    "constraints":  { "type": "array", "items": { "$ref": "#/$defs/Constraint" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Point2D": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "Size2D": {
+      "type": "object",
+      "required": ["width_m", "depth_m"],
+      "properties": {
+        "width_m": { "type": "number", "exclusiveMinimum": 0 },
+        "depth_m": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "Polygon2D": {
+      "type": "object",
+      "required": ["points"],
+      "properties": {
+        "points": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/Point2D" } }
+      },
+      "additionalProperties": false
+    },
+    "District": {
+      "type": "object",
+      "required": ["id", "name", "district_type", "polygon"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "district_type": { "type": "string" },
+        "polygon": { "$ref": "#/$defs/Polygon2D" },
+        "density": { "enum": ["low", "medium", "high", "very_high"] },
+        "height_profile": { "enum": ["low", "mid", "high", "mixed"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "gameplay_tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "Road": {
+      "type": "object",
+      "required": ["id", "road_type", "points", "width_m"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": ["string", "null"] },
+        "road_type": { "enum": ["primary", "secondary", "alley", "service", "path"] },
+        "points": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/Point2D" } },
+        "width_m": { "type": "number", "exclusiveMinimum": 0 },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "WaterBody": {
+      "type": "object",
+      "required": ["id", "name", "water_type", "polygon"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "water_type": { "enum": ["river", "canal", "sea", "lake", "pond", "harbor"] },
+        "polygon": { "$ref": "#/$defs/Polygon2D" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "POI": {
+      "type": "object",
+      "required": ["id", "name", "poi_type", "position"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "poi_type": { "type": "string" },
+        "position": { "$ref": "#/$defs/Point2D" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "gameplay_tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "SceneSlot": {
+      "type": "object",
+      "required": ["id", "name", "position", "size"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "district_id": { "type": ["string", "null"] },
+        "position": { "$ref": "#/$defs/Point2D" },
+        "rotation_deg": { "type": "number" },
+        "size": { "$ref": "#/$defs/Size2D" },
+        "allowed_scene_types": {
+          "type": "array",
+          "items": { "enum": ["exterior_location", "interior"] }
+        },
+        "connection_rules": { "type": "array", "items": { "type": "string" } },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "Constraint": {
+      "type": "object",
+      "required": ["id", "constraint_type"],
+      "properties": {
+        "id": { "type": "string" },
+        "constraint_type": { "type": "string" },
+        "target_id": { "type": ["string", "null"] },
+        "params": { "type": "object" },
+        "severity": { "enum": ["error", "warning", "info"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

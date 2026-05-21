@@ -179,6 +179,251 @@ def preflight() -> None:
         raise typer.Exit(code=code)
 
 
+# ============================================================
+# Local LLM drafting
+# ============================================================
+
+
+def _make_provider(provider_name: str, base_url: str | None, settings):
+    """Build a LocalLLMProvider from the user's provider choice."""
+    from .llm import MockProvider, OllamaProvider
+
+    name = (provider_name or "ollama").lower()
+    if name == "mock":
+        return MockProvider()
+    if name == "ollama":
+        return OllamaProvider(
+            base_url=base_url or settings.base_url,
+            timeout_seconds=settings.timeout_seconds,
+            structured_output=settings.structured_output,
+        )
+    raise typer.BadParameter(f"unknown provider {provider_name!r} (expected 'ollama' or 'mock')")
+
+
+def _read_brief(brief: str | None, brief_file: Path | None) -> str:
+    if brief and brief_file:
+        raise typer.BadParameter("pass only one of --brief or --brief-file")
+    if brief_file:
+        return brief_file.read_text(encoding="utf-8").strip()
+    if brief:
+        return brief.strip()
+    raise typer.BadParameter("either --brief or --brief-file is required")
+
+
+def _print_draft_result(result, *, output_path: Path | None = None) -> None:
+    color = "green" if result.ok else "red"
+    title = (
+        f"[{color}]{result.task}[/{color}] "
+        f"provider={result.provider_name} model={result.model_name or '—'}"
+    )
+    console.print(Panel.fit(title, border_style=color))
+    if result.validation_report is not None:
+        _print_report(result.validation_report, title="Validation")
+    if result.errors:
+        err_console.print("[red]Errors:[/red]")
+        for e in result.errors[:10]:
+            err_console.print(f"  - {e}")
+    if output_path is not None and result.ok:
+        console.print(f"[green]wrote[/green] {output_path}")
+
+
+@app.command(name="llm-check")
+def llm_check(
+    provider: str = typer.Option("ollama", help="Provider: 'ollama' or 'mock'"),
+    model: str | None = typer.Option(None, help="Model name (e.g. 'qwen3:8b')"),
+    base_url: str | None = typer.Option(None, help="Override Ollama base URL"),
+    list_models: bool = typer.Option(False, "--list-models", help="Print available models"),
+) -> None:
+    """Check that the local LLM provider is available and (optionally) list models."""
+    from .llm import load_settings
+
+    settings = load_settings()
+    if model:
+        settings.model = model
+
+    prov = _make_provider(provider, base_url, settings)
+    available = prov.is_available()
+    if available:
+        console.print(
+            Panel.fit(f"[green]OK[/green] provider={prov.name} reachable", border_style="green")
+        )
+    else:
+        console.print(
+            Panel.fit(
+                f"[red]UNAVAILABLE[/red] provider={prov.name}\n"
+                f"If using Ollama, start it locally (default http://127.0.0.1:11434)\n"
+                f"and pull a model, e.g.:  ollama pull {settings.model}",
+                border_style="red",
+            )
+        )
+        raise typer.Exit(code=1)
+
+    if list_models:
+        models = prov.list_models()
+        if models:
+            console.print("[bold]Available models:[/bold]")
+            for m in models:
+                console.print(f"  - {m}")
+        else:
+            console.print("[yellow]No models reported by the provider.[/yellow]")
+
+
+def _write_ir_json(out: Path, ir_json: dict) -> None:
+    import json
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(ir_json, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+@app.command(name="llm-draft-world")
+def llm_draft_world(
+    out: Path = typer.Option(..., "--out", "-o", help="Output IR JSON path"),
+    brief: str | None = typer.Option(None, help="User brief text"),
+    brief_file: Path | None = typer.Option(None, help="Path to a file containing the brief"),
+    provider: str = typer.Option("ollama"),
+    model: str | None = typer.Option(None),
+    base_url: str | None = typer.Option(None),
+    temperature: float | None = typer.Option(None),
+    no_repair: bool = typer.Option(False, "--no-repair", help="Disable validation-driven repair"),
+) -> None:
+    """Draft a WorldIR JSON from a user brief using a local LLM."""
+    from .llm import draft_world_from_brief, load_settings
+
+    settings = load_settings()
+    if model:
+        settings.model = model
+    if temperature is not None:
+        settings.temperature = temperature
+    if no_repair:
+        settings.enable_repair = False
+
+    prov = _make_provider(provider, base_url, settings)
+    text = _read_brief(brief, brief_file)
+    result = draft_world_from_brief(text, prov, settings)
+
+    if result.ir_json is not None:
+        _write_ir_json(out, result.ir_json)
+    _print_draft_result(result, output_path=out if result.ir_json is not None else None)
+
+    if not result.ok:
+        raise typer.Exit(code=1)
+
+
+@app.command(name="llm-draft-scene")
+def llm_draft_scene(
+    out: Path = typer.Option(..., "--out", "-o", help="Output IR JSON path"),
+    brief: str | None = typer.Option(None, help="User brief text"),
+    brief_file: Path | None = typer.Option(None, help="Path to a file containing the brief"),
+    provider: str = typer.Option("ollama"),
+    model: str | None = typer.Option(None),
+    base_url: str | None = typer.Option(None),
+    temperature: float | None = typer.Option(None),
+    no_repair: bool = typer.Option(False, "--no-repair", help="Disable validation-driven repair"),
+) -> None:
+    """Draft a SceneIR JSON from a user brief using a local LLM."""
+    from .llm import draft_scene_from_brief, load_settings
+
+    settings = load_settings()
+    if model:
+        settings.model = model
+    if temperature is not None:
+        settings.temperature = temperature
+    if no_repair:
+        settings.enable_repair = False
+
+    prov = _make_provider(provider, base_url, settings)
+    text = _read_brief(brief, brief_file)
+    result = draft_scene_from_brief(text, prov, settings)
+
+    if result.ir_json is not None:
+        _write_ir_json(out, result.ir_json)
+    _print_draft_result(result, output_path=out if result.ir_json is not None else None)
+
+    if not result.ok:
+        raise typer.Exit(code=1)
+
+
+@app.command(name="llm-repair")
+def llm_repair(
+    input_path: Path = typer.Argument(..., exists=True, dir_okay=False, readable=True),
+    out: Path = typer.Option(..., "--out", "-o", help="Output repaired IR JSON path"),
+    provider: str = typer.Option("ollama"),
+    model: str | None = typer.Option(None),
+    base_url: str | None = typer.Option(None),
+) -> None:
+    """Repair an invalid WorldIR/SceneIR JSON via local LLM, then re-validate."""
+    import json as _json
+
+    from .llm import load_settings
+    from .llm.repair import repair_invalid_ir
+    from .utils.io import load_json
+
+    settings = load_settings()
+    if model:
+        settings.model = model
+    prov = _make_provider(provider, base_url, settings)
+
+    raw = load_json(input_path)
+    ir_type = raw.get("ir_type")
+    if ir_type not in {"world", "scene"}:
+        err_console.print(f"[red]Cannot repair: missing or unknown ir_type={ir_type!r}[/red]")
+        raise typer.Exit(code=1)
+
+    # Parse + validate to produce a ValidationReport we can hand to the model.
+    try:
+        ir = load_ir(input_path)
+        report = run_validation(ir)
+    except (ValidationError, MapIRError):
+        # Synthesise a single-issue report when the IR doesn't even parse.
+        from .core.validation import ValidationIssue, ValidationReport
+
+        report = ValidationReport()
+        report.add(
+            ValidationIssue(
+                "structural_parse_failure",
+                "Input did not parse as IR; pydantic/structural error",
+            )
+        )
+
+    if report.is_valid:
+        console.print("[green]Input is already valid — nothing to repair.[/green]")
+        _write_ir_json(out, raw)
+        return
+
+    repaired = repair_invalid_ir(
+        invalid_json=raw,
+        validation_report=report,
+        provider=prov,
+        settings=settings,
+        expected_type=ir_type,  # type: ignore[arg-type]
+    )
+    if repaired is None:
+        err_console.print("[red]Repair failed — provider returned no usable JSON.[/red]")
+        raise typer.Exit(code=1)
+
+    # Validate the repaired output before writing.
+    try:
+        ir2 = (
+            WorldIR.model_validate(repaired)
+            if ir_type == "world"
+            else SceneIR.model_validate(repaired)
+        )
+    except ValidationError as exc:
+        err_console.print(
+            "[red]Repair produced a document that still fails structural validation:[/red]"
+        )
+        err_console.print(_format_pydantic_error(exc))
+        # Still write it out so the user can inspect.
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(_json.dumps(repaired, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        raise typer.Exit(code=1) from exc
+    report2 = run_validation(ir2)
+    _print_report(report2, title=f"Repaired {ir_type} validation")
+    _write_ir_json(out, repaired)
+    if not report2.is_valid:
+        raise typer.Exit(code=1)
+
+
 @app.command()
 def inspect(path: Path = typer.Argument(..., exists=True, dir_okay=False, readable=True)) -> None:
     """Print a quick summary of an IR file."""

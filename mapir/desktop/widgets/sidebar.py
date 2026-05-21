@@ -15,6 +15,7 @@ NAV_ITEMS: list[tuple[str, str]] = [
     ("preview", "Preview"),
     ("validation", "Validation"),
     ("export", "Export"),
+    ("llm_draft", "LLM Draft"),
     ("settings", "Settings / About"),
 ]
 
@@ -50,7 +51,9 @@ class Sidebar(QFrame):
         self.list.currentRowChanged.connect(self.page_selected.emit)
         layout.addWidget(self.list, 1)
 
-        footer = QLabel("v0.3.0 · Desktop")
+        from ... import __version__
+
+        footer = QLabel(f"v{__version__} · Desktop")
         footer.setAlignment(Qt.AlignCenter)
         footer.setStyleSheet("color: #6b7280; padding: 8px;")
         layout.addWidget(footer)

@@ -69,7 +69,9 @@ class DashboardPage(QWidget):
         header.setSpacing(2)
         title = QLabel("MapIR Studio")
         title.setProperty("role", "pageTitle")
-        subtitle = QLabel("Structured World & Scene IR Toolchain — v0.3.0")
+        from ... import __version__
+
+        subtitle = QLabel(f"Structured World & Scene IR Toolchain — v{__version__}")
         subtitle.setProperty("role", "pageSubtitle")
         header.addWidget(title)
         header.addWidget(subtitle)

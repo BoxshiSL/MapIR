@@ -46,8 +46,25 @@ ALLOWED_TINY_FILES = {
     Path("mapir/utils/__init__.py"),
     Path("mapir/desktop/__init__.py"),
     Path("mapir/desktop/widgets/__init__.py"),
+    Path("mapir/llm/__init__.py"),
     Path("tests/__init__.py"),
 }
+
+# Secret-like tokens that must not appear in tracked sources. The local-LLM
+# layer in v0.4 is keyless; any of these in committed text is a red flag.
+SECRET_PATTERNS = (
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY",
+    "GEMINI_API_KEY",
+    "GOOGLE_API_KEY",
+    "AZURE_OPENAI_KEY",
+    "HF_TOKEN",
+    "HUGGINGFACE_TOKEN",
+    "AWS_SECRET_ACCESS_KEY",
+)
+
+# Server / cloud deps that v0.4 should NOT need. Guard against regressions.
+FORBIDDEN_DEPS = ("fastapi", "uvicorn", "openai", "anthropic", "google-generativeai")
 
 
 @dataclass
@@ -256,11 +273,137 @@ def _check_readme(root: Path, report: PreflightReport) -> None:
     text = _read_text(path) or ""
     if "# MapIR" not in text:
         report.error("readme_heading", "README.md", "top-level '# MapIR' heading missing")
+    if "Local LLM" not in text:
+        report.error(
+            "readme_no_local_llm",
+            "README.md",
+            "missing 'Local LLM' section — v0.4 must document the LLM layer",
+        )
     line_count = len(text.splitlines())
     if line_count < 50:
         report.warn(
             "readme_short", "README.md", f"only {line_count} lines — README looks like a stub"
         )
+
+
+def _check_llm_package(root: Path, report: PreflightReport) -> None:
+    pkg = root / "mapir" / "llm"
+    if not pkg.is_dir():
+        report.error("llm_pkg_missing", "mapir/llm", "mapir/llm/ package not found")
+        return
+    expected = {
+        "__init__.py",
+        "providers.py",
+        "ollama_provider.py",
+        "mock_provider.py",
+        "prompts.py",
+        "schemas.py",
+        "drafting.py",
+        "repair.py",
+        "settings.py",
+        "plan_to_ir.py",
+    }
+    actual = {p.name for p in pkg.glob("*.py")}
+    missing = expected - actual
+    if missing:
+        report.error(
+            "llm_pkg_incomplete",
+            "mapir/llm",
+            f"missing modules: {', '.join(sorted(missing))}",
+        )
+
+
+def _check_local_llm_docs(root: Path, report: PreflightReport) -> None:
+    docs = root / "docs" / "local_llm.md"
+    if not docs.exists():
+        report.error("local_llm_docs_missing", "docs/local_llm.md", "docs/local_llm.md not found")
+        return
+    text = _read_text(docs) or ""
+    required = ("Ollama", "Recommended models", "Troubleshooting")
+    missing = [r for r in required if r not in text]
+    if missing:
+        report.warn(
+            "local_llm_docs_incomplete",
+            "docs/local_llm.md",
+            f"missing sections: {', '.join(missing)}",
+        )
+
+
+def _check_no_secrets(root: Path, report: PreflightReport) -> None:
+    """Scan tracked source files for accidentally-committed credentials."""
+    skip_dirs = {
+        ".venv",
+        ".git",
+        ".pytest_cache",
+        "build",
+        "dist",
+        "__pycache__",
+        "mapir.egg-info",
+        "output",
+        ".claude",
+        "scripts",  # contains the SECRET_PATTERNS constant we just defined
+    }
+    skip_files = {Path("scripts/preflight.py")}
+    candidate_exts = {".py", ".toml", ".yml", ".yaml", ".md", ".bat", ".json", ".txt"}
+    for path in root.rglob("*"):
+        if not path.is_file() or path.suffix not in candidate_exts:
+            continue
+        if any(part in skip_dirs for part in path.parts):
+            continue
+        rel = path.relative_to(root)
+        if rel in skip_files:
+            continue
+        text = _read_text(path)
+        if text is None:
+            continue
+        for token in SECRET_PATTERNS:
+            if token in text:
+                report.error(
+                    "secret_detected",
+                    rel,
+                    f"file mentions {token!r} — secrets must not be tracked",
+                )
+                break
+
+
+def _check_no_forbidden_deps(root: Path, report: PreflightReport) -> None:
+    """Guard against re-introducing cloud/server dependencies."""
+    for name in ("requirements.txt", "requirements-dev.txt"):
+        path = root / name
+        if not path.exists():
+            continue
+        text = _read_text(path) or ""
+        for line in text.splitlines():
+            head = line.split(";", 1)[0].strip().lower()
+            if not head or head.startswith("#") or head.startswith("-r "):
+                continue
+            for dep in FORBIDDEN_DEPS:
+                if head.startswith(dep) and not head.startswith(dep + "-"):
+                    report.error(
+                        "forbidden_dep",
+                        path.relative_to(root),
+                        f"v0.4 must not depend on {dep!r}",
+                    )
+                    break
+    pyproj = root / "pyproject.toml"
+    if pyproj.exists():
+        try:
+            with pyproj.open("rb") as f:
+                data = tomllib.load(f)
+        except tomllib.TOMLDecodeError:
+            return
+        deps: list[str] = list(data.get("project", {}).get("dependencies", []))
+        for opt in (data.get("project", {}).get("optional-dependencies", {}) or {}).values():
+            deps.extend(opt)
+        for d in deps:
+            head = d.split(";", 1)[0].strip().lower()
+            for dep in FORBIDDEN_DEPS:
+                if head.startswith(dep) and not head.startswith(dep + "-"):
+                    report.error(
+                        "forbidden_dep",
+                        "pyproject.toml",
+                        f"v0.4 must not depend on {dep!r}",
+                    )
 
 
 def scan_repo(root: Path | str | None = None) -> PreflightReport:
@@ -285,6 +428,10 @@ def scan_repo(root: Path | str | None = None) -> PreflightReport:
     _check_workflows(root_path, report)
     _check_bat_files(root_path, report)
     _check_readme(root_path, report)
+    _check_llm_package(root_path, report)
+    _check_local_llm_docs(root_path, report)
+    _check_no_secrets(root_path, report)
+    _check_no_forbidden_deps(root_path, report)
     return report
 
 

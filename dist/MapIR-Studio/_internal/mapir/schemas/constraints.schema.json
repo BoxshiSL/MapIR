@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mapir.local/schemas/constraints.schema.json",
+  "title": "Constraint",
+  "description": "A single constraint statement. The validator only enforces a subset (see README); unsupported types produce warnings.",
+  "type": "object",
+  "required": ["id", "constraint_type"],
+  "properties": {
+    "id": { "type": "string" },
+    "constraint_type": {
+      "enum": [
+        "must_have_min_entrances",
+        "must_have_min_escape_routes",
+        "must_have_min_cover_markers",
+        "must_have_scene_slot",
+        "must_be_adjacent",
+        "must_not_overlap",
+        "must_connect_to_road",
+        "must_be_inside_bounds",
+        "custom"
+      ]
+    },
+    "target_id": { "type": ["string", "null"] },
+    "params": { "type": "object" },
+    "severity": { "enum": ["error", "warning", "info"] }
+  },
+  "additionalProperties": false,
+  "examples": [
+    { "id": "c_min_entr", "constraint_type": "must_have_min_entrances", "params": { "min": 3 } },
+    { "id": "c_min_escape", "constraint_type": "must_have_min_escape_routes", "params": { "min": 1 } },
+    { "id": "c_inside", "constraint_type": "must_be_inside_bounds", "severity": "warning" }
+  ]
+}

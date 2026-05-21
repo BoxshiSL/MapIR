@@ -25,6 +25,7 @@ from .widgets.dashboard import DashboardPage
 from .widgets.examples_panel import ExamplesPage
 from .widgets.export_panel import ExportPage
 from .widgets.inspector_panel import InspectorPage
+from .widgets.llm_draft_panel import LLMDraftPanel
 from .widgets.preview_panel import PreviewPage
 from .widgets.scene_panel import ScenePage
 from .widgets.settings_panel import SettingsPage
@@ -113,6 +114,7 @@ class MainWindow(QMainWindow):
         self.preview = PreviewPage(self.state)
         self.validation = ValidationPage(self.state)
         self.export = ExportPage(self.state)
+        self.llm_draft = LLMDraftPanel(self.state)
         self.settings = SettingsPage()
 
         for page in (
@@ -124,6 +126,7 @@ class MainWindow(QMainWindow):
             self.preview,
             self.validation,
             self.export,
+            self.llm_draft,
             self.settings,
         ):
             self.stack.addWidget(page)

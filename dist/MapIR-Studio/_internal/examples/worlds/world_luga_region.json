@@ -1,0 +1,191 @@
+{
+  "ir_type": "world",
+  "version": "0.1",
+  "world_id": "world_luga_region",
+  "name": "Luga Coastal Region",
+  "description": "Coastal-forest region with a small village, a port edge, a hill viewpoint, and a restricted facility deep in the woods.",
+  "scale": { "width_m": 3000.0, "depth_m": 2000.0 },
+  "theme": "coastal_forest_nordic",
+  "tags": ["coast", "forest", "rural"],
+
+  "districts": [
+    {
+      "id": "coastal_shore", "name": "Coastal Shore", "district_type": "shore",
+      "polygon": { "points": [
+        { "x": 50.0,   "y": 200.0 }, { "x": 2950.0, "y": 200.0 },
+        { "x": 2950.0, "y": 450.0 }, { "x": 50.0,   "y": 450.0 }
+      ]},
+      "density": "low", "height_profile": "low",
+      "tags": ["beach", "rocky"], "gameplay_tags": ["open"]
+    },
+    {
+      "id": "port_edge", "name": "Port Edge", "district_type": "port",
+      "polygon": { "points": [
+        { "x": 50.0,   "y": 450.0 }, { "x": 700.0,  "y": 450.0 },
+        { "x": 700.0,  "y": 800.0 }, { "x": 50.0,   "y": 800.0 }
+      ]},
+      "density": "medium", "height_profile": "low",
+      "tags": ["industrial", "harbor"], "gameplay_tags": ["industrial_combat"]
+    },
+    {
+      "id": "small_village", "name": "Small Village", "district_type": "village",
+      "polygon": { "points": [
+        { "x": 800.0,  "y": 500.0 }, { "x": 1500.0, "y": 500.0 },
+        { "x": 1500.0, "y": 900.0 }, { "x": 800.0,  "y": 900.0 }
+      ]},
+      "density": "low", "height_profile": "low",
+      "tags": ["rural", "settlement"], "gameplay_tags": ["civilian"]
+    },
+    {
+      "id": "swamp_lowland", "name": "Swamp Lowland", "district_type": "swamp",
+      "polygon": { "points": [
+        { "x": 1600.0, "y": 500.0 }, { "x": 2400.0, "y": 500.0 },
+        { "x": 2400.0, "y": 950.0 }, { "x": 1600.0, "y": 950.0 }
+      ]},
+      "density": "low", "height_profile": "low",
+      "tags": ["wet", "muddy"], "gameplay_tags": ["slow_traversal"]
+    },
+    {
+      "id": "forest_belt", "name": "Forest Belt", "district_type": "forest",
+      "polygon": { "points": [
+        { "x": 50.0,   "y": 1000.0 }, { "x": 2400.0, "y": 1000.0 },
+        { "x": 2400.0, "y": 1700.0 }, { "x": 50.0,   "y": 1700.0 }
+      ]},
+      "density": "medium", "height_profile": "mid",
+      "tags": ["forest", "dense"], "gameplay_tags": ["stealth", "ambush"]
+    },
+    {
+      "id": "observation_hill", "name": "Observation Hill", "district_type": "hill",
+      "polygon": { "points": [
+        { "x": 2500.0, "y": 1000.0 }, { "x": 2950.0, "y": 1000.0 },
+        { "x": 2950.0, "y": 1700.0 }, { "x": 2500.0, "y": 1700.0 }
+      ]},
+      "density": "low", "height_profile": "high",
+      "tags": ["elevated", "viewpoint"], "gameplay_tags": ["sniper_friendly"]
+    },
+    {
+      "id": "restricted_facility", "name": "Restricted Facility", "district_type": "facility",
+      "polygon": { "points": [
+        { "x": 500.0,  "y": 1750.0 }, { "x": 1200.0, "y": 1750.0 },
+        { "x": 1200.0, "y": 1950.0 }, { "x": 500.0,  "y": 1950.0 }
+      ]},
+      "density": "medium", "height_profile": "low",
+      "tags": ["restricted", "fenced"], "gameplay_tags": ["high_security"]
+    }
+  ],
+
+  "roads": [
+    {
+      "id": "road_coast", "name": "Coast Road", "road_type": "primary",
+      "points": [
+        { "x": 50.0,   "y": 350.0 },
+        { "x": 1500.0, "y": 350.0 },
+        { "x": 2950.0, "y": 350.0 }
+      ],
+      "width_m": 8.0
+    },
+    {
+      "id": "road_village_inland", "name": "Village–Forest Road", "road_type": "secondary",
+      "points": [
+        { "x": 1150.0, "y": 500.0 },
+        { "x": 1150.0, "y": 1000.0 },
+        { "x": 1150.0, "y": 1500.0 }
+      ],
+      "width_m": 6.0
+    },
+    {
+      "id": "road_facility_access", "name": "Facility Access Road", "road_type": "service",
+      "points": [
+        { "x": 1150.0, "y": 1500.0 },
+        { "x": 850.0,  "y": 1750.0 }
+      ],
+      "width_m": 4.0
+    },
+    {
+      "id": "trail_hill", "name": "Hill Trail", "road_type": "path",
+      "points": [
+        { "x": 2400.0, "y": 1100.0 },
+        { "x": 2700.0, "y": 1300.0 },
+        { "x": 2800.0, "y": 1600.0 }
+      ],
+      "width_m": 1.5
+    }
+  ],
+
+  "water_bodies": [
+    {
+      "id": "luga_sea", "name": "Luga Bay", "water_type": "sea",
+      "polygon": { "points": [
+        { "x": 50.0,   "y": 50.0 },  { "x": 2950.0, "y": 50.0 },
+        { "x": 2950.0, "y": 200.0 }, { "x": 50.0,   "y": 200.0 }
+      ]},
+      "tags": ["sea"]
+    },
+    {
+      "id": "swamp_pond", "name": "Swamp Pond", "water_type": "pond",
+      "polygon": { "points": [
+        { "x": 1900.0, "y": 700.0 }, { "x": 2200.0, "y": 700.0 },
+        { "x": 2200.0, "y": 900.0 }, { "x": 1900.0, "y": 900.0 }
+      ]}
+    }
+  ],
+
+  "pois": [
+    { "id": "poi_lighthouse", "name": "Old Lighthouse", "poi_type": "landmark",
+      "position": { "x": 200.0, "y": 250.0 }, "tags": ["coastal", "landmark"] },
+    { "id": "poi_radio_tower", "name": "Abandoned Radio Tower", "poi_type": "tower",
+      "position": { "x": 2750.0, "y": 1550.0 }, "gameplay_tags": ["vantage_point"] },
+    { "id": "poi_village_square", "name": "Village Square", "poi_type": "plaza",
+      "position": { "x": 1150.0, "y": 700.0 } }
+  ],
+
+  "scene_slots": [
+    {
+      "id": "forest_checkpoint", "name": "Forest Checkpoint",
+      "district_id": "forest_belt",
+      "position": { "x": 1150.0, "y": 1300.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 40.0, "depth_m": 30.0 },
+      "allowed_scene_types": ["exterior_location"], "tags": ["checkpoint", "exterior"]
+    },
+    {
+      "id": "abandoned_house_interior", "name": "Abandoned House Interior",
+      "district_id": "small_village",
+      "position": { "x": 1000.0, "y": 750.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 25.0, "depth_m": 20.0 },
+      "allowed_scene_types": ["interior"], "tags": ["interior", "ruin"]
+    },
+    {
+      "id": "small_dock", "name": "Small Dock",
+      "district_id": "port_edge",
+      "position": { "x": 400.0, "y": 500.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 50.0, "depth_m": 30.0 },
+      "allowed_scene_types": ["exterior_location"], "tags": ["dock", "harbor"]
+    },
+    {
+      "id": "road_ambush_site", "name": "Road Ambush Site",
+      "district_id": "forest_belt",
+      "position": { "x": 1150.0, "y": 1150.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 60.0, "depth_m": 30.0 },
+      "allowed_scene_types": ["exterior_location"], "tags": ["ambush", "road"]
+    },
+    {
+      "id": "radio_tower", "name": "Radio Tower Scene",
+      "district_id": "observation_hill",
+      "position": { "x": 2750.0, "y": 1550.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 40.0, "depth_m": 40.0 },
+      "allowed_scene_types": ["exterior_location"], "tags": ["tower", "vantage"]
+    },
+    {
+      "id": "restricted_cabin_interior", "name": "Restricted Cabin Interior",
+      "district_id": "restricted_facility",
+      "position": { "x": 850.0, "y": 1850.0 }, "rotation_deg": 0.0,
+      "size": { "width_m": 30.0, "depth_m": 25.0 },
+      "allowed_scene_types": ["interior"], "tags": ["interior", "restricted"]
+    }
+  ],
+
+  "constraints": [
+    { "id": "c_have_slot", "constraint_type": "must_have_scene_slot", "params": { "min": 1 } },
+    { "id": "c_inside_bounds", "constraint_type": "must_be_inside_bounds", "severity": "warning" }
+  ]
+}

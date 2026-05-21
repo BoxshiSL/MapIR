@@ -1,9 +1,8 @@
 """MapIR — structured IR and desktop toolchain for game spaces.
 
-v0.3 replaces the Tkinter UI with a PySide6 desktop application
-(`MapIR Studio`), adds a PyInstaller exe build, a preflight scanner,
-and Ruff/Black tooling. The core data model and CLI exporters are
-unchanged from v0.2.
+v0.4 adds a local LLM drafting layer on top of the v0.3 PySide6 desktop /
+PyInstaller / preflight foundation. The LLM is an assistant only; structural
+and semantic validation remain the source of truth.
 """
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

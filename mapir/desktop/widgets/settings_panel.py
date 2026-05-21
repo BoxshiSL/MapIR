@@ -38,7 +38,8 @@ class SettingsPage(QWidget):
 
         title = QLabel("Settings / About")
         title.setProperty("role", "pageTitle")
-        subtitle = QLabel("Read-only environment summary for v0.3.0.")
+
+        subtitle = QLabel(f"Read-only environment summary for v{__version__}.")
         subtitle.setProperty("role", "pageSubtitle")
         root.addWidget(title)
         root.addWidget(subtitle)
