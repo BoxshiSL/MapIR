@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mapir.local/schemas/scene_ir.schema.json",
+  "title": "SceneIR",
+  "description": "MapIR Scene intermediate representation. The source of truth is mapir.core.models.SceneIR.",
+  "type": "object",
+  "required": ["ir_type", "scene_id", "name", "scene_type", "bounds", "theme"],
+  "properties": {
+    "ir_type": { "const": "scene" },
+    "version": { "type": "string" },
+    "scene_id": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": ["string", "null"] },
+    "scene_type": { "enum": ["exterior_location", "interior"] },
+    "preset": { "enum": ["urban_alley", "warehouse_interior", "port_yard", "custom"] },
+    "standalone": { "type": "boolean" },
+    "parent_world_id": { "type": ["string", "null"] },
+    "parent_scene_slot_id": { "type": ["string", "null"] },
+    "bounds": {
+      "type": "object",
+      "required": ["width_m", "depth_m", "height_m"],
+      "properties": {
+        "width_m":  { "type": "number", "exclusiveMinimum": 0 },
+        "depth_m":  { "type": "number", "exclusiveMinimum": 0 },
+        "height_m": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "theme": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+
+    "zones":            { "type": "array", "items": { "$ref": "#/$defs/SceneZone" } },
+    "entrances":        { "type": "array", "items": { "$ref": "#/$defs/Entrance" } },
+    "paths":            { "type": "array", "items": { "$ref": "#/$defs/ScenePath" } },
+    "objects":          { "type": "array", "items": { "$ref": "#/$defs/SceneObject" } },
+    "gameplay_markers": { "type": "array", "items": { "$ref": "#/$defs/GameplayMarker" } },
+    "constraints":      { "type": "array", "items": { "$ref": "#/$defs/Constraint" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Point2D": {
+      "type": "object", "required": ["x", "y"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "Point3D": {
+      "type": "object", "required": ["x", "y", "z"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "z": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "Polygon2D": {
+      "type": "object", "required": ["points"],
+      "properties": { "points": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/Point2D" } } },
+      "additionalProperties": false
+    },
+    "Transform3D": {
+      "type": "object", "required": ["position"],
+      "properties": {
+        "position": { "$ref": "#/$defs/Point3D" },
+        "rotation_deg": { "type": "number" },
+        "scale": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "Size3D": {
+      "type": "object", "required": ["width_m", "depth_m", "height_m"],
+      "properties": {
+        "width_m":  { "type": "number", "exclusiveMinimum": 0 },
+        "depth_m":  { "type": "number", "exclusiveMinimum": 0 },
+        "height_m": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "SceneZone": {
+      "type": "object", "required": ["id", "name", "zone_type", "polygon"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "zone_type": {
+          "enum": ["path", "combat_space", "stealth_route", "service_area", "public_area",
+                   "private_area", "room", "storage", "exterior_yard", "danger_zone", "safe_zone"]
+        },
+        "polygon": { "$ref": "#/$defs/Polygon2D" },
+        "height_m": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "gameplay_tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "Entrance": {
+      "type": "object", "required": ["id", "name", "position", "entrance_type"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "position": { "$ref": "#/$defs/Point2D" },
+        "entrance_type": { "enum": ["main", "side", "backdoor", "emergency", "service", "roof", "hidden"] },
+        "connects_to": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "ScenePath": {
+      "type": "object", "required": ["id", "path_type", "points", "width_m"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": ["string", "null"] },
+        "path_type": { "enum": ["main_route", "alternate_route", "stealth_route", "escape_route", "patrol_route"] },
+        "points": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/Point2D" } },
+        "width_m": { "type": "number", "exclusiveMinimum": 0 },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "SceneObject": {
+      "type": "object", "required": ["id", "name", "object_type", "transform", "size"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "object_type": {
+          "enum": ["wall", "building_block", "prop", "cover", "container", "furniture",
+                   "door", "window", "stairs", "marker", "light"]
+        },
+        "transform": { "$ref": "#/$defs/Transform3D" },
+        "size": { "$ref": "#/$defs/Size3D" },
+        "asset_ref": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "gameplay_tags": { "type": "array", "items": { "type": "string" } },
+        "locked": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "GameplayMarker": {
+      "type": "object", "required": ["id", "marker_type", "position"],
+      "properties": {
+        "id": { "type": "string" },
+        "marker_type": {
+          "enum": ["cover", "ambush", "objective", "enemy_spawn", "player_spawn", "interaction",
+                   "climb", "vault", "hiding_spot", "extraction", "camera_focus"]
+        },
+        "position": { "$ref": "#/$defs/Point2D" },
+        "radius_m": { "type": ["number", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "Constraint": {
+      "type": "object", "required": ["id", "constraint_type"],
+      "properties": {
+        "id": { "type": "string" },
+        "constraint_type": { "type": "string" },
+        "target_id": { "type": ["string", "null"] },
+        "params": { "type": "object" },
+        "severity": { "enum": ["error", "warning", "info"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

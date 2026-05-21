@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.00 50.00" width="600" height="429" preserveAspectRatio="xMidYMid meet"><style>.bg            { fill: #ffffff; stroke: #222; stroke-width: 0.3%; }
+.world-bounds  { fill: #fafafa; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.scene-bounds  { fill: #fbfbf6; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.district      { fill: #f0e6d2; stroke: #b48a3b; stroke-width: 0.2%; fill-opacity: 0.65; }
+.water         { fill: #b3d9ff; stroke: #4a7ab2; stroke-width: 0.15%; fill-opacity: 0.7; }
+.road          { fill: none; stroke: #555; stroke-linecap: round; stroke-linejoin: round; }
+.alley         { stroke: #888; stroke-dasharray: 4 2; }
+.poi           { fill: #c0392b; stroke: #6e2117; stroke-width: 0.1%; }
+.scene-slot    { fill: none; stroke: #2e8b57; stroke-width: 0.25%; stroke-dasharray: 3 2; }
+.zone          { fill: #e8eef5; stroke: #4a6178; stroke-width: 0.2%; fill-opacity: 0.55; }
+.zone-room     { fill: #fff1c2; }
+.zone-storage  { fill: #f4dcb8; }
+.zone-service  { fill: #d6e7ff; }
+.zone-combat   { fill: #ffd6d6; }
+.zone-stealth  { fill: #d5e7d2; }
+.zone-danger   { fill: #ffc1b3; }
+.zone-safe     { fill: #d2f0d2; }
+.zone-path     { fill: #e0e0e0; }
+.path-main     { fill: none; stroke: #d35400; stroke-width: 1.5; stroke-linecap: round; }
+.path-stealth  { fill: none; stroke: #16a085; stroke-width: 1.2; stroke-dasharray: 3 2; }
+.path-escape   { fill: none; stroke: #c0392b; stroke-width: 1.5; stroke-dasharray: 5 2; }
+.path-alt      { fill: none; stroke: #f39c12; stroke-width: 1.2; stroke-dasharray: 2 2; }
+.path-patrol   { fill: none; stroke: #7d3c98; stroke-width: 1.0; stroke-dasharray: 1 2; }
+.object        { fill: #cccccc; stroke: #555; stroke-width: 0.15%; }
+.entrance      { fill: #f1c40f; stroke: #6e5b00; stroke-width: 0.1%; }
+.marker-cover     { fill: #2980b9; }
+.marker-ambush    { fill: #c0392b; }
+.marker-objective { fill: #f1c40f; stroke: #7d6608; stroke-width: 0.15%; }
+.marker-enemy     { fill: #8e44ad; }
+.marker-player    { fill: #27ae60; }
+.marker-extract   { fill: #1abc9c; }
+.marker-other     { fill: #95a5a6; }
+.label         { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                 fill: #222; pointer-events: none; }
+.label-sm      { font-size: 9px; }
+.label-md      { font-size: 11px; }
+.legend-box    { fill: #ffffff; stroke: #999; stroke-width: 0.5; opacity: 0.9; }
+.legend-text   { font-family: "Segoe UI", Arial, sans-serif; font-size: 10px; fill: #222; }</style><rect class="scene-bounds" x="0" y="0" width="70.00" height="50.00"/><polygon class="zone zone-service" points="1.00,49.00 25.00,49.00 25.00,32.00 1.00,32.00"/><text class="label label-sm" x="13.00" y="40.50" text-anchor="middle" dominant-baseline="middle">Loading Zone</text><polygon class="zone zone-storage" points="26.00,49.00 50.00,49.00 50.00,32.00 26.00,32.00"/><text class="label label-sm" x="38.00" y="40.50" text-anchor="middle" dominant-baseline="middle">Storage Aisle A</text><polygon class="zone zone-storage" points="1.00,31.00 50.00,31.00 50.00,15.00 1.00,15.00"/><text class="label label-sm" x="25.50" y="23.00" text-anchor="middle" dominant-baseline="middle">Storage Aisle B</text><polygon class="zone zone-service" points="1.00,14.00 69.00,14.00 69.00,9.00 1.00,9.00"/><text class="label label-sm" x="35.00" y="11.50" text-anchor="middle" dominant-baseline="middle">Service Corridor</text><polygon class="zone zone-room" points="51.00,49.00 69.00,49.00 69.00,32.00 51.00,32.00"/><text class="label label-sm" x="60.00" y="40.50" text-anchor="middle" dominant-baseline="middle">Office Corner</text><polygon class="zone zone-room" points="51.00,31.00 69.00,31.00 69.00,15.00 51.00,15.00"/><text class="label label-sm" x="60.00" y="23.00" text-anchor="middle" dominant-baseline="middle">Objective Vault</text><rect class="object" x="27.00" y="44.25" width="6.00" height="1.50"/><rect class="object" x="27.00" y="39.25" width="6.00" height="1.50"/><rect class="object" x="27.00" y="34.25" width="6.00" height="1.50"/><rect class="object" x="6.00" y="27.25" width="8.00" height="1.50"/><rect class="object" x="6.00" y="21.25" width="8.00" height="1.50"/><rect class="object" x="59.20" y="43.60" width="1.60" height="0.80"/><rect class="object" x="51.40" y="22.85" width="1.20" height="0.30"/><rect class="object" x="17.30" y="41.40" width="1.40" height="1.20"/><polyline class="path-main" points="12.00,48.50 12.00,12.00 60.00,12.00 60.00,28.00" stroke-width="3.00"/><polyline class="path-stealth" points="2.00,30.50 2.00,12.00 50.00,12.00" stroke-width="1.50"/><polyline class="path-escape" points="60.00,28.00 40.00,12.00 35.00,1.00" stroke-width="2.50"/><polygon class="entrance" points="12.00,48.10 10.60,50.90 13.40,50.90"/><text class="label label-sm" x="14.00" y="49.50" text-anchor="middle" dominant-baseline="middle">Main Roller Door</text><polygon class="entrance" points="69.50,40.60 68.10,43.40 70.90,43.40"/><text class="label label-sm" x="71.50" y="42.00" text-anchor="middle" dominant-baseline="middle">Service Door</text><polygon class="entrance" points="35.00,-0.90 33.60,1.90 36.40,1.90"/><text class="label label-sm" x="37.00" y="0.50" text-anchor="middle" dominant-baseline="middle">Emergency Exit</text><polygon class="entrance" points="60.00,10.60 58.60,13.40 61.40,13.40"/><text class="label label-sm" x="62.00" y="12.00" text-anchor="middle" dominant-baseline="middle">Roof Hatch</text><circle class="marker-cover" cx="18.00" cy="43.00" r="1.00"/><circle class="marker-cover" cx="34.00" cy="45.00" r="1.00"/><circle class="marker-cover" cx="26.50" cy="40.00" r="1.00"/><circle class="marker-cover" cx="6.00" cy="28.00" r="1.00"/><circle class="marker-cover" cx="14.00" cy="22.00" r="1.00"/><circle class="marker-cover" cx="45.00" cy="12.50" r="1.00"/><circle class="marker-cover" cx="58.00" cy="45.00" r="1.00"/><circle class="marker-objective" cx="60.00" cy="23.00" r="1.00"/><circle class="marker-player" cx="12.00" cy="48.00" r="1.00"/><circle class="marker-enemy" cx="38.00" cy="20.00" r="1.00"/><circle class="marker-enemy" cx="58.00" cy="18.00" r="1.00"/><g class="legend" transform="translate(8,8)"><rect class="legend-box" x="0" y="0" width="170" height="140" rx="4"/><rect class="zone" x="8" y="5" width="14" height="10"/><text class="legend-text" x="28" y="14">Zone</text><rect class="object" x="8" y="19" width="14" height="10"/><text class="legend-text" x="28" y="28">Object</text><rect class="entrance" x="8" y="33" width="14" height="10"/><text class="legend-text" x="28" y="42">Entrance</text><rect class="path-main" x="8" y="47" width="14" height="10"/><text class="legend-text" x="28" y="56">Main route</text><rect class="path-escape" x="8" y="61" width="14" height="10"/><text class="legend-text" x="28" y="70">Escape route</text><rect class="path-stealth" x="8" y="75" width="14" height="10"/><text class="legend-text" x="28" y="84">Stealth route</text><rect class="marker-cover" x="8" y="89" width="14" height="10"/><text class="legend-text" x="28" y="98">Cover marker</text><rect class="marker-enemy" x="8" y="103" width="14" height="10"/><text class="legend-text" x="28" y="112">Enemy spawn</text><rect class="marker-player" x="8" y="117" width="14" height="10"/><text class="legend-text" x="28" y="126">Player spawn</text></g></svg>

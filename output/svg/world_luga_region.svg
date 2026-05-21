@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000.00 2000.00" width="1600" height="1067" preserveAspectRatio="xMidYMid meet"><style>.bg            { fill: #ffffff; stroke: #222; stroke-width: 0.3%; }
+.world-bounds  { fill: #fafafa; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.scene-bounds  { fill: #fbfbf6; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.district      { fill: #f0e6d2; stroke: #b48a3b; stroke-width: 0.2%; fill-opacity: 0.65; }
+.water         { fill: #b3d9ff; stroke: #4a7ab2; stroke-width: 0.15%; fill-opacity: 0.7; }
+.road          { fill: none; stroke: #555; stroke-linecap: round; stroke-linejoin: round; }
+.alley         { stroke: #888; stroke-dasharray: 4 2; }
+.poi           { fill: #c0392b; stroke: #6e2117; stroke-width: 0.1%; }
+.scene-slot    { fill: none; stroke: #2e8b57; stroke-width: 0.25%; stroke-dasharray: 3 2; }
+.zone          { fill: #e8eef5; stroke: #4a6178; stroke-width: 0.2%; fill-opacity: 0.55; }
+.zone-room     { fill: #fff1c2; }
+.zone-storage  { fill: #f4dcb8; }
+.zone-service  { fill: #d6e7ff; }
+.zone-combat   { fill: #ffd6d6; }
+.zone-stealth  { fill: #d5e7d2; }
+.zone-danger   { fill: #ffc1b3; }
+.zone-safe     { fill: #d2f0d2; }
+.zone-path     { fill: #e0e0e0; }
+.path-main     { fill: none; stroke: #d35400; stroke-width: 1.5; stroke-linecap: round; }
+.path-stealth  { fill: none; stroke: #16a085; stroke-width: 1.2; stroke-dasharray: 3 2; }
+.path-escape   { fill: none; stroke: #c0392b; stroke-width: 1.5; stroke-dasharray: 5 2; }
+.path-alt      { fill: none; stroke: #f39c12; stroke-width: 1.2; stroke-dasharray: 2 2; }
+.path-patrol   { fill: none; stroke: #7d3c98; stroke-width: 1.0; stroke-dasharray: 1 2; }
+.object        { fill: #cccccc; stroke: #555; stroke-width: 0.15%; }
+.entrance      { fill: #f1c40f; stroke: #6e5b00; stroke-width: 0.1%; }
+.marker-cover     { fill: #2980b9; }
+.marker-ambush    { fill: #c0392b; }
+.marker-objective { fill: #f1c40f; stroke: #7d6608; stroke-width: 0.15%; }
+.marker-enemy     { fill: #8e44ad; }
+.marker-player    { fill: #27ae60; }
+.marker-extract   { fill: #1abc9c; }
+.marker-other     { fill: #95a5a6; }
+.label         { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                 fill: #222; pointer-events: none; }
+.label-sm      { font-size: 9px; }
+.label-md      { font-size: 11px; }
+.legend-box    { fill: #ffffff; stroke: #999; stroke-width: 0.5; opacity: 0.9; }
+.legend-text   { font-family: "Segoe UI", Arial, sans-serif; font-size: 10px; fill: #222; }</style><rect class="world-bounds" x="0" y="0" width="3000.00" height="2000.00"/><polygon class="district" points="50.00,1800.00 2950.00,1800.00 2950.00,1550.00 50.00,1550.00"/><text class="label label-md" x="1500.00" y="1675.00" text-anchor="middle" dominant-baseline="middle">Coastal Shore</text><polygon class="district" points="50.00,1550.00 700.00,1550.00 700.00,1200.00 50.00,1200.00"/><text class="label label-md" x="375.00" y="1375.00" text-anchor="middle" dominant-baseline="middle">Port Edge</text><polygon class="district" points="800.00,1500.00 1500.00,1500.00 1500.00,1100.00 800.00,1100.00"/><text class="label label-md" x="1150.00" y="1300.00" text-anchor="middle" dominant-baseline="middle">Small Village</text><polygon class="district" points="1600.00,1500.00 2400.00,1500.00 2400.00,1050.00 1600.00,1050.00"/><text class="label label-md" x="2000.00" y="1275.00" text-anchor="middle" dominant-baseline="middle">Swamp Lowland</text><polygon class="district" points="50.00,1000.00 2400.00,1000.00 2400.00,300.00 50.00,300.00"/><text class="label label-md" x="1225.00" y="650.00" text-anchor="middle" dominant-baseline="middle">Forest Belt</text><polygon class="district" points="2500.00,1000.00 2950.00,1000.00 2950.00,300.00 2500.00,300.00"/><text class="label label-md" x="2725.00" y="650.00" text-anchor="middle" dominant-baseline="middle">Observation Hill</text><polygon class="district" points="500.00,250.00 1200.00,250.00 1200.00,50.00 500.00,50.00"/><text class="label label-md" x="850.00" y="150.00" text-anchor="middle" dominant-baseline="middle">Restricted Facility</text><polygon class="water" points="50.00,1950.00 2950.00,1950.00 2950.00,1800.00 50.00,1800.00"/><text class="label label-sm" x="1500.00" y="1875.00" text-anchor="middle" dominant-baseline="middle">Luga Bay</text><polygon class="water" points="1900.00,1300.00 2200.00,1300.00 2200.00,1100.00 1900.00,1100.00"/><text class="label label-sm" x="2050.00" y="1200.00" text-anchor="middle" dominant-baseline="middle">Swamp Pond</text><polyline class="road" points="50.00,1650.00 1500.00,1650.00 2950.00,1650.00" stroke-width="8.00"/><polyline class="road" points="1150.00,1500.00 1150.00,1000.00 1150.00,500.00" stroke-width="6.00"/><polyline class="road" points="1150.00,500.00 850.00,250.00" stroke-width="4.00"/><polyline class="road" points="2400.00,900.00 2700.00,700.00 2800.00,400.00" stroke-width="1.50"/><circle class="poi" cx="200.00" cy="1750.00" r="6"/><text class="label label-sm" x="200.00" y="1760.00" text-anchor="middle" dominant-baseline="middle">Old Lighthouse</text><circle class="poi" cx="2750.00" cy="450.00" r="6"/><text class="label label-sm" x="2750.00" y="460.00" text-anchor="middle" dominant-baseline="middle">Abandoned Radio Tower</text><circle class="poi" cx="1150.00" cy="1300.00" r="6"/><text class="label label-sm" x="1150.00" y="1310.00" text-anchor="middle" dominant-baseline="middle">Village Square</text><rect class="scene-slot" x="1130.00" y="685.00" width="40.00" height="30.00"/><text class="label label-sm" x="1150.00" y="700.00" text-anchor="middle" dominant-baseline="middle">Forest Checkpoint</text><rect class="scene-slot" x="987.50" y="1240.00" width="25.00" height="20.00"/><text class="label label-sm" x="1000.00" y="1250.00" text-anchor="middle" dominant-baseline="middle">Abandoned House Interior</text><rect class="scene-slot" x="375.00" y="1485.00" width="50.00" height="30.00"/><text class="label label-sm" x="400.00" y="1500.00" text-anchor="middle" dominant-baseline="middle">Small Dock</text><rect class="scene-slot" x="1120.00" y="835.00" width="60.00" height="30.00"/><text class="label label-sm" x="1150.00" y="850.00" text-anchor="middle" dominant-baseline="middle">Road Ambush Site</text><rect class="scene-slot" x="2730.00" y="430.00" width="40.00" height="40.00"/><text class="label label-sm" x="2750.00" y="450.00" text-anchor="middle" dominant-baseline="middle">Radio Tower Scene</text><rect class="scene-slot" x="835.00" y="137.50" width="30.00" height="25.00"/><text class="label label-sm" x="850.00" y="150.00" text-anchor="middle" dominant-baseline="middle">Restricted Cabin Interior</text><g class="legend" transform="translate(8,8)"><rect class="legend-box" x="0" y="0" width="170" height="84" rx="4"/><rect class="district" x="8" y="5" width="14" height="10"/><text class="legend-text" x="28" y="14">District</text><rect class="water" x="8" y="19" width="14" height="10"/><text class="legend-text" x="28" y="28">Water</text><rect class="road" x="8" y="33" width="14" height="10"/><text class="legend-text" x="28" y="42">Road</text><rect class="poi" x="8" y="47" width="14" height="10"/><text class="legend-text" x="28" y="56">POI</text><rect class="scene-slot" x="8" y="61" width="14" height="10"/><text class="legend-text" x="28" y="70">Scene Slot</text></g></svg>

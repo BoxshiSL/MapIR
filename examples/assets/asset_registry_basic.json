@@ -1,0 +1,73 @@
+{
+  "version": "0.1",
+  "name": "asset_registry_basic",
+  "assets": [
+    {
+      "asset_id": "bld_office_low_01", "name": "Low Office Building",
+      "category": "building",
+      "footprint": { "width_m": 18.0, "depth_m": 14.0, "height_m": 9.0 },
+      "tags": ["office", "modular"],
+      "allowed_scene_types": ["exterior_location"],
+      "allowed_district_types": ["business", "old_dense"],
+      "technical": { "collision": "simple", "lod": true, "nanite": false }
+    },
+    {
+      "asset_id": "bld_nightclub_facade_01", "name": "Nightclub Facade",
+      "category": "building",
+      "footprint": { "width_m": 12.0, "depth_m": 8.0, "height_m": 7.0 },
+      "tags": ["nightlife", "neon"],
+      "allowed_district_types": ["nightlife"]
+    },
+    {
+      "asset_id": "wall_concrete_3m", "name": "Concrete Wall 3m",
+      "category": "wall",
+      "footprint": { "width_m": 3.0, "depth_m": 0.3, "height_m": 3.0 },
+      "tags": ["concrete", "modular"]
+    },
+    {
+      "asset_id": "container_20ft", "name": "Shipping Container 20ft",
+      "category": "container",
+      "footprint": { "width_m": 6.06, "depth_m": 2.44, "height_m": 2.59 },
+      "tags": ["industrial", "stackable"],
+      "gameplay_tags": ["cover"]
+    },
+    {
+      "asset_id": "prop_dumpster_01", "name": "Dumpster",
+      "category": "prop",
+      "footprint": { "width_m": 2.0, "depth_m": 1.4, "height_m": 1.3 },
+      "tags": ["urban", "alley"],
+      "gameplay_tags": ["cover"]
+    },
+    {
+      "asset_id": "prop_vending_01", "name": "Vending Machine",
+      "category": "prop",
+      "footprint": { "width_m": 1.2, "depth_m": 0.6, "height_m": 1.9 },
+      "tags": ["urban", "neon"]
+    },
+    {
+      "asset_id": "door_metal_single", "name": "Metal Single Door",
+      "category": "door",
+      "footprint": { "width_m": 1.0, "depth_m": 0.2, "height_m": 2.1 }
+    },
+    {
+      "asset_id": "stairs_external_steel", "name": "External Steel Stairs",
+      "category": "stairs",
+      "footprint": { "width_m": 1.4, "depth_m": 4.0, "height_m": 4.0 },
+      "tags": ["external", "metal"]
+    },
+    {
+      "asset_id": "veg_tree_pine_01", "name": "Pine Tree",
+      "category": "vegetation",
+      "footprint": { "width_m": 3.0, "depth_m": 3.0, "height_m": 12.0 },
+      "tags": ["forest", "coniferous"],
+      "allowed_district_types": ["forest", "hill", "village"]
+    },
+    {
+      "asset_id": "landmark_crane_yard", "name": "Yard Crane",
+      "category": "landmark",
+      "footprint": { "width_m": 8.0, "depth_m": 8.0, "height_m": 22.0 },
+      "tags": ["industrial", "tall"],
+      "gameplay_tags": ["sniper_friendly"]
+    }
+  ]
+}

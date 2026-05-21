@@ -1,0 +1,138 @@
+{
+  "ir_type": "scene",
+  "version": "0.1",
+  "scene_id": "scene_port_yard_01",
+  "name": "Minato Container Yard",
+  "description": "Outdoor port yard with container stacks, a fenced perimeter, and crane landmark.",
+  "scene_type": "exterior_location",
+  "preset": "port_yard",
+  "standalone": true,
+  "parent_world_id": "world_jisso_city",
+  "parent_scene_slot_id": "minato_container_yard",
+  "bounds": { "width_m": 120.0, "depth_m": 90.0, "height_m": 25.0 },
+  "theme": "industrial_port",
+  "tags": ["port", "yard", "industrial", "stealth"],
+
+  "zones": [
+    {
+      "id": "zone_loading", "name": "Loading Area", "zone_type": "exterior_yard",
+      "polygon": { "points": [
+        { "x": 5.0,  "y": 5.0 }, { "x": 50.0, "y": 5.0 },
+        { "x": 50.0, "y": 40.0 }, { "x": 5.0,  "y": 40.0 }
+      ]}
+    },
+    {
+      "id": "zone_container_stacks", "name": "Container Stacks", "zone_type": "combat_space",
+      "polygon": { "points": [
+        { "x": 51.0, "y": 5.0 }, { "x": 115.0, "y": 5.0 },
+        { "x": 115.0, "y": 55.0 }, { "x": 51.0, "y": 55.0 }
+      ]}
+    },
+    {
+      "id": "zone_warehouse_front", "name": "Warehouse Front", "zone_type": "service_area",
+      "polygon": { "points": [
+        { "x": 5.0,  "y": 41.0 }, { "x": 50.0, "y": 41.0 },
+        { "x": 50.0, "y": 75.0 }, { "x": 5.0,  "y": 75.0 }
+      ]}
+    },
+    {
+      "id": "zone_fence_line", "name": "Fence Line", "zone_type": "danger_zone",
+      "polygon": { "points": [
+        { "x": 5.0,  "y": 80.0 }, { "x": 115.0, "y": 80.0 },
+        { "x": 115.0, "y": 85.0 }, { "x": 5.0,  "y": 85.0 }
+      ]}
+    }
+  ],
+
+  "entrances": [
+    { "id": "ent_main_gate", "name": "Main Gate",
+      "position": { "x": 1.0, "y": 22.0 }, "entrance_type": "main" },
+    { "id": "ent_service_gate", "name": "Service Gate",
+      "position": { "x": 60.0, "y": 88.0 }, "entrance_type": "service" },
+    { "id": "ent_hole_in_fence", "name": "Hole in Fence",
+      "position": { "x": 95.0, "y": 88.0 }, "entrance_type": "hidden" }
+  ],
+
+  "paths": [
+    {
+      "id": "path_vehicle", "name": "Vehicle Path",
+      "path_type": "main_route",
+      "points": [
+        { "x": 2.0,   "y": 22.0 },
+        { "x": 50.0,  "y": 22.0 },
+        { "x": 90.0,  "y": 22.0 },
+        { "x": 115.0, "y": 22.0 }
+      ],
+      "width_m": 6.0
+    },
+    {
+      "id": "path_stealth", "name": "Stealth Route Through Containers",
+      "path_type": "stealth_route",
+      "points": [
+        { "x": 50.0, "y": 6.0 },
+        { "x": 70.0, "y": 30.0 },
+        { "x": 95.0, "y": 50.0 },
+        { "x": 95.0, "y": 88.0 }
+      ],
+      "width_m": 1.5
+    },
+    {
+      "id": "path_escape", "name": "Escape via Service Gate",
+      "path_type": "escape_route",
+      "points": [
+        { "x": 30.0, "y": 50.0 },
+        { "x": 30.0, "y": 70.0 },
+        { "x": 60.0, "y": 88.0 }
+      ],
+      "width_m": 3.0
+    }
+  ],
+
+  "objects": [
+    { "id": "obj_container_1", "name": "Container 1", "object_type": "cover",
+      "transform": { "position": { "x": 60.0, "y": 12.0, "z": 0.0 } },
+      "size": { "width_m": 6.1, "depth_m": 2.5, "height_m": 2.6 } },
+    { "id": "obj_container_2", "name": "Container 2", "object_type": "cover",
+      "transform": { "position": { "x": 75.0, "y": 12.0, "z": 0.0 } },
+      "size": { "width_m": 6.1, "depth_m": 2.5, "height_m": 2.6 } },
+    { "id": "obj_container_3", "name": "Container 3", "object_type": "cover",
+      "transform": { "position": { "x": 60.0, "y": 22.0, "z": 0.0 } },
+      "size": { "width_m": 6.1, "depth_m": 2.5, "height_m": 2.6 } },
+    { "id": "obj_container_4", "name": "Container 4", "object_type": "cover",
+      "transform": { "position": { "x": 75.0, "y": 22.0, "z": 0.0 } },
+      "size": { "width_m": 6.1, "depth_m": 2.5, "height_m": 2.6 } },
+    { "id": "obj_container_stack_high", "name": "High Container Stack", "object_type": "building_block",
+      "transform": { "position": { "x": 95.0, "y": 20.0, "z": 0.0 } },
+      "size": { "width_m": 12.0, "depth_m": 5.0, "height_m": 8.0 } },
+    { "id": "obj_warehouse_facade", "name": "Warehouse Facade", "object_type": "wall",
+      "transform": { "position": { "x": 27.0, "y": 78.0, "z": 0.0 } },
+      "size": { "width_m": 44.0, "depth_m": 1.0, "height_m": 10.0 } },
+    { "id": "obj_fence_main", "name": "Perimeter Fence", "object_type": "wall",
+      "transform": { "position": { "x": 60.0, "y": 89.0, "z": 0.0 } },
+      "size": { "width_m": 110.0, "depth_m": 0.4, "height_m": 3.0 } },
+    { "id": "obj_crane_landmark", "name": "Yard Crane", "object_type": "building_block",
+      "transform": { "position": { "x": 100.0, "y": 60.0, "z": 0.0 } },
+      "size": { "width_m": 8.0, "depth_m": 8.0, "height_m": 22.0 } }
+  ],
+
+  "gameplay_markers": [
+    { "id": "mk_cover_1", "marker_type": "cover", "position": { "x": 60.0, "y": 13.5 } },
+    { "id": "mk_cover_2", "marker_type": "cover", "position": { "x": 75.0, "y": 13.5 } },
+    { "id": "mk_cover_3", "marker_type": "cover", "position": { "x": 60.0, "y": 20.5 } },
+    { "id": "mk_cover_4", "marker_type": "cover", "position": { "x": 75.0, "y": 20.5 } },
+    { "id": "mk_cover_5", "marker_type": "cover", "position": { "x": 90.0, "y": 20.5 } },
+    { "id": "mk_cover_6", "marker_type": "cover", "position": { "x": 30.0, "y": 50.0 } },
+    { "id": "mk_player_spawn", "marker_type": "player_spawn", "position": { "x": 4.0, "y": 22.0 } },
+    { "id": "mk_enemy_patrol_1", "marker_type": "enemy_spawn", "position": { "x": 25.0, "y": 22.0 } },
+    { "id": "mk_enemy_patrol_2", "marker_type": "enemy_spawn", "position": { "x": 80.0, "y": 35.0 } },
+    { "id": "mk_enemy_tower", "marker_type": "enemy_spawn", "position": { "x": 100.0, "y": 60.0 } },
+    { "id": "mk_extract", "marker_type": "extraction", "position": { "x": 60.0, "y": 88.0 } },
+    { "id": "mk_camera_focus", "marker_type": "camera_focus", "position": { "x": 100.0, "y": 70.0 } }
+  ],
+
+  "constraints": [
+    { "id": "c_min_entr", "constraint_type": "must_have_min_entrances", "params": { "min": 3 } },
+    { "id": "c_min_escape", "constraint_type": "must_have_min_escape_routes", "params": { "min": 1 } },
+    { "id": "c_min_cover", "constraint_type": "must_have_min_cover_markers", "params": { "min": 6 } }
+  ]
+}
