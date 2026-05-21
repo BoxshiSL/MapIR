@@ -74,6 +74,7 @@ _STYLE = """
 # Public API
 # ============================================================
 
+
 def render(ir: WorldIR | SceneIR) -> str:
     if isinstance(ir, WorldIR):
         return _render_world(ir)
@@ -83,6 +84,7 @@ def render(ir: WorldIR | SceneIR) -> str:
 # ============================================================
 # Helpers
 # ============================================================
+
 
 def _fy(y: float, depth: float) -> float:
     """Flip y so JSON-up matches SVG-down."""
@@ -135,17 +137,13 @@ def _legend(items: list[tuple[str, str]]) -> str:
     box_w = 170
     box_h = 10 + line_h * len(items) + 4
     parts = [
-        f'<g class="legend" transform="translate(8,8)">',
+        '<g class="legend" transform="translate(8,8)">',
         f'<rect class="legend-box" x="0" y="0" width="{box_w}" height="{box_h}" rx="4"/>',
     ]
     for i, (swatch_cls, text) in enumerate(items):
         y = 14 + i * line_h
-        parts.append(
-            f'<rect class="{swatch_cls}" x="8" y="{y - 9:.0f}" width="14" height="10"/>'
-        )
-        parts.append(
-            f'<text class="legend-text" x="28" y="{y:.0f}">{escape(text)}</text>'
-        )
+        parts.append(f'<rect class="{swatch_cls}" x="8" y="{y - 9:.0f}" width="14" height="10"/>')
+        parts.append(f'<text class="legend-text" x="28" y="{y:.0f}">{escape(text)}</text>')
     parts.append("</g>")
     return "".join(parts)
 
@@ -153,6 +151,7 @@ def _legend(items: list[tuple[str, str]]) -> str:
 # ============================================================
 # World rendering
 # ============================================================
+
 
 def _render_world(world: WorldIR) -> str:
     w, d = world.scale.width_m, world.scale.depth_m
@@ -186,9 +185,8 @@ def _render_world(world: WorldIR) -> str:
 def _render_district(dist, depth: float) -> str:
     pts = _polygon_points(dist.polygon, depth)
     cx, cy = _bbox_center(dist.polygon)
-    return (
-        f'<polygon class="district" points="{pts}"/>'
-        + _label(cx, cy, depth, dist.name, cls="label label-md")
+    return f'<polygon class="district" points="{pts}"/>' + _label(
+        cx, cy, depth, dist.name, cls="label label-md"
     )
 
 
@@ -202,8 +200,7 @@ def _render_road(road: Road, depth: float) -> str:
     pts = _polyline_points(road.points, depth)
     cls = "road alley" if road.road_type.value == "alley" else "road"
     return (
-        f'<polyline class="{cls}" points="{pts}" '
-        f'stroke-width="{max(1.0, road.width_m):.2f}"/>'
+        f'<polyline class="{cls}" points="{pts}" ' f'stroke-width="{max(1.0, road.width_m):.2f}"/>'
     )
 
 
@@ -278,17 +275,21 @@ def _render_scene(scene: SceneIR) -> str:
     for marker in scene.gameplay_markers:
         parts.append(_render_marker(marker, d))
 
-    parts.append(_legend([
-        ("zone", "Zone"),
-        ("object", "Object"),
-        ("entrance", "Entrance"),
-        ("path-main", "Main route"),
-        ("path-escape", "Escape route"),
-        ("path-stealth", "Stealth route"),
-        ("marker-cover", "Cover marker"),
-        ("marker-enemy", "Enemy spawn"),
-        ("marker-player", "Player spawn"),
-    ]))
+    parts.append(
+        _legend(
+            [
+                ("zone", "Zone"),
+                ("object", "Object"),
+                ("entrance", "Entrance"),
+                ("path-main", "Main route"),
+                ("path-escape", "Escape route"),
+                ("path-stealth", "Stealth route"),
+                ("marker-cover", "Cover marker"),
+                ("marker-enemy", "Enemy spawn"),
+                ("marker-player", "Player spawn"),
+            ]
+        )
+    )
     parts.append(_svg_close())
     return "".join(parts)
 
@@ -321,18 +322,15 @@ def _render_path(path: ScenePath, depth: float) -> str:
 def _render_entrance(ent: Entrance, depth: float) -> str:
     x, y = ent.position.x, _fy(ent.position.y, depth)
     r = 1.4
-    triangle = (
-        f"{x:.2f},{y - r:.2f} {x - r:.2f},{y + r:.2f} {x + r:.2f},{y + r:.2f}"
-    )
-    return (
-        f'<polygon class="entrance" points="{triangle}"/>'
-        + _label(ent.position.x + 2.0, ent.position.y, depth, ent.name)
+    triangle = f"{x:.2f},{y - r:.2f} {x - r:.2f},{y + r:.2f} {x + r:.2f},{y + r:.2f}"
+    return f'<polygon class="entrance" points="{triangle}"/>' + _label(
+        ent.position.x + 2.0, ent.position.y, depth, ent.name
     )
 
 
 def _render_marker(marker: GameplayMarker, depth: float) -> str:
     cls = _MARKER_CLASS.get(marker.marker_type, "marker-other")
-    r = (marker.radius_m if marker.radius_m else 1.0)
+    r = marker.radius_m if marker.radius_m else 1.0
     return (
         f'<circle class="{cls}" '
         f'cx="{marker.position.x:.2f}" cy="{_fy(marker.position.y, depth):.2f}" '

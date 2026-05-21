@@ -9,8 +9,8 @@ import mapir
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_package_version_is_020() -> None:
-    assert mapir.__version__ == "0.2.0"
+def test_package_version_is_030() -> None:
+    assert mapir.__version__ == "0.3.0"
 
 
 def test_pyproject_version_matches_package() -> None:
@@ -20,5 +20,4 @@ def test_pyproject_version_matches_package() -> None:
 
 def test_readme_mentions_current_version() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert re.search(r"0\.2(?:\.0)?\b", readme), \
-        "README should mention v0.2 / 0.2.0"
+    assert re.search(r"0\.3(?:\.0)?\b", readme), "README should mention v0.3 / 0.3.0"

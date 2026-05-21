@@ -1,0 +1,113 @@
+"""Validation page — colour-coded issue list."""
+
+from __future__ import annotations
+
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QBrush, QColor
+from PySide6.QtWidgets import (
+    QHBoxLayout,
+    QHeaderView,
+    QLabel,
+    QPushButton,
+    QTableWidget,
+    QTableWidgetItem,
+    QVBoxLayout,
+    QWidget,
+)
+
+from ..state import AppState
+from ..theme import PALETTE
+
+_SEVERITY_COLORS = {
+    "error": PALETTE["danger"],
+    "warning": PALETTE["warning"],
+    "info": PALETTE["accent_2"],
+}
+
+
+class ValidationPage(QWidget):
+    revalidate_requested = Signal()
+
+    def __init__(self, state: AppState, parent=None) -> None:
+        super().__init__(parent)
+        self._state = state
+
+        root = QVBoxLayout(self)
+        root.setContentsMargins(24, 20, 24, 20)
+        root.setSpacing(12)
+
+        title = QLabel("Validation")
+        title.setProperty("role", "pageTitle")
+        subtitle = QLabel(
+            "Structural validation comes from Pydantic on load; semantic "
+            "validation is the rules engine in mapir/core/validation.py."
+        )
+        subtitle.setProperty("role", "pageSubtitle")
+        subtitle.setWordWrap(True)
+        root.addWidget(title)
+        root.addWidget(subtitle)
+
+        header = QHBoxLayout()
+        header.setSpacing(8)
+        self.status_label = QLabel()
+        self.status_label.setProperty("role", "cardTitle")
+        header.addWidget(self.status_label)
+        header.addStretch(1)
+        self.counts_label = QLabel()
+        self.counts_label.setProperty("role", "muted")
+        header.addWidget(self.counts_label)
+        self.btn_revalidate = QPushButton("Validate Current (F5)")
+        self.btn_revalidate.setProperty("role", "primary")
+        self.btn_revalidate.clicked.connect(self.revalidate_requested.emit)
+        header.addWidget(self.btn_revalidate)
+        root.addLayout(header)
+
+        self.table = QTableWidget(0, 4)
+        self.table.setHorizontalHeaderLabels(["Severity", "Code", "Message", "Path"])
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.table.verticalHeader().setVisible(False)
+        self.table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.table.setSelectionBehavior(QTableWidget.SelectRows)
+        root.addWidget(self.table, 1)
+
+        state.validation_changed.connect(self._refresh)
+        state.document_loaded.connect(self._refresh)
+        self._refresh()
+
+    def _refresh(self) -> None:
+        report = self._state.validation_report
+        if report is None:
+            self.status_label.setText("No document")
+            self.counts_label.setText("")
+            self.table.setRowCount(0)
+            self.btn_revalidate.setEnabled(False)
+            return
+        self.btn_revalidate.setEnabled(True)
+        if report.is_valid:
+            self.status_label.setText("✔ VALID")
+            self.status_label.setStyleSheet(f"color: {PALETTE['success']}; font-weight: 700;")
+        else:
+            self.status_label.setText("✘ INVALID")
+            self.status_label.setStyleSheet(f"color: {PALETTE['danger']}; font-weight: 700;")
+        self.counts_label.setText(
+            f"errors={len(report.errors)}  warnings={len(report.warnings)}  "
+            f"infos={len(report.infos)}"
+        )
+
+        issues = report.all()
+        self.table.setRowCount(len(issues))
+        for r, issue in enumerate(issues):
+            sev = issue.severity.value
+            sev_item = QTableWidgetItem(sev.upper())
+            color = QColor(_SEVERITY_COLORS.get(sev, PALETTE["muted"]))
+            sev_item.setForeground(QBrush(color))
+            font = sev_item.font()
+            font.setBold(True)
+            sev_item.setFont(font)
+            sev_item.setTextAlignment(Qt.AlignCenter)
+            self.table.setItem(r, 0, sev_item)
+            self.table.setItem(r, 1, QTableWidgetItem(issue.code))
+            self.table.setItem(r, 2, QTableWidgetItem(issue.message))
+            self.table.setItem(r, 3, QTableWidgetItem(issue.path))

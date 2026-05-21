@@ -28,10 +28,10 @@ from .enums import (
     ZoneType,
 )
 
-
 # ============================================================
 # Geometry primitives
 # ============================================================
+
 
 class _Frozen(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -86,6 +86,7 @@ class Transform3D(_Frozen):
 # Constraints
 # ============================================================
 
+
 class Constraint(_Frozen):
     id: str
     constraint_type: ConstraintType
@@ -97,6 +98,7 @@ class Constraint(_Frozen):
 # ============================================================
 # World IR
 # ============================================================
+
 
 class District(_Frozen):
     id: str
@@ -175,6 +177,7 @@ class WorldIR(_Frozen):
 # ============================================================
 # Scene IR
 # ============================================================
+
 
 class SceneZone(_Frozen):
     id: str
@@ -263,6 +266,7 @@ class SceneIR(_Frozen):
 # ============================================================
 # Asset Registry
 # ============================================================
+
 
 class AssetFootprint(_Frozen):
     width_m: float = Field(gt=0)

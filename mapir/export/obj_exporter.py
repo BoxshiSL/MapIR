@@ -41,8 +41,12 @@ class _OBJBuilder:
     def add_box(
         self,
         name: str,
-        cx: float, cy: float, cz: float,
-        size_x: float, size_y: float, size_z: float,
+        cx: float,
+        cy: float,
+        cz: float,
+        size_x: float,
+        size_y: float,
+        size_z: float,
     ) -> None:
         """Adds an axis-aligned box centered at (cx, cy, cz). cy = height-center."""
         hx = size_x / 2.0
@@ -95,7 +99,9 @@ class _OBJBuilder:
         size_z = max(0.01, max_z - min_z)
         self.add_box(name, cx, z_base + thickness / 2.0, cz, size_x, thickness, size_z)
 
-    def add_marker_cube(self, name: str, x: float, z: float, y: float = 0.0, size: float = 1.0) -> None:
+    def add_marker_cube(
+        self, name: str, x: float, z: float, y: float = 0.0, size: float = 1.0
+    ) -> None:
         self.add_box(name, x, y + size / 2.0, z, size, size, size)
 
     def text(self) -> str:
@@ -110,6 +116,7 @@ def _safe(name: str) -> str:
 # Public API
 # ============================================================
 
+
 def export(ir: WorldIR | SceneIR) -> str:
     if isinstance(ir, WorldIR):
         return _export_world(ir)
@@ -119,6 +126,7 @@ def export(ir: WorldIR | SceneIR) -> str:
 # ============================================================
 # World
 # ============================================================
+
 
 def _export_world(world: WorldIR) -> str:
     b = _OBJBuilder()
@@ -175,14 +183,19 @@ def _export_poi(b: _OBJBuilder, p: POI) -> None:
 def _export_scene_slot(b: _OBJBuilder, s: SceneSlot) -> None:
     b.add_box(
         f"slot_{s.id}",
-        cx=s.position.x, cy=0.5, cz=s.position.y,
-        size_x=s.size.width_m, size_y=0.3, size_z=s.size.depth_m,
+        cx=s.position.x,
+        cy=0.5,
+        cz=s.position.y,
+        size_x=s.size.width_m,
+        size_y=0.3,
+        size_z=s.size.depth_m,
     )
 
 
 # ============================================================
 # Scene
 # ============================================================
+
 
 def _export_scene(scene: SceneIR) -> str:
     b = _OBJBuilder()
@@ -210,7 +223,9 @@ def _export_scene(scene: SceneIR) -> str:
             cx=obj.transform.position.x,
             cy=obj.transform.position.z + sy / 2.0,
             cz=obj.transform.position.y,
-            size_x=sx, size_y=sy, size_z=sz,
+            size_x=sx,
+            size_y=sy,
+            size_z=sz,
         )
     for e in scene.entrances:
         b.add_marker_cube(f"ent_{e.id}", e.position.x, e.position.y, y=0.2, size=1.2)

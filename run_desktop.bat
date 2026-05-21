@@ -9,7 +9,7 @@ if not exist ".venv\Scripts\activate.bat" (
 )
 call ".venv\Scripts\activate.bat"
 
-python -m mapir.cli ui %*
+python -m mapir.cli desktop %*
 set RC=%ERRORLEVEL%
 
 popd

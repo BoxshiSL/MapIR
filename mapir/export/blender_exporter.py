@@ -13,15 +13,11 @@ Coordinate convention (Blender):
 from __future__ import annotations
 
 import json
-from io import StringIO
 
 from ..core.enums import ZoneType
 from ..core.models import (
-    POI,
     Polygon2D,
     SceneIR,
-    SceneSlot,
-    WaterBody,
     WorldIR,
 )
 
@@ -69,6 +65,7 @@ _ZONE_COLOR_KEY = {
 # Public API
 # ============================================================
 
+
 def export(ir: WorldIR | SceneIR) -> str:
     items: list[dict] = []
     if isinstance(ir, WorldIR):
@@ -82,47 +79,74 @@ def export(ir: WorldIR | SceneIR) -> str:
 # Item generators
 # ============================================================
 
+
 def _world_items(world: WorldIR) -> tuple[list[dict], dict, str]:
     items: list[dict] = []
 
-    items.append(_box(
-        name="world_ground",
-        cx=world.scale.width_m / 2.0,
-        cy=world.scale.depth_m / 2.0,
-        cz=-0.05,
-        sx=world.scale.width_m,
-        sy=world.scale.depth_m,
-        sz=0.1,
-        material="ground",
-    ))
+    items.append(
+        _box(
+            name="world_ground",
+            cx=world.scale.width_m / 2.0,
+            cy=world.scale.depth_m / 2.0,
+            cz=-0.05,
+            sx=world.scale.width_m,
+            sy=world.scale.depth_m,
+            sz=0.1,
+            material="ground",
+        )
+    )
 
     for d in world.districts:
-        items.append(_box_from_polygon(f"district_{d.id}", d.polygon, height=0.4, z_base=0.05, material="district"))
+        items.append(
+            _box_from_polygon(
+                f"district_{d.id}", d.polygon, height=0.4, z_base=0.05, material="district"
+            )
+        )
     for w in world.water_bodies:
-        items.append(_box_from_polygon(f"water_{w.id}", w.polygon, height=0.1, z_base=0.05, material="water"))
+        items.append(
+            _box_from_polygon(f"water_{w.id}", w.polygon, height=0.1, z_base=0.05, material="water")
+        )
     for r in world.roads:
         xs = [p.x for p in r.points]
         ys = [p.y for p in r.points]
-        items.append(_box(
-            name=f"road_{r.id}",
-            cx=(min(xs) + max(xs)) / 2.0,
-            cy=(min(ys) + max(ys)) / 2.0,
-            cz=0.5,
-            sx=max(r.width_m, max(xs) - min(xs)),
-            sy=max(r.width_m, max(ys) - min(ys)),
-            sz=0.05,
-            material="road",
-        ))
+        items.append(
+            _box(
+                name=f"road_{r.id}",
+                cx=(min(xs) + max(xs)) / 2.0,
+                cy=(min(ys) + max(ys)) / 2.0,
+                cz=0.5,
+                sx=max(r.width_m, max(xs) - min(xs)),
+                sy=max(r.width_m, max(ys) - min(ys)),
+                sz=0.05,
+                material="road",
+            )
+        )
     for p in world.pois:
-        items.append(_box(
-            name=f"poi_{p.id}", cx=p.position.x, cy=p.position.y, cz=2.0,
-            sx=5.0, sy=5.0, sz=4.0, material="poi",
-        ))
+        items.append(
+            _box(
+                name=f"poi_{p.id}",
+                cx=p.position.x,
+                cy=p.position.y,
+                cz=2.0,
+                sx=5.0,
+                sy=5.0,
+                sz=4.0,
+                material="poi",
+            )
+        )
     for s in world.scene_slots:
-        items.append(_box(
-            name=f"slot_{s.id}", cx=s.position.x, cy=s.position.y, cz=0.4,
-            sx=s.size.width_m, sy=s.size.depth_m, sz=0.3, material="scene_slot",
-        ))
+        items.append(
+            _box(
+                name=f"slot_{s.id}",
+                cx=s.position.x,
+                cy=s.position.y,
+                cz=0.4,
+                sx=s.size.width_m,
+                sy=s.size.depth_m,
+                sz=0.3,
+                material="scene_slot",
+            )
+        )
 
     return items, _WORLD_COLORS, f"World: {world.name}"
 
@@ -130,49 +154,81 @@ def _world_items(world: WorldIR) -> tuple[list[dict], dict, str]:
 def _scene_items(scene: SceneIR) -> tuple[list[dict], dict, str]:
     items: list[dict] = []
 
-    items.append(_box(
-        name="scene_floor",
-        cx=scene.bounds.width_m / 2.0,
-        cy=scene.bounds.depth_m / 2.0,
-        cz=-0.05,
-        sx=scene.bounds.width_m,
-        sy=scene.bounds.depth_m,
-        sz=0.1,
-        material="floor",
-    ))
+    items.append(
+        _box(
+            name="scene_floor",
+            cx=scene.bounds.width_m / 2.0,
+            cy=scene.bounds.depth_m / 2.0,
+            cz=-0.05,
+            sx=scene.bounds.width_m,
+            sy=scene.bounds.depth_m,
+            sz=0.1,
+            material="floor",
+        )
+    )
 
     for z in scene.zones:
-        items.append(_box_from_polygon(
-            f"zone_{z.id}", z.polygon, height=0.15, z_base=0.05,
-            material=_ZONE_COLOR_KEY.get(z.zone_type, "zone_default"),
-        ))
+        items.append(
+            _box_from_polygon(
+                f"zone_{z.id}",
+                z.polygon,
+                height=0.15,
+                z_base=0.05,
+                material=_ZONE_COLOR_KEY.get(z.zone_type, "zone_default"),
+            )
+        )
     for obj in scene.objects:
         sx = obj.size.width_m * obj.transform.scale
         sy = obj.size.depth_m * obj.transform.scale
         sz = obj.size.height_m * obj.transform.scale
-        items.append(_box(
-            name=f"obj_{obj.id}",
-            cx=obj.transform.position.x,
-            cy=obj.transform.position.y,
-            cz=obj.transform.position.z + sz / 2.0,
-            sx=sx, sy=sy, sz=sz, material="object",
-        ))
+        items.append(
+            _box(
+                name=f"obj_{obj.id}",
+                cx=obj.transform.position.x,
+                cy=obj.transform.position.y,
+                cz=obj.transform.position.z + sz / 2.0,
+                sx=sx,
+                sy=sy,
+                sz=sz,
+                material="object",
+            )
+        )
     for e in scene.entrances:
-        items.append(_box(
-            name=f"ent_{e.id}", cx=e.position.x, cy=e.position.y, cz=0.6,
-            sx=1.2, sy=1.2, sz=1.2, material="entrance",
-        ))
+        items.append(
+            _box(
+                name=f"ent_{e.id}",
+                cx=e.position.x,
+                cy=e.position.y,
+                cz=0.6,
+                sx=1.2,
+                sy=1.2,
+                sz=1.2,
+                material="entrance",
+            )
+        )
     for m in scene.gameplay_markers:
-        items.append(_box(
-            name=f"mk_{m.id}", cx=m.position.x, cy=m.position.y, cz=0.4,
-            sx=0.6, sy=0.6, sz=0.6, material="marker",
-        ))
+        items.append(
+            _box(
+                name=f"mk_{m.id}",
+                cx=m.position.x,
+                cy=m.position.y,
+                cz=0.4,
+                sx=0.6,
+                sy=0.6,
+                sz=0.6,
+                material="marker",
+            )
+        )
 
     return items, _SCENE_COLORS, f"Scene: {scene.name}"
 
 
 def _box_from_polygon(
-    name: str, polygon: Polygon2D, height: float, z_base: float, material: str,
+    name: str,
+    polygon: Polygon2D,
+    height: float,
+    z_base: float,
+    material: str,
 ) -> dict:
     xs = [p.x for p in polygon.points]
     ys = [p.y for p in polygon.points]
@@ -180,12 +236,21 @@ def _box_from_polygon(
     cy = (min(ys) + max(ys)) / 2.0
     sx = max(0.01, max(xs) - min(xs))
     sy = max(0.01, max(ys) - min(ys))
-    return _box(name=name, cx=cx, cy=cy, cz=z_base + height / 2.0,
-                sx=sx, sy=sy, sz=height, material=material)
+    return _box(
+        name=name,
+        cx=cx,
+        cy=cy,
+        cz=z_base + height / 2.0,
+        sx=sx,
+        sy=sy,
+        sz=height,
+        material=material,
+    )
 
 
-def _box(*, name: str, cx: float, cy: float, cz: float,
-         sx: float, sy: float, sz: float, material: str) -> dict:
+def _box(
+    *, name: str, cx: float, cy: float, cz: float, sx: float, sy: float, sz: float, material: str
+) -> dict:
     return {
         "name": _safe(name),
         "center": [cx, cy, cz],

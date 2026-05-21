@@ -2,6 +2,9 @@
 setlocal
 pushd "%~dp0"
 
+echo === MapIR Studio installer ===
+echo.
+
 if not exist ".venv" (
     echo Creating virtual environment .venv ...
     python -m venv .venv
@@ -16,27 +19,46 @@ call ".venv\Scripts\activate.bat"
 
 echo Upgrading pip ...
 python -m pip install --upgrade pip
-
-echo Installing requirements ...
-pip install -r requirements.txt
 if errorlevel 1 (
-    echo [ERROR] pip install failed.
+    echo [ERROR] pip upgrade failed.
+    popd
+    exit /b 1
+)
+
+echo Installing development requirements ...
+pip install -r requirements-dev.txt
+if errorlevel 1 (
+    echo [ERROR] pip install -r requirements-dev.txt failed.
     popd
     exit /b 1
 )
 
 echo Installing MapIR in editable mode ...
 pip install -e .
+if errorlevel 1 (
+    echo [ERROR] pip install -e . failed.
+    popd
+    exit /b 1
+)
 
 echo.
-echo MapIR is ready. Try:
-echo   validate_examples.bat
-echo   render_examples.bat
-echo   export_blockout_examples.bat
+echo === MapIR is ready. Available commands ===
 echo.
-echo Or run directly:
+echo   run_desktop.bat                 - launch MapIR Studio (PySide6)
+echo   validate_examples.bat           - validate bundled examples
+echo   render_examples.bat             - render SVG previews
+echo   export_blockout_examples.bat    - export OBJ + Blender scripts
+echo   preflight.bat                   - run repository preflight scan
+echo   test.bat                        - run pytest
+echo   lint.bat                        - run black + ruff (check only)
+echo   format.bat                      - run black + ruff (auto-fix)
+echo   build_exe.bat                   - build MapIR Studio.exe via PyInstaller
+echo.
+echo Or directly:
+echo   python -m mapir.cli desktop
 echo   python -m mapir.cli inspect examples\worlds\world_jisso_city.json
 echo.
 
 popd
 endlocal
+exit /b 0

@@ -12,7 +12,8 @@ from rich.table import Table
 
 from .core.errors import MapIRError
 from .core.models import SceneIR, WorldIR
-from .core.validation import ValidationReport, validate as run_validation
+from .core.validation import ValidationReport
+from .core.validation import validate as run_validation
 from .export import blender_exporter, obj_exporter
 from .render import svg_renderer
 from .utils.io import dump_text, load_ir
@@ -31,17 +32,22 @@ err_console = Console(stderr=True)
 # Loading helper (turns exceptions into nice exits)
 # ============================================================
 
+
 def _load_or_exit(path: Path) -> WorldIR | SceneIR:
     try:
         return load_ir(path)
     except ValidationError as exc:
-        err_console.print(Panel.fit(_format_pydantic_error(exc),
-                                    title=f"[red]Invalid IR structure[/red] - {path}",
-                                    border_style="red"))
-        raise typer.Exit(code=1)
+        err_console.print(
+            Panel.fit(
+                _format_pydantic_error(exc),
+                title=f"[red]Invalid IR structure[/red] - {path}",
+                border_style="red",
+            )
+        )
+        raise typer.Exit(code=1) from exc
     except MapIRError as exc:
         err_console.print(f"[red]ERROR[/red] {exc}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from exc
 
 
 def _format_pydantic_error(exc: ValidationError) -> str:
@@ -54,8 +60,7 @@ def _format_pydantic_error(exc: ValidationError) -> str:
 
 def _print_report(report: ValidationReport, *, title: str) -> None:
     if not report.all():
-        console.print(Panel.fit(f"[green]OK[/green]  {title}\n"
-                                "no issues.", border_style="green"))
+        console.print(Panel.fit(f"[green]OK[/green]  {title}\n" "no issues.", border_style="green"))
         return
     table = Table(title=title, show_lines=False, header_style="bold")
     table.add_column("Severity")
@@ -65,14 +70,16 @@ def _print_report(report: ValidationReport, *, title: str) -> None:
     color = {"error": "red", "warning": "yellow", "info": "cyan"}
     for issue in report.all():
         sev = issue.severity.value
-        table.add_row(f"[{color.get(sev, 'white')}]{sev.upper()}[/]",
-                      issue.code, issue.message, issue.path)
+        table.add_row(
+            f"[{color.get(sev, 'white')}]{sev.upper()}[/]", issue.code, issue.message, issue.path
+        )
     console.print(table)
 
 
 # ============================================================
 # Commands
 # ============================================================
+
 
 @app.command()
 def validate(path: Path = typer.Argument(..., exists=True, dir_okay=False, readable=True)) -> None:
@@ -127,14 +134,47 @@ def export_blender(
 
 
 @app.command()
-def ui(
+def desktop(
     no_browser: bool = typer.Option(
-        False, "--no-browser",
-        help="Headless smoke mode: build the window, then exit without showing it."),
+        False,
+        "--no-browser",
+        help="Headless smoke mode: build the window, then exit without showing it.",
+    ),
 ) -> None:
-    """Launch the local standalone Tkinter UI."""
-    from .ui.app import run_app  # lazy import keeps CLI startup fast
-    code = run_app(headless=no_browser)
+    """Launch MapIR Studio — the PySide6 desktop application."""
+    from .desktop.app import run  # lazy import keeps CLI startup fast
+
+    code = run(headless=no_browser)
+    if code != 0:
+        raise typer.Exit(code=code)
+
+
+@app.command()
+def ui(
+    no_browser: bool = typer.Option(False, "--no-browser", help="Headless smoke mode."),
+) -> None:
+    """[Deprecated] Alias for ``desktop`` — kept for backwards compatibility."""
+    err_console.print(
+        "[yellow]deprecation[/yellow] "
+        "[dim]`mapir ui` is deprecated; use `mapir desktop` instead.[/dim]"
+    )
+    from .desktop.app import run
+
+    code = run(headless=no_browser)
+    if code != 0:
+        raise typer.Exit(code=code)
+
+
+@app.command()
+def preflight() -> None:
+    """Scan the repository for the kind of damage that has bitten this project.
+
+    Checks for one-line-corruption, broken Python files, invalid TOML/JSON,
+    missing README structure, and merged requirements lines. Read-only.
+    """
+    from scripts.preflight import main as preflight_main  # local import
+
+    code = preflight_main()
     if code != 0:
         raise typer.Exit(code=code)
 
@@ -165,8 +205,9 @@ def inspect(path: Path = typer.Argument(..., exists=True, dir_okay=False, readab
         table.add_row("[bold]Theme[/bold]", scene.theme)
         table.add_row("[bold]Scene type[/bold]", scene.scene_type.value)
         table.add_row("[bold]Preset[/bold]", scene.preset.value)
-        table.add_row("Bounds",
-                      f"{scene.bounds.width_m} x {scene.bounds.depth_m} x {scene.bounds.height_m} m")
+        table.add_row(
+            "Bounds", f"{scene.bounds.width_m} x {scene.bounds.depth_m} x {scene.bounds.height_m} m"
+        )
         table.add_row("Standalone", str(scene.standalone))
         table.add_row("Zones", str(len(scene.zones)))
         table.add_row("Entrances", str(len(scene.entrances)))
@@ -175,10 +216,10 @@ def inspect(path: Path = typer.Argument(..., exists=True, dir_okay=False, readab
         table.add_row("Gameplay markers", str(len(scene.gameplay_markers)))
         table.add_row("Constraints", str(len(scene.constraints)))
 
-    table.add_row("Validation",
-                  ("[green]ok[/green]"
-                   if report.is_valid
-                   else f"[red]{len(report.errors)} error(s)[/red]"))
+    table.add_row(
+        "Validation",
+        ("[green]ok[/green]" if report.is_valid else f"[red]{len(report.errors)} error(s)[/red]"),
+    )
     table.add_row("Warnings", str(len(report.warnings)))
     console.print(Panel(table, title=f"MapIR - inspect {path.name}", border_style="cyan"))
 

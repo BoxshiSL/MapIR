@@ -33,9 +33,7 @@ def load_ir(path: str | Path) -> WorldIR | SceneIR:
         return WorldIR.model_validate(data)
     if ir_type == "scene":
         return SceneIR.model_validate(data)
-    raise IRTypeError(
-        f"unknown or missing ir_type={ir_type!r}; expected 'world' or 'scene'"
-    )
+    raise IRTypeError(f"unknown or missing ir_type={ir_type!r}; expected 'world' or 'scene'")
 
 
 def dump_text(path: str | Path, content: str) -> Path:

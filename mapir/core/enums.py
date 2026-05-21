@@ -12,6 +12,7 @@ class IRType(str, Enum):
 
 # ---------- World ----------
 
+
 class Density(str, Enum):
     LOW = "low"
     MEDIUM = "medium"
@@ -44,6 +45,7 @@ class WaterType(str, Enum):
 
 
 # ---------- Scene ----------
+
 
 class SceneType(str, Enum):
     EXTERIOR_LOCATION = "exterior_location"
@@ -119,6 +121,7 @@ class MarkerType(str, Enum):
 
 # ---------- Assets ----------
 
+
 class AssetCategory(str, Enum):
     BUILDING = "building"
     PROP = "prop"
@@ -142,6 +145,7 @@ class Collision(str, Enum):
 
 
 # ---------- Constraints ----------
+
 
 class ConstraintType(str, Enum):
     MUST_HAVE_MIN_ENTRANCES = "must_have_min_entrances"

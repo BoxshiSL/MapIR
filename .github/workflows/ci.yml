@@ -8,7 +8,12 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: test (windows-latest, py3.11)
+    runs-on: windows-latest
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONIOENCODING: utf-8
+
     steps:
       - uses: actions/checkout@v4
 
@@ -18,19 +23,38 @@ jobs:
           python-version: "3.11"
           cache: pip
 
-      - name: Install system tk (for UI smoke test)
-        run: sudo apt-get update && sudo apt-get install -y python3-tk
-
-      - name: Install MapIR (editable, with dev extras)
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          pip install -r requirements-dev.txt
+          pip install -e .
 
-      - name: Run tests
-        run: pytest -q
+      - name: Preflight
+        run: python -m mapir.cli preflight
+
+      - name: Lint (ruff)
+        run: ruff check mapir tests scripts
+
+      - name: Lint (black --check)
+        run: black --check mapir tests scripts
+
+      - name: Pytest
+        run: python -m pytest -q
 
       - name: Validate bundled examples
+        shell: pwsh
         run: |
-          for f in examples/worlds/*.json examples/scenes/*.json; do
-            python -m mapir.cli validate "$f"
-          done
+          $files = Get-ChildItem -Path examples/worlds, examples/scenes -Filter *.json
+          foreach ($f in $files) {
+            python -m mapir.cli validate "$($f.FullName)"
+            if ($LASTEXITCODE -ne 0) { throw "validate failed for $($f.FullName)" }
+          }
+
+      - name: Smoke render-svg
+        run: python -m mapir.cli render-svg examples/scenes/scene_urban_alley.json --out output/svg/ci_scene_urban_alley.svg
+
+      - name: Smoke export-obj
+        run: python -m mapir.cli export-obj examples/scenes/scene_urban_alley.json --out output/obj/ci_scene_urban_alley.obj
+
+      - name: Smoke export-blender
+        run: python -m mapir.cli export-blender examples/scenes/scene_warehouse_interior.json --out output/blender/ci_scene_warehouse_interior.py

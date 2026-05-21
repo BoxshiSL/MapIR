@@ -40,10 +40,7 @@ def points_bbox(points: list[Point2D]) -> BBox2D:
 
 
 def point_in_world(p: Point2D, scale: Size2D, slack: float = 0.0) -> bool:
-    return (
-        -slack <= p.x <= scale.width_m + slack
-        and -slack <= p.y <= scale.depth_m + slack
-    )
+    return -slack <= p.x <= scale.width_m + slack and -slack <= p.y <= scale.depth_m + slack
 
 
 def point_in_scene(p: Point2D, width_m: float, depth_m: float, slack: float = 0.0) -> bool:
