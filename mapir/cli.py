@@ -127,6 +127,19 @@ def export_blender(
 
 
 @app.command()
+def ui(
+    no_browser: bool = typer.Option(
+        False, "--no-browser",
+        help="Headless smoke mode: build the window, then exit without showing it."),
+) -> None:
+    """Launch the local standalone Tkinter UI."""
+    from .ui.app import run_app  # lazy import keeps CLI startup fast
+    code = run_app(headless=no_browser)
+    if code != 0:
+        raise typer.Exit(code=code)
+
+
+@app.command()
 def inspect(path: Path = typer.Argument(..., exists=True, dir_okay=False, readable=True)) -> None:
     """Print a quick summary of an IR file."""
     ir = _load_or_exit(path)

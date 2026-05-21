@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.00 45.00" width="600" height="338" preserveAspectRatio="xMidYMid meet"><style>.bg            { fill: #ffffff; stroke: #222; stroke-width: 0.3%; }
+.world-bounds  { fill: #fafafa; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.scene-bounds  { fill: #fbfbf6; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
+.district      { fill: #f0e6d2; stroke: #b48a3b; stroke-width: 0.2%; fill-opacity: 0.65; }
+.water         { fill: #b3d9ff; stroke: #4a7ab2; stroke-width: 0.15%; fill-opacity: 0.7; }
+.road          { fill: none; stroke: #555; stroke-linecap: round; stroke-linejoin: round; }
+.alley         { stroke: #888; stroke-dasharray: 4 2; }
+.poi           { fill: #c0392b; stroke: #6e2117; stroke-width: 0.1%; }
+.scene-slot    { fill: none; stroke: #2e8b57; stroke-width: 0.25%; stroke-dasharray: 3 2; }
+.zone          { fill: #e8eef5; stroke: #4a6178; stroke-width: 0.2%; fill-opacity: 0.55; }
+.zone-room     { fill: #fff1c2; }
+.zone-storage  { fill: #f4dcb8; }
+.zone-service  { fill: #d6e7ff; }
+.zone-combat   { fill: #ffd6d6; }
+.zone-stealth  { fill: #d5e7d2; }
+.zone-danger   { fill: #ffc1b3; }
+.zone-safe     { fill: #d2f0d2; }
+.zone-path     { fill: #e0e0e0; }
+.path-main     { fill: none; stroke: #d35400; stroke-width: 1.5; stroke-linecap: round; }
+.path-stealth  { fill: none; stroke: #16a085; stroke-width: 1.2; stroke-dasharray: 3 2; }
+.path-escape   { fill: none; stroke: #c0392b; stroke-width: 1.5; stroke-dasharray: 5 2; }
+.path-alt      { fill: none; stroke: #f39c12; stroke-width: 1.2; stroke-dasharray: 2 2; }
+.path-patrol   { fill: none; stroke: #7d3c98; stroke-width: 1.0; stroke-dasharray: 1 2; }
+.object        { fill: #cccccc; stroke: #555; stroke-width: 0.15%; }
+.entrance      { fill: #f1c40f; stroke: #6e5b00; stroke-width: 0.1%; }
+.marker-cover     { fill: #2980b9; }
+.marker-ambush    { fill: #c0392b; }
+.marker-objective { fill: #f1c40f; stroke: #7d6608; stroke-width: 0.15%; }
+.marker-enemy     { fill: #8e44ad; }
+.marker-player    { fill: #27ae60; }
+.marker-extract   { fill: #1abc9c; }
+.marker-other     { fill: #95a5a6; }
+.label         { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                 fill: #222; pointer-events: none; }
+.label-sm      { font-size: 9px; }
+.label-md      { font-size: 11px; }
+.legend-box    { fill: #ffffff; stroke: #999; stroke-width: 0.5; opacity: 0.9; }
+.legend-text   { font-family: "Segoe UI", Arial, sans-serif; font-size: 10px; fill: #222; }</style><rect class="scene-bounds" x="0" y="0" width="80.00" height="45.00"/><polygon class="zone zone-path" points="5.00,27.00 75.00,27.00 75.00,18.00 5.00,18.00"/><text class="label label-sm" x="40.00" y="22.50" text-anchor="middle" dominant-baseline="middle">Main Alley</text><polygon class="zone zone-service" points="50.00,42.00 75.00,42.00 75.00,28.00 50.00,28.00"/><text class="label label-sm" x="62.50" y="35.00" text-anchor="middle" dominant-baseline="middle">Service Yard</text><polygon class="zone zone-stealth" points="28.00,17.00 34.00,17.00 34.00,3.00 28.00,3.00"/><text class="label label-sm" x="31.00" y="10.00" text-anchor="middle" dominant-baseline="middle">Side Passage</text><polygon class="zone zone-combat" points="5.00,17.00 24.00,17.00 24.00,3.00 5.00,3.00"/><text class="label label-sm" x="14.50" y="10.00" text-anchor="middle" dominant-baseline="middle">Combat Pocket</text><rect class="object" x="5.00" y="1.00" width="70.00" height="1.00"/><rect class="object" x="6.00" y="28.00" width="38.00" height="1.00"/><rect class="object" x="59.00" y="36.30" width="2.00" height="1.40"/><rect class="object" x="65.00" y="36.30" width="2.00" height="1.40"/><rect class="object" x="19.25" y="9.25" width="1.50" height="1.50"/><rect class="object" x="7.40" y="25.20" width="1.20" height="0.60"/><rect class="object" x="59.25" y="12.50" width="1.50" height="5.00"/><polyline class="path-main" points="2.00,22.50 40.00,22.50 78.00,22.50" stroke-width="4.00"/><polyline class="path-escape" points="40.00,22.50 31.00,15.00 31.00,1.00" stroke-width="2.00"/><polyline class="path-escape" points="40.00,22.50 60.00,27.00 78.00,35.00" stroke-width="3.00"/><polygon class="entrance" points="2.00,21.10 0.60,23.90 3.40,23.90"/><text class="label label-sm" x="4.00" y="22.50" text-anchor="middle" dominant-baseline="middle">Street Main Entrance</text><polygon class="entrance" points="78.00,33.60 76.60,36.40 79.40,36.40"/><text class="label label-sm" x="80.00" y="35.00" text-anchor="middle" dominant-baseline="middle">Service Backdoor</text><polygon class="entrance" points="31.00,-0.40 29.60,2.40 32.40,2.40"/><text class="label label-sm" x="33.00" y="1.00" text-anchor="middle" dominant-baseline="middle">Side Passage Entry</text><polygon class="entrance" points="60.00,15.60 58.60,18.40 61.40,18.40"/><text class="label label-sm" x="62.00" y="17.00" text-anchor="middle" dominant-baseline="middle">Roof Stairs Access</text><circle class="marker-cover" cx="60.00" cy="36.00" r="1.00"/><circle class="marker-cover" cx="66.00" cy="36.00" r="1.00"/><circle class="marker-cover" cx="20.00" cy="11.00" r="1.00"/><circle class="marker-cover" cx="35.00" cy="25.50" r="1.00"/><circle class="marker-cover" cx="14.00" cy="15.00" r="1.00"/><circle class="marker-ambush" cx="31.00" cy="8.00" r="1.00"/><circle class="marker-player" cx="5.00" cy="22.50" r="1.00"/><circle class="marker-enemy" cx="70.00" cy="22.50" r="1.00"/><circle class="marker-other" cx="55.00" cy="17.00" r="1.00"/><circle class="marker-extract" cx="31.00" cy="1.00" r="1.00"/><g class="legend" transform="translate(8,8)"><rect class="legend-box" x="0" y="0" width="170" height="140" rx="4"/><rect class="zone" x="8" y="5" width="14" height="10"/><text class="legend-text" x="28" y="14">Zone</text><rect class="object" x="8" y="19" width="14" height="10"/><text class="legend-text" x="28" y="28">Object</text><rect class="entrance" x="8" y="33" width="14" height="10"/><text class="legend-text" x="28" y="42">Entrance</text><rect class="path-main" x="8" y="47" width="14" height="10"/><text class="legend-text" x="28" y="56">Main route</text><rect class="path-escape" x="8" y="61" width="14" height="10"/><text class="legend-text" x="28" y="70">Escape route</text><rect class="path-stealth" x="8" y="75" width="14" height="10"/><text class="legend-text" x="28" y="84">Stealth route</text><rect class="marker-cover" x="8" y="89" width="14" height="10"/><text class="legend-text" x="28" y="98">Cover marker</text><rect class="marker-enemy" x="8" y="103" width="14" height="10"/><text class="legend-text" x="28" y="112">Enemy spawn</text><rect class="marker-player" x="8" y="117" width="14" height="10"/><text class="legend-text" x="28" y="126">Player spawn</text></g></svg>

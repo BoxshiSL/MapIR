@@ -1,4 +1,4 @@
-# MapIR
+# MapIR — v0.2
 
 **MapIR** is a tool for generating, describing, validating, and exporting game spaces.
 
@@ -11,13 +11,24 @@ It works in two modes:
   offices, apartments. A SceneIR can stand on its own *or* fill a scene slot
   from a WorldIR.
 
-This repository is the **MVP foundation**. It is intentionally not a generator.
-It builds the underlying data, validation, preview, and blockout export layers
-so the later AI / procedural / asset / engine layers have something to talk to.
+This repository is the **foundation** for everything that comes after.
+It is intentionally **not** a generator. It builds the underlying data,
+validation, preview, and blockout export layers so the later AI / procedural /
+asset / engine layers have something to talk to.
+
+### What's new in v0.2
+
+- **Standalone desktop UI** (`mapir.cli ui` / `run_ui.bat`) — Tkinter window
+  that lists the bundled examples, draws a 2D preview, shows summary &
+  validation, and triggers SVG / OBJ / Blender exports with one click.
+- **Stable CI** — GitHub Actions runs `pytest` and validates every bundled
+  example on every push and pull request.
+- **Version safety net** — tests assert `pyproject.toml`, `mapir.__version__`
+  and `README.md` agree on the current version.
 
 ---
 
-## What the MVP can do
+## What v0.2 can do
 
 - Read and validate `WorldIR` and `SceneIR` JSON files.
   - Structural validation via pydantic v2.
@@ -36,9 +47,10 @@ so the later AI / procedural / asset / engine layers have something to talk to.
   - a Wavefront `.obj` file, or
   - a Blender `.py` script that builds the same blockout with `bpy`.
 - Inspect a file from the command line (counts, names, validation summary).
+- **Browse all of the above from a local desktop window** (`mapir.cli ui`).
 - Run all of the above on the bundled examples.
 
-## What the MVP does NOT do (yet)
+## What v0.2 does NOT do (yet)
 
 - No UI, no web app.
 - No LLM, prompt parsing, or sketch parsing.
@@ -77,8 +89,11 @@ only — not production geometry.
 - `mapir/export/obj_exporter.py` — minimal OBJ blockout.
 - `mapir/export/blender_exporter.py` — self-contained Blender Python script.
 - `mapir/cli.py` — `typer`-based command line; `python -m mapir.cli ...`.
+- `mapir/ui/` — standalone Tkinter UI (`app.py`, `canvas_renderer.py`,
+  `widgets.py`); zero external deps.
 - `mapir/schemas/*.schema.json` — human-readable JSON-Schema reference docs.
 - `examples/` — worlds, scenes, and a small asset registry.
+- `.github/workflows/ci.yml` — GitHub Actions: pytest + example validation.
 
 The IR model files are the source of truth; the JSON schemas are written for
 humans (IDE / editor autocomplete) and are not used at runtime.
@@ -95,11 +110,13 @@ install.bat
 validate_examples.bat
 render_examples.bat
 export_blockout_examples.bat
+run_ui.bat
 ```
 
 `install.bat` creates `.venv`, installs the dependencies, and editable-installs
-the package. The other three drive the CLI over every example file and write
-their results into `output\`.
+the package. `validate_examples.bat`, `render_examples.bat` and
+`export_blockout_examples.bat` drive the CLI over every bundled example and
+write their results into `output\`. `run_ui.bat` opens the local desktop UI.
 
 To run the test suite:
 
@@ -120,7 +137,13 @@ python -m mapir.cli render-svg      <path-to-ir.json> --out output\svg\<name>.sv
 python -m mapir.cli export-obj      <path-to-ir.json> --out output\obj\<name>.obj
 python -m mapir.cli export-blender  <path-to-ir.json> --out output\blender\<name>.py
 python -m mapir.cli inspect         <path-to-ir.json>
+python -m mapir.cli ui [--no-browser]
 ```
+
+`mapir.cli ui` opens a small Tkinter window with a list of bundled examples,
+a 2D preview, the same summary you would get from `inspect`, the validation
+report, and buttons for the three exporters. `--no-browser` builds the window,
+renders once and exits with code 0 — useful for CI and headless environments.
 
 Examples:
 
@@ -135,6 +158,28 @@ python -m mapir.cli export-blender examples\scenes\scene_warehouse_interior.json
 Open the SVG in any browser, the OBJ in any 3D viewer (Blender, Windows 3D
 Viewer, etc.), and run the Blender script from Blender's *Scripting* workspace
 (Open → Run Script).
+
+---
+
+## Local UI
+
+```bat
+run_ui.bat
+```
+
+The UI is a small standalone Tkinter application — no browser, no external
+services, no extra dependencies. Layout:
+
+- **left** — tree of bundled examples (`Worlds` / `Scenes`).
+- **canvas** — 2D preview drawn from the IR. Colours and ordering mirror the
+  SVG renderer, so the desktop view reads the same as the exported `.svg`.
+- **summary** — the same key/value rows as `mapir.cli inspect`.
+- **validation** — `OK` / number of errors / number of warnings, then a list
+  of issues (severity + code + message + JSON path).
+- **buttons** — `Save SVG`, `Export OBJ`, `Export Blender`. Each opens a save
+  dialog defaulting under `output\<svg|obj|blender>\`.
+
+The UI does **not** edit JSON. v0.2 is read-only on purpose.
 
 ---
 
@@ -167,7 +212,18 @@ Assets:
 
 ---
 
-## Roadmap (post-MVP)
+## Roadmap
+
+**v0.3 candidates (the obvious next steps):**
+
+- Drag-and-drop a JSON file onto the UI.
+- Light editing in the UI (toggle constraints, rename, add markers).
+- Package the UI as a standalone `.exe` (PyInstaller).
+- 3D preview of the blockout inside the window.
+- Render the SVG inside the canvas via Pillow + cairosvg (instead of a separate
+  Canvas implementation), or vice-versa — pick one source of truth.
+
+**Later:**
 
 - Prompt-to-IR (LLM-driven authoring).
 - Sketch-to-IR (image → polygons).
@@ -180,7 +236,7 @@ Assets:
 
 ---
 
-## Limitations of this MVP (read before complaining)
+## Limitations of v0.2 (read before complaining)
 
 - **Blockout only.** OBJ and Blender exports are for orientation. Non-rect
   polygons collapse to their bounding box.
