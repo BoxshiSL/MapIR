@@ -1,4 +1,8 @@
-"""Export page — buttons for SVG / OBJ / Blender script."""
+"""Export page — buttons for v0.4 SVG / OBJ / Blender script plus v0.5
+SketchLayer JSON, GeneratedLayout JSON, and Markdown design report.
+
+UE5 / Unity / GLB / FBX are intentionally not in scope for v0.5.
+"""
 
 from __future__ import annotations
 
@@ -64,15 +68,26 @@ class ExportPage(QWidget):
         self.btn_svg.setProperty("role", "primary")
         self.btn_obj = QPushButton("Export OBJ (blockout)")
         self.btn_blender = QPushButton("Export Blender Python script")
+        self.btn_sketch = QPushButton("Export SketchLayer JSON")
+        self.btn_layout = QPushButton("Export GeneratedLayout JSON")
+        self.btn_design_report = QPushButton("Export Design Report (Markdown)")
 
-        for col, b in enumerate((self.btn_svg, self.btn_obj, self.btn_blender)):
+        row0 = (self.btn_svg, self.btn_obj, self.btn_blender)
+        row1 = (self.btn_sketch, self.btn_layout, self.btn_design_report)
+        for col, b in enumerate(row0):
             b.setMinimumHeight(40)
             actions.addWidget(b, 0, col)
+        for col, b in enumerate(row1):
+            b.setMinimumHeight(40)
+            actions.addWidget(b, 1, col)
         root.addLayout(actions)
 
         self.btn_svg.clicked.connect(self._export_svg)
         self.btn_obj.clicked.connect(self._export_obj)
         self.btn_blender.clicked.connect(self._export_blender)
+        self.btn_sketch.clicked.connect(self._export_sketch)
+        self.btn_layout.clicked.connect(self._export_layout)
+        self.btn_design_report.clicked.connect(self._export_design_report)
 
         # Recent exports log
         log_box = QGroupBox("Recent exports")
@@ -90,8 +105,13 @@ class ExportPage(QWidget):
 
     def _refresh(self) -> None:
         has_doc = self._state.current_document is not None
+        has_sketch = self._state.current_sketch is not None
+        has_layout = self._state.current_layout is not None
         for b in (self.btn_svg, self.btn_obj, self.btn_blender):
             b.setEnabled(has_doc)
+        self.btn_sketch.setEnabled(has_sketch)
+        self.btn_layout.setEnabled(has_layout)
+        self.btn_design_report.setEnabled(has_doc)
 
     def _on_export_completed(self, kind: str, path_str: str) -> None:
         prev = self.log_label.text()
@@ -137,6 +157,33 @@ class ExportPage(QWidget):
             self._state.export_blender(path)
         except Exception as exc:
             QMessageBox.critical(self, "Export Blender script failed", str(exc))
+
+    def _export_sketch(self) -> None:
+        path = self._pick("sketch", "json")
+        if path is None:
+            return
+        try:
+            self._state.export_sketch(path)
+        except Exception as exc:
+            QMessageBox.critical(self, "Export SketchLayer failed", str(exc))
+
+    def _export_layout(self) -> None:
+        path = self._pick("layout", "json")
+        if path is None:
+            return
+        try:
+            self._state.export_layout(path)
+        except Exception as exc:
+            QMessageBox.critical(self, "Export GeneratedLayout failed", str(exc))
+
+    def _export_design_report(self) -> None:
+        path = self._pick("design_report", "md")
+        if path is None:
+            return
+        try:
+            self._state.export_design_report(path)
+        except Exception as exc:
+            QMessageBox.critical(self, "Export design report failed", str(exc))
 
     def _open_folder(self) -> None:
         ensure_output_dirs()

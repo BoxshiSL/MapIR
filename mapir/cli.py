@@ -472,5 +472,197 @@ def inspect(path: Path = typer.Argument(..., exists=True, dir_okay=False, readab
         _print_report(report, title="Issues")
 
 
+# ============================================================
+# v0.5 commands — templates, sketch-from-template, deterministic layout,
+# design validation, design report.
+# ============================================================
+
+
+@app.command("templates")
+def cmd_templates() -> None:
+    """List the bundled v0.5 template gallery."""
+    from .generation.templates import load_all_templates
+
+    templates = load_all_templates()
+    table = Table(title="MapIR v0.5 templates", show_lines=False, header_style="bold")
+    table.add_column("template_id")
+    table.add_column("type")
+    table.add_column("genre")
+    table.add_column("size")
+    table.add_column("profiles")
+    table.add_column("name")
+    for tpl in sorted(templates.values(), key=lambda t: (t.document_type, t.template_id)):
+        size = f"{int(tpl.default_size.width_m)}x{int(tpl.default_size.depth_m)}"
+        profiles = ",".join(p.value for p in tpl.default_gameplay_profiles)
+        table.add_row(
+            tpl.template_id,
+            tpl.document_type,
+            tpl.genre,
+            size,
+            profiles,
+            tpl.name,
+        )
+    console.print(table)
+
+
+@app.command("new-from-template")
+def cmd_new_from_template(
+    template_id: str = typer.Argument(..., help="Template id from `mapir templates`."),
+    out: Path = typer.Option(..., "--out", help="Output JSON path for the SketchDocument."),
+) -> None:
+    """Create a fresh SketchDocument from a template and write it to disk."""
+    from .canvas.sketch_state import new_sketch_document
+    from .generation.templates import get_template
+
+    try:
+        tpl = get_template(template_id)
+    except KeyError as exc:
+        err_console.print(f"[red]ERROR[/red] {exc}")
+        raise typer.Exit(code=1) from exc
+    sketch = new_sketch_document(tpl)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    dump_text(out, sketch.model_dump_json(indent=2) + "\n")
+    console.print(
+        Panel.fit(
+            f"[green]OK[/green]  wrote SketchDocument for [bold]{tpl.name}[/bold]\n"
+            f"path: {out}",
+            border_style="green",
+        )
+    )
+
+
+@app.command("generate-layout")
+def cmd_generate_layout(
+    sketch: Path = typer.Argument(..., exists=True, dir_okay=False, help="SketchDocument JSON."),
+    out: Path = typer.Option(..., "--out", help="Output JSON path for the GeneratedLayout."),
+) -> None:
+    """Run the deterministic generation pipeline on a SketchDocument JSON."""
+    from .canvas.sketch_models import SketchDocument
+    from .generation.pipeline import run_generation_pipeline
+
+    data = sketch.read_text(encoding="utf-8")
+    try:
+        document = SketchDocument.model_validate_json(data)
+    except ValidationError as exc:
+        err_console.print(
+            Panel.fit(
+                _format_pydantic_error(exc),
+                title=f"[red]Invalid SketchDocument[/red] - {sketch}",
+                border_style="red",
+            )
+        )
+        raise typer.Exit(code=1) from exc
+
+    layout, report = run_generation_pipeline(document)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    dump_text(out, layout.model_dump_json(indent=2) + "\n")
+    n_err = len(report.errors) if report else 0
+    panel = (
+        f"[green]OK[/green]  GeneratedLayout written to {out}\n"
+        f"roads={len(layout.roads)} parcels={len(layout.parcels)} "
+        f"buildings={len(layout.buildings)} landmarks={len(layout.landmarks)} "
+        f"scene_slots={len(layout.scene_slots)} guidance={len(layout.guidance_cues)}\n"
+        f"validation errors={n_err}"
+    )
+    console.print(Panel.fit(panel, border_style="green" if n_err == 0 else "yellow"))
+
+
+@app.command("validate-design")
+def cmd_validate_design(
+    target: Path = typer.Argument(..., exists=True, dir_okay=False, help="WorldIR/SceneIR JSON."),
+    layout_path: Path | None = typer.Option(
+        None, "--layout", help="Optional GeneratedLayout JSON for richer checks."
+    ),
+) -> None:
+    """Run the v0.5 design-aware validators on an IR (optionally with a layout)."""
+    from .design.validators import run_design_validators
+    from .generation.gameplay_metrics import GameplayMetrics
+    from .generation.layout import GeneratedLayout
+
+    ir = _load_or_exit(target)
+    layout: GeneratedLayout | None = None
+    if layout_path is not None:
+        if not layout_path.exists():
+            err_console.print(f"[red]ERROR[/red] layout file {layout_path} not found")
+            raise typer.Exit(code=1)
+        try:
+            layout = GeneratedLayout.model_validate_json(
+                layout_path.read_text(encoding="utf-8")
+            )
+        except ValidationError as exc:
+            err_console.print(
+                Panel.fit(
+                    _format_pydantic_error(exc),
+                    title=f"[red]Invalid layout[/red] - {layout_path}",
+                    border_style="red",
+                )
+            )
+            raise typer.Exit(code=1) from exc
+    metrics = layout.metrics if layout is not None else GameplayMetrics()
+
+    design = run_design_validators(ir, layout, metrics)
+    if not design.warnings:
+        console.print(
+            Panel.fit(
+                f"[green]OK[/green]  design rules: no findings on {target.name}.",
+                border_style="green",
+            )
+        )
+        return
+    table = Table(title=f"Design findings - {target.name}", header_style="bold")
+    table.add_column("severity")
+    table.add_column("category")
+    table.add_column("code")
+    table.add_column("message")
+    table.add_column("rule")
+    color = {"error": "red", "warning": "yellow", "info": "cyan"}
+    for w in design.warnings:
+        sev = w.severity.value
+        table.add_row(
+            f"[{color.get(sev, 'white')}]{sev.upper()}[/]",
+            w.category.value,
+            w.code,
+            w.message,
+            w.rule_id or "",
+        )
+    console.print(table)
+    if design.errors():
+        raise typer.Exit(code=1)
+
+
+@app.command("export-design-report")
+def cmd_export_design_report(
+    target: Path = typer.Argument(..., exists=True, dir_okay=False, help="WorldIR/SceneIR JSON."),
+    out: Path = typer.Option(..., "--out", help="Output Markdown path."),
+    layout_path: Path | None = typer.Option(
+        None, "--layout", help="Optional GeneratedLayout JSON."
+    ),
+) -> None:
+    """Write a Markdown design report bundling structural + design findings."""
+    from .design.reports import build_design_report_markdown
+    from .design.validators import run_design_validators
+    from .generation.gameplay_metrics import GameplayMetrics
+    from .generation.layout import GeneratedLayout
+
+    ir = _load_or_exit(target)
+    layout: GeneratedLayout | None = None
+    if layout_path is not None and layout_path.exists():
+        layout = GeneratedLayout.model_validate_json(
+            layout_path.read_text(encoding="utf-8")
+        )
+    metrics = layout.metrics if layout is not None else GameplayMetrics()
+    structural = run_validation(ir)
+    design = run_design_validators(ir, layout, metrics)
+    md = build_design_report_markdown(ir, layout, structural, design)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    dump_text(out, md)
+    console.print(
+        Panel.fit(
+            f"[green]OK[/green]  design report written to {out}",
+            border_style="green",
+        )
+    )
+
+
 if __name__ == "__main__":  # pragma: no cover
     app()

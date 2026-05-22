@@ -46,7 +46,11 @@ ALLOWED_TINY_FILES = {
     Path("mapir/utils/__init__.py"),
     Path("mapir/desktop/__init__.py"),
     Path("mapir/desktop/widgets/__init__.py"),
+    Path("mapir/desktop/dialogs/__init__.py"),
     Path("mapir/llm/__init__.py"),
+    Path("mapir/canvas/__init__.py"),
+    Path("mapir/generation/__init__.py"),
+    Path("mapir/design/__init__.py"),
     Path("tests/__init__.py"),
 }
 
@@ -210,7 +214,7 @@ def _check_requirements(root: Path, report: PreflightReport) -> None:
 
 def _check_json(root: Path, report: PreflightReport) -> None:
     candidates: list[Path] = []
-    for subdir in ("examples", "mapir/schemas"):
+    for subdir in ("examples", "mapir/schemas", "mapir/data"):
         sd = root / subdir
         if sd.is_dir():
             candidates.extend(sd.rglob("*.json"))
@@ -329,6 +333,71 @@ def _check_local_llm_docs(root: Path, report: PreflightReport) -> None:
         )
 
 
+def _check_templates_gallery(root: Path, report: PreflightReport) -> None:
+    """v0.5: mapir/data/templates/ must contain ≥ 13 parseable templates."""
+    pkg = root / "mapir" / "data" / "templates"
+    if not pkg.is_dir():
+        report.error(
+            "templates_dir_missing",
+            "mapir/data/templates",
+            "v0.5 template gallery is required",
+        )
+        return
+    files = sorted(pkg.glob("*.json"))
+    if len(files) < 13:
+        report.error(
+            "templates_too_few",
+            "mapir/data/templates",
+            f"expected ≥ 13 templates, found {len(files)}",
+        )
+    seen_ids: set[str] = set()
+    for f in files:
+        rel = f.relative_to(root)
+        text = _read_text(f)
+        if text is None:
+            report.error("templates_io", rel, "cannot read as UTF-8")
+            continue
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError as exc:
+            report.error("templates_parse", rel, f"invalid JSON: {exc}")
+            continue
+        tpl_id = data.get("template_id")
+        if not tpl_id:
+            report.error("templates_no_id", rel, "missing template_id")
+            continue
+        if tpl_id in seen_ids:
+            report.error("templates_dup_id", rel, f"duplicate template_id {tpl_id!r}")
+        seen_ids.add(tpl_id)
+        if data.get("document_type") not in ("world", "scene", "interior"):
+            report.error(
+                "templates_bad_type",
+                rel,
+                f"document_type must be world/scene/interior, got {data.get('document_type')!r}",
+            )
+
+
+def _check_v05_modules(root: Path, report: PreflightReport) -> None:
+    """v0.5: new package skeletons (canvas / generation / design) must exist."""
+    for pkg_path, required in (
+        ("mapir/generation", ("__init__.py", "templates.py", "gameplay_metrics.py")),
+        # canvas / design will be enforced in Phase B / C; tolerate missing for
+        # Phase A so this check doesn't reject an intermediate WIP.
+    ):
+        pkg = root / pkg_path
+        if not pkg.is_dir():
+            report.error("v05_pkg_missing", pkg_path, "v0.5 package directory not found")
+            continue
+        actual = {p.name for p in pkg.glob("*.py")}
+        missing = set(required) - actual
+        if missing:
+            report.error(
+                "v05_pkg_incomplete",
+                pkg_path,
+                f"missing modules: {', '.join(sorted(missing))}",
+            )
+
+
 def _check_no_secrets(root: Path, report: PreflightReport) -> None:
     """Scan tracked source files for accidentally-committed credentials."""
     skip_dirs = {
@@ -430,6 +499,8 @@ def scan_repo(root: Path | str | None = None) -> PreflightReport:
     _check_readme(root_path, report)
     _check_llm_package(root_path, report)
     _check_local_llm_docs(root_path, report)
+    _check_templates_gallery(root_path, report)
+    _check_v05_modules(root_path, report)
     _check_no_secrets(root_path, report)
     _check_no_forbidden_deps(root_path, report)
     return report

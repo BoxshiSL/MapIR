@@ -1,0 +1,310 @@
+{
+  "ir_type": "scene",
+  "version": "0.1",
+  "scene_id": "from_scene_industrial_port",
+  "name": "[Demo] Industrial Port Scene",
+  "description": "Container yard with stacks, loading dock, control office, and a vehicle yard. Designed for shooter, stealth, and exploration.",
+  "scene_type": "exterior_location",
+  "preset": "custom",
+  "standalone": true,
+  "parent_world_id": null,
+  "parent_scene_slot_id": null,
+  "bounds": {
+    "width_m": 200.0,
+    "depth_m": 150.0,
+    "height_m": 20.0
+  },
+  "theme": "industrial",
+  "tags": [
+    "from_template",
+    "v0.5",
+    "industrial"
+  ],
+  "zones": [
+    {
+      "id": "z_00_container_stacks",
+      "name": "Container Stacks",
+      "zone_type": "exterior_yard",
+      "polygon": {
+        "points": [
+          {
+            "x": 20.0,
+            "y": 20.0
+          },
+          {
+            "x": 110.0,
+            "y": 20.0
+          },
+          {
+            "x": 110.0,
+            "y": 110.0
+          },
+          {
+            "x": 20.0,
+            "y": 110.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "cover_rich",
+        "verticality"
+      ],
+      "gameplay_tags": [
+        "shooter",
+        "stealth"
+      ]
+    },
+    {
+      "id": "z_01_loading_dock",
+      "name": "Loading Dock",
+      "zone_type": "public_area",
+      "polygon": {
+        "points": [
+          {
+            "x": 120.0,
+            "y": 20.0
+          },
+          {
+            "x": 190.0,
+            "y": 20.0
+          },
+          {
+            "x": 190.0,
+            "y": 70.0
+          },
+          {
+            "x": 120.0,
+            "y": 70.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "objective",
+        "open"
+      ],
+      "gameplay_tags": [
+        "shooter",
+        "stealth"
+      ]
+    },
+    {
+      "id": "z_02_control_office",
+      "name": "Control Office",
+      "zone_type": "public_area",
+      "polygon": {
+        "points": [
+          {
+            "x": 130.0,
+            "y": 80.0
+          },
+          {
+            "x": 190.0,
+            "y": 80.0
+          },
+          {
+            "x": 190.0,
+            "y": 140.0
+          },
+          {
+            "x": 130.0,
+            "y": 140.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "vista",
+        "objective"
+      ],
+      "gameplay_tags": [
+        "shooter"
+      ]
+    },
+    {
+      "id": "z_03_vehicle_yard",
+      "name": "Vehicle Yard",
+      "zone_type": "exterior_yard",
+      "polygon": {
+        "points": [
+          {
+            "x": 20.0,
+            "y": 110.0
+          },
+          {
+            "x": 110.0,
+            "y": 110.0
+          },
+          {
+            "x": 110.0,
+            "y": 145.0
+          },
+          {
+            "x": 20.0,
+            "y": 145.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "vehicles",
+        "open"
+      ],
+      "gameplay_tags": [
+        "shooter",
+        "exploration"
+      ]
+    }
+  ],
+  "entrances": [
+    {
+      "id": "e_main",
+      "name": "Main Entrance",
+      "position": {
+        "x": 4.0,
+        "y": 75.0
+      },
+      "entrance_type": "main",
+      "connects_to": null,
+      "tags": []
+    }
+  ],
+  "paths": [
+    {
+      "id": "p_main_route",
+      "name": "Main Route",
+      "path_type": "main_route",
+      "points": [
+        {
+          "x": 65.0,
+          "y": 65.0
+        },
+        {
+          "x": 155.0,
+          "y": 45.0
+        },
+        {
+          "x": 160.0,
+          "y": 110.0
+        },
+        {
+          "x": 65.0,
+          "y": 127.5
+        }
+      ],
+      "width_m": 3.0,
+      "tags": []
+    }
+  ],
+  "objects": [
+    {
+      "id": "obj_cover_00",
+      "name": "Cover 1",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 65.0,
+          "y": 65.0,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    },
+    {
+      "id": "obj_cover_01",
+      "name": "Cover 2",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 155.0,
+          "y": 45.0,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    },
+    {
+      "id": "obj_cover_02",
+      "name": "Cover 3",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 160.0,
+          "y": 110.0,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    }
+  ],
+  "gameplay_markers": [
+    {
+      "id": "mk_cover_00",
+      "marker_type": "cover",
+      "position": {
+        "x": 65.0,
+        "y": 65.0
+      },
+      "radius_m": 0.8,
+      "tags": []
+    },
+    {
+      "id": "mk_cover_01",
+      "marker_type": "cover",
+      "position": {
+        "x": 155.0,
+        "y": 45.0
+      },
+      "radius_m": 0.8,
+      "tags": []
+    },
+    {
+      "id": "mk_cover_02",
+      "marker_type": "cover",
+      "position": {
+        "x": 160.0,
+        "y": 110.0
+      },
+      "radius_m": 0.8,
+      "tags": []
+    }
+  ],
+  "constraints": []
+}

@@ -101,6 +101,203 @@ def build_district_profile_prompt(
     return _DISTRICT_SYSTEM, user
 
 
+# ============================================================
+# v0.5 prompts — template-aware, gameplay-metrics-aware, design-rule-aware
+# ============================================================
+
+
+_TEMPLATE_BRIEF_SYSTEM = (
+    "You are a senior creative director planning a game world at the "
+    "template / vision level. Given a neutral template and a user brief, "
+    "produce a concise WorldPlan JSON that respects the template's genre "
+    "and gameplay profiles. Geometry is created later by deterministic "
+    "code; do NOT invent coordinates."
+)
+
+
+_DISTRICT_GEN_SYSTEM = (
+    "You are a senior level designer working on a specific district. Given "
+    "the district's profile (type, role, gameplay tags, metrics, local "
+    "brief) and curated design rules, propose a DistrictPlan JSON: street "
+    "pattern hints, landmark types, scene-slot suggestions, and gameplay "
+    "tags. Stay terse; geometry is generated deterministically."
+)
+
+
+_ROAD_NETWORK_SYSTEM = (
+    "You are a senior open-world layout planner. Given a district's bbox, "
+    "gameplay metrics, and a desired road pattern, propose a RoadIntentPlan "
+    "JSON: arterial / collector / local / alley intent (counts + style), "
+    "without coordinates. Match driving profiles to wider arterials and "
+    "stealth profiles to denser alleys."
+)
+
+
+_BUILDING_STYLE_SYSTEM = (
+    "You are a senior environment-art director. Given a district's style, "
+    "density, and parcel count, propose a BuildingStylePlan JSON: building "
+    "types per parcel category, height_profile, and silhouette notes. "
+    "Treat the existing GeneratedLayout as authoritative geometry."
+)
+
+
+_GUIDANCE_SYSTEM = (
+    "You are a senior level designer focusing on player guidance. Given "
+    "the generated landmarks, scene slots, and roads, plus curated "
+    "guidance design rules, propose a GuidancePlan JSON: leading lines, "
+    "breadcrumbs, light/contrast cues, sound cues, negative-space hints. "
+    "Cite the rule id from the provided design rules block where useful."
+)
+
+
+_REPAIR_LAYOUT_SYSTEM = (
+    "You are a strict JSON repair tool for MapIR v0.5 GeneratedLayouts. "
+    "Given an invalid layout (or the IR derived from it) and a list of "
+    "validation errors (structural + design-aware), return a corrected "
+    "JSON document that fixes every listed error. STRICT JSON ONLY."
+)
+
+
+def build_template_world_brief_prompt(
+    template_name: str,
+    genre: str,
+    user_brief: str,
+    gameplay_profiles: list[str],
+    design_hints: list[str] | None = None,
+) -> tuple[str, str]:
+    """v0.5: prompt for drafting a WorldPlan from a neutral template + user brief."""
+    profiles = ", ".join(gameplay_profiles) or "(none specified)"
+    hints_block = (
+        "\nCurated design hints:\n" + "\n".join(design_hints)
+        if design_hints
+        else ""
+    )
+    user = (
+        f"Template name: {template_name}\n"
+        f"Genre: {genre}\n"
+        f"Gameplay profiles: {profiles}\n\n"
+        f"User brief:\n{user_brief.strip()}\n"
+        f"{hints_block}\n\n"
+        "Produce a WorldPlan with: world_id, name, theme, tags[], scale "
+        "{width_m, depth_m}, districts[], roads[], pois[], scene_slots[].\n"
+        "Reference template defaults when not overridden by the brief.\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _TEMPLATE_BRIEF_SYSTEM, user
+
+
+def build_district_generation_prompt(
+    district_id: str,
+    district_summary: str,
+    metrics_summary: str,
+    local_brief: str,
+    design_hints: list[str] | None = None,
+) -> tuple[str, str]:
+    """v0.5: prompt for a per-district plan with metrics + design rules baked in."""
+    hints_block = (
+        "\nCurated design hints:\n" + "\n".join(design_hints)
+        if design_hints
+        else ""
+    )
+    user = (
+        f"District id: {district_id}\n\n"
+        f"District summary:\n{district_summary}\n\n"
+        f"Gameplay metrics summary:\n{metrics_summary}\n\n"
+        f"Local LLM brief:\n{local_brief.strip() or '(none)'}\n"
+        f"{hints_block}\n\n"
+        "Produce a DistrictPlan with: district_id, name, district_type, role, "
+        "theme, density, height_profile, street_pattern, landmark_types[], "
+        "scene_slot_suggestions[], gameplay_tags[], forbidden_tags[], "
+        "validation_notes[].\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _DISTRICT_GEN_SYSTEM, user
+
+
+def build_road_network_prompt(
+    district_id: str,
+    bbox_summary: str,
+    metrics_summary: str,
+    pattern: str,
+) -> tuple[str, str]:
+    user = (
+        f"District id: {district_id}\n"
+        f"BBox summary: {bbox_summary}\n"
+        f"Pattern: {pattern}\n\n"
+        f"Gameplay metrics summary:\n{metrics_summary}\n\n"
+        "Produce a RoadIntentPlan with: district_id, pattern, arterial_intent "
+        "(count, style notes), collector_intent, local_intent, alley_intent, "
+        "service_intent.\n"
+        "Do NOT supply coordinates. Stay terse.\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _ROAD_NETWORK_SYSTEM, user
+
+
+def build_building_style_prompt(
+    district_id: str,
+    district_style: str,
+    parcel_count: int,
+    parcel_type_breakdown: str,
+) -> tuple[str, str]:
+    user = (
+        f"District id: {district_id}\n"
+        f"District style: {district_style}\n"
+        f"Parcel count: {parcel_count}\n"
+        f"Parcel type breakdown:\n{parcel_type_breakdown}\n\n"
+        "Produce a BuildingStylePlan with: district_id, primary_style, "
+        "building_types[] (one entry per parcel category — residential, "
+        "commercial, industrial, civic, landmark, mixed_use, rural, "
+        "forest_clearing), height_profile, silhouette_notes.\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _BUILDING_STYLE_SYSTEM, user
+
+
+def build_guidance_cues_prompt(
+    landmark_summary: str,
+    scene_slot_summary: str,
+    road_summary: str,
+    design_hints: list[str] | None = None,
+) -> tuple[str, str]:
+    hints_block = (
+        "\nCurated guidance design rules:\n" + "\n".join(design_hints)
+        if design_hints
+        else ""
+    )
+    user = (
+        f"Landmarks:\n{landmark_summary}\n\n"
+        f"Scene slots:\n{scene_slot_summary}\n\n"
+        f"Roads:\n{road_summary}\n"
+        f"{hints_block}\n\n"
+        "Produce a GuidancePlan with: cues[] entries each having "
+        "{id, cue_type (landmark | breadcrumb | leading_line | "
+        "light_contrast | color_signifier | sound_cue | negative_space | "
+        "affordance | vista), target_id, description, strength "
+        "(subtle | medium | strong), rule_id (optional, cite from design hints)}.\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _GUIDANCE_SYSTEM, user
+
+
+def build_repair_generated_layout_prompt(
+    invalid_json: dict,
+    errors: list[str],
+) -> tuple[str, str]:
+    import json as _json
+
+    pretty = _json.dumps(invalid_json, indent=2, ensure_ascii=False)
+    err_block = "\n".join(f"- {e}" for e in errors) or "- (no specific errors provided)"
+    user = (
+        f"Validation errors to fix:\n{err_block}\n\n"
+        f"Invalid layout / IR:\n{pretty}\n\n"
+        "Return the corrected JSON document. Preserve ids, names, and intent. "
+        "Fix every listed error.\n\n"
+        f"{_JSON_RULES}"
+    )
+    return _REPAIR_LAYOUT_SYSTEM, user
+
+
 def build_repair_prompt(
     invalid_json: dict,
     errors: list[str],

@@ -23,15 +23,19 @@ def test_desktop_modules_import() -> None:
     """Just import the desktop package and check the public surface."""
     from mapir.desktop import app as desktop_app
     from mapir.desktop import main_window, state, theme
+    from mapir.desktop.dialogs import new_project_wizard
     from mapir.desktop.widgets import (
-        dashboard,
-        examples_panel,
+        canvas_page,
+        districts_page,
         export_panel,
+        generation_page,
+        home_page,
         inspector_panel,
         preview_panel,
         scene_panel,
         settings_panel,
         sidebar,
+        templates_gallery,
         validation_panel,
         world_panel,
     )
@@ -41,19 +45,23 @@ def test_desktop_modules_import() -> None:
     assert hasattr(state, "AppState")
     assert hasattr(main_window, "MainWindow")
     assert hasattr(sidebar, "Sidebar")
-    # Pages defined
+    assert hasattr(new_project_wizard, "NewProjectWizard")
+    # v0.5 pages defined
     for mod in (
-        dashboard,
-        examples_panel,
-        world_panel,
-        scene_panel,
-        inspector_panel,
+        home_page,
+        templates_gallery,
+        canvas_page,
+        districts_page,
+        generation_page,
         preview_panel,
         validation_panel,
+        inspector_panel,
         export_panel,
+        scene_panel,
+        world_panel,
         settings_panel,
     ):
-        assert mod.__name__.startswith("mapir.desktop.widgets.")
+        assert mod.__name__.startswith("mapir.desktop.")
 
 
 def test_desktop_headless_smoke() -> None:

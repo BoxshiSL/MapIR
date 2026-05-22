@@ -1,0 +1,111 @@
+{
+  "template_id": "interior_nightclub",
+  "name": "Nightclub Interior",
+  "document_type": "interior",
+  "genre": "urban",
+  "description": "Two-floor club interior: main dance floor, bar wall, VIP balcony, and a backstage corridor. Tuned for stealth, shooter, and exploration.",
+  "default_size": {"width_m": 50.0, "depth_m": 40.0},
+  "default_gameplay_profiles": ["stealth", "shooter", "exploration"],
+  "default_districts": [
+    {
+      "name": "Main Dance Floor",
+      "district_type": "interior_open_area",
+      "role": "combat_arena",
+      "theme": "neon_speakers_smoke",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [5.0, 5.0, 35.0, 30.0],
+      "tags": ["open", "crowd"]
+    },
+    {
+      "name": "Bar Wall",
+      "district_type": "interior_service",
+      "role": "cover_line",
+      "theme": "bar_counter_bottles",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [35.0, 5.0, 45.0, 30.0],
+      "tags": ["cover", "service"]
+    },
+    {
+      "name": "VIP Balcony",
+      "district_type": "interior_balcony",
+      "role": "vista",
+      "theme": "velvet_railing",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "generic_interior",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [5.0, 30.0, 35.0, 38.0],
+      "tags": ["elevated", "vista", "objective"]
+    },
+    {
+      "name": "Backstage Corridor",
+      "district_type": "interior_corridor",
+      "role": "stealth_path",
+      "theme": "service_metal",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["stealth"],
+      "bbox": [35.0, 30.0, 48.0, 38.0],
+      "tags": ["concealment", "service"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "shooter", "exploration"],
+    "road": {
+      "arterial_width_m": 3.0,
+      "collector_width_m": 2.5,
+      "local_width_m": 2.0,
+      "alley_width_m": 1.5,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 12.0,
+      "shortcut_density": 0.3,
+      "dead_end_ratio_max": 0.3
+    },
+    "building": {
+      "parcel_min_width_m": 3.0,
+      "parcel_max_width_m": 10.0,
+      "parcel_depth_m": 6.0,
+      "building_setback_m": 0.0,
+      "building_height_min_m": 2.5,
+      "building_height_max_m": 6.0,
+      "building_density": 0.7
+    },
+    "shooter": {
+      "cover_interval_m": 3.0,
+      "cover_width_min_m": 0.8,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 18.0,
+      "combat_arena_size_m": 15.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.5,
+      "restricted_area_count": 1,
+      "patrol_route_hint_count": 1
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 10.0,
+      "rooftop_connection_density": 0.1,
+      "verticality_score": 0.25
+    },
+    "exploration": {
+      "landmark_count_min": 1,
+      "vista_count_min": 1,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.2
+    }
+  },
+  "recommended_llm_brief": "Generate a nightclub interior. Main dance floor at the center with neon and smoke, a bar wall on one side as cover, a VIP balcony above as the objective vista, and a backstage service corridor for stealth.",
+  "generation_recipe_id": "dense_urban"
+}

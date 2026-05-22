@@ -1,0 +1,137 @@
+{
+  "template_id": "world_modern_rural_forest",
+  "name": "Modern Rural Forest Compound",
+  "document_type": "world",
+  "genre": "modern_rural",
+  "description": "Modern rural region: a paved arterial cutting through pine forest, farms and cabins, a fortified compound, river and lake. Far Cry-like. Tuned for stealth, shooter, driving, and exploration.",
+  "default_size": {"width_m": 3000.0, "depth_m": 3000.0},
+  "default_gameplay_profiles": ["stealth", "shooter", "driving", "exploration"],
+  "default_districts": [
+    {
+      "name": "Main Road Corridor",
+      "district_type": "highway_strip",
+      "role": "driving_corridor",
+      "theme": "rural_asphalt",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["driving"],
+      "bbox": [400.0, 1300.0, 2600.0, 1700.0],
+      "tags": ["arterial", "ambush_candidate"]
+    },
+    {
+      "name": "Farmhouse Compound",
+      "district_type": "compound",
+      "role": "enemy_stronghold",
+      "theme": "barn_silo_fence",
+      "density": "low",
+      "height_profile": "mid",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["stealth", "shooter"],
+      "bbox": [600.0, 600.0, 1200.0, 1100.0],
+      "tags": ["objective", "fortified"]
+    },
+    {
+      "name": "Forest West",
+      "district_type": "forest",
+      "role": "approach_route",
+      "theme": "pine_dense",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["stealth", "exploration"],
+      "bbox": [0.0, 0.0, 600.0, 2400.0],
+      "tags": ["concealment", "trails"]
+    },
+    {
+      "name": "Lake Clearing",
+      "district_type": "wetland",
+      "role": "vista",
+      "theme": "lake_dock",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["exploration", "stealth"],
+      "bbox": [2100.0, 1800.0, 2900.0, 2600.0],
+      "tags": ["vista", "boat"]
+    },
+    {
+      "name": "Checkpoint North",
+      "district_type": "checkpoint",
+      "role": "gate",
+      "theme": "sandbags_lights",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [1300.0, 200.0, 1700.0, 600.0],
+      "tags": ["control_point"]
+    },
+    {
+      "name": "Hunter Cabin Trail",
+      "district_type": "trailhead",
+      "role": "secret",
+      "theme": "wooden_cabin",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["exploration"],
+      "bbox": [2300.0, 600.0, 2800.0, 1100.0],
+      "tags": ["loot", "secret"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "shooter", "driving", "exploration"],
+    "road": {
+      "arterial_width_m": 8.0,
+      "collector_width_m": 6.0,
+      "local_width_m": 4.0,
+      "alley_width_m": 2.5,
+      "trail_width_m": 1.2,
+      "intersection_spacing_m": 250.0,
+      "shortcut_density": 0.15,
+      "dead_end_ratio_max": 0.35
+    },
+    "building": {
+      "parcel_min_width_m": 10.0,
+      "parcel_max_width_m": 30.0,
+      "parcel_depth_m": 20.0,
+      "building_setback_m": 3.0,
+      "building_height_min_m": 3.0,
+      "building_height_max_m": 12.0,
+      "building_density": 0.25
+    },
+    "shooter": {
+      "cover_interval_m": 5.0,
+      "cover_width_min_m": 1.0,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 60.0,
+      "combat_arena_size_m": 30.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 3,
+      "concealment_density": 0.55,
+      "restricted_area_count": 2,
+      "patrol_route_hint_count": 3
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 12.0,
+      "rooftop_connection_density": 0.1,
+      "verticality_score": 0.2
+    },
+    "exploration": {
+      "landmark_count_min": 3,
+      "vista_count_min": 2,
+      "secret_path_count_min": 3,
+      "breadcrumb_density": 0.25
+    }
+  },
+  "recommended_llm_brief": "Generate a modern rural region with one paved road cutting through pine forest, a farmhouse compound to the south, a road checkpoint to the north, a lake clearing as a vista, and a hidden hunter's cabin off-trail. Stealth approach, vehicle combat, and exploration should all be supported.",
+  "generation_recipe_id": "rural"
+}

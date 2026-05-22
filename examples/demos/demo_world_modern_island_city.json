@@ -1,0 +1,306 @@
+{
+  "ir_type": "world",
+  "version": "0.1",
+  "world_id": "from_world_modern_island_city",
+  "name": "[Demo] GTA-like Modern Island City",
+  "description": "Compact modern island city with coastal arterial, downtown core, old town quarter, port waterfront, airport island, and a residential belt. Designed around driving, shooter, and exploration loops.",
+  "scale": {
+    "width_m": 4000.0,
+    "depth_m": 4000.0
+  },
+  "theme": "modern_open_world",
+  "tags": [
+    "from_template",
+    "v0.5",
+    "modern_open_world"
+  ],
+  "districts": [
+    {
+      "id": "d_00_downtown_core",
+      "name": "Downtown Core",
+      "district_type": "downtown",
+      "polygon": {
+        "points": [
+          {
+            "x": 1700.0,
+            "y": 1700.0
+          },
+          {
+            "x": 2600.0,
+            "y": 1700.0
+          },
+          {
+            "x": 2600.0,
+            "y": 2600.0
+          },
+          {
+            "x": 1700.0,
+            "y": 2600.0
+          }
+        ]
+      },
+      "density": "very_high",
+      "height_profile": "mid",
+      "tags": [
+        "landmark_candidate",
+        "high_density"
+      ],
+      "gameplay_tags": [
+        "driving",
+        "shooter",
+        "exploration"
+      ]
+    },
+    {
+      "id": "d_01_old_town_quarter",
+      "name": "Old Town Quarter",
+      "district_type": "historic",
+      "polygon": {
+        "points": [
+          {
+            "x": 900.0,
+            "y": 1400.0
+          },
+          {
+            "x": 1700.0,
+            "y": 1400.0
+          },
+          {
+            "x": 1700.0,
+            "y": 2200.0
+          },
+          {
+            "x": 900.0,
+            "y": 2200.0
+          }
+        ]
+      },
+      "density": "high",
+      "height_profile": "mid",
+      "tags": [
+        "walkable",
+        "narrow"
+      ],
+      "gameplay_tags": [
+        "stealth",
+        "exploration"
+      ]
+    },
+    {
+      "id": "d_02_waterfront_port",
+      "name": "Waterfront Port",
+      "district_type": "port",
+      "polygon": {
+        "points": [
+          {
+            "x": 200.0,
+            "y": 200.0
+          },
+          {
+            "x": 1700.0,
+            "y": 200.0
+          },
+          {
+            "x": 1700.0,
+            "y": 1000.0
+          },
+          {
+            "x": 200.0,
+            "y": 1000.0
+          }
+        ]
+      },
+      "density": "medium",
+      "height_profile": "mid",
+      "tags": [
+        "coastline",
+        "industrial"
+      ],
+      "gameplay_tags": [
+        "shooter",
+        "stealth"
+      ]
+    },
+    {
+      "id": "d_03_airport_island",
+      "name": "Airport Island",
+      "district_type": "airport",
+      "polygon": {
+        "points": [
+          {
+            "x": 2700.0,
+            "y": 200.0
+          },
+          {
+            "x": 3900.0,
+            "y": 200.0
+          },
+          {
+            "x": 3900.0,
+            "y": 1300.0
+          },
+          {
+            "x": 2700.0,
+            "y": 1300.0
+          }
+        ]
+      },
+      "density": "low",
+      "height_profile": "mid",
+      "tags": [
+        "island",
+        "controlled_zone"
+      ],
+      "gameplay_tags": [
+        "driving",
+        "shooter"
+      ]
+    },
+    {
+      "id": "d_04_residential_belt",
+      "name": "Residential Belt",
+      "district_type": "residential",
+      "polygon": {
+        "points": [
+          {
+            "x": 1500.0,
+            "y": 2700.0
+          },
+          {
+            "x": 3700.0,
+            "y": 2700.0
+          },
+          {
+            "x": 3700.0,
+            "y": 3800.0
+          },
+          {
+            "x": 1500.0,
+            "y": 3800.0
+          }
+        ]
+      },
+      "density": "medium",
+      "height_profile": "mid",
+      "tags": [
+        "residential"
+      ],
+      "gameplay_tags": [
+        "driving",
+        "exploration"
+      ]
+    },
+    {
+      "id": "d_05_coastal_highway_strip",
+      "name": "Coastal Highway Strip",
+      "district_type": "highway_strip",
+      "polygon": {
+        "points": [
+          {
+            "x": 2700.0,
+            "y": 1500.0
+          },
+          {
+            "x": 3900.0,
+            "y": 1500.0
+          },
+          {
+            "x": 3900.0,
+            "y": 2400.0
+          },
+          {
+            "x": 2700.0,
+            "y": 2400.0
+          }
+        ]
+      },
+      "density": "low",
+      "height_profile": "mid",
+      "tags": [
+        "scenic",
+        "highway"
+      ],
+      "gameplay_tags": [
+        "driving"
+      ]
+    }
+  ],
+  "roads": [
+    {
+      "id": "r_arterial",
+      "name": "Arterial",
+      "road_type": "primary",
+      "points": [
+        {
+          "x": 2150.0,
+          "y": 2150.0
+        },
+        {
+          "x": 1300.0,
+          "y": 1800.0
+        },
+        {
+          "x": 950.0,
+          "y": 600.0
+        },
+        {
+          "x": 3300.0,
+          "y": 750.0
+        }
+      ],
+      "width_m": 12.0,
+      "tags": []
+    }
+  ],
+  "water_bodies": [],
+  "pois": [
+    {
+      "id": "poi_d_00_downtown_core_landmark",
+      "name": "Downtown Core Landmark",
+      "poi_type": "landmark",
+      "position": {
+        "x": 2150.0,
+        "y": 2150.0
+      },
+      "tags": [
+        "from_template"
+      ],
+      "gameplay_tags": []
+    },
+    {
+      "id": "poi_d_01_old_town_quarter_landmark",
+      "name": "Old Town Quarter Landmark",
+      "poi_type": "landmark",
+      "position": {
+        "x": 1300.0,
+        "y": 1800.0
+      },
+      "tags": [
+        "from_template"
+      ],
+      "gameplay_tags": []
+    }
+  ],
+  "scene_slots": [
+    {
+      "id": "slot_main",
+      "name": "Downtown Core Scene Slot",
+      "district_id": "d_00_downtown_core",
+      "position": {
+        "x": 2150.0,
+        "y": 2150.0
+      },
+      "rotation_deg": 0.0,
+      "size": {
+        "width_m": 60.0,
+        "depth_m": 40.0
+      },
+      "allowed_scene_types": [
+        "exterior_location"
+      ],
+      "connection_rules": [],
+      "tags": []
+    }
+  ],
+  "constraints": []
+}

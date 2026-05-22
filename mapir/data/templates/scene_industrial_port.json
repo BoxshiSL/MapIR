@@ -1,0 +1,111 @@
+{
+  "template_id": "scene_industrial_port",
+  "name": "Industrial Port Scene",
+  "document_type": "scene",
+  "genre": "industrial",
+  "description": "Container yard with stacks, loading dock, control office, and a vehicle yard. Designed for shooter, stealth, and exploration.",
+  "default_size": {"width_m": 200.0, "depth_m": 150.0},
+  "default_gameplay_profiles": ["shooter", "stealth", "exploration"],
+  "default_districts": [
+    {
+      "name": "Container Stacks",
+      "district_type": "yard",
+      "role": "combat_arena",
+      "theme": "stacked_containers",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [20.0, 20.0, 110.0, 110.0],
+      "tags": ["cover_rich", "verticality"]
+    },
+    {
+      "name": "Loading Dock",
+      "district_type": "dock",
+      "role": "objective",
+      "theme": "cranes_pallets",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [120.0, 20.0, 190.0, 70.0],
+      "tags": ["objective", "open"]
+    },
+    {
+      "name": "Control Office",
+      "district_type": "building",
+      "role": "vista",
+      "theme": "office_metal",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter"],
+      "bbox": [130.0, 80.0, 190.0, 140.0],
+      "tags": ["vista", "objective"]
+    },
+    {
+      "name": "Vehicle Yard",
+      "district_type": "yard",
+      "role": "approach",
+      "theme": "trucks_pavement",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [20.0, 110.0, 110.0, 145.0],
+      "tags": ["vehicles", "open"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["shooter", "stealth", "exploration"],
+    "road": {
+      "arterial_width_m": 10.0,
+      "collector_width_m": 6.0,
+      "local_width_m": 4.0,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.2,
+      "intersection_spacing_m": 30.0,
+      "shortcut_density": 0.25,
+      "dead_end_ratio_max": 0.3
+    },
+    "building": {
+      "parcel_min_width_m": 6.0,
+      "parcel_max_width_m": 20.0,
+      "parcel_depth_m": 14.0,
+      "building_setback_m": 1.0,
+      "building_height_min_m": 3.0,
+      "building_height_max_m": 10.0,
+      "building_density": 0.45
+    },
+    "shooter": {
+      "cover_interval_m": 4.0,
+      "cover_width_min_m": 1.2,
+      "cover_height_min_m": 1.2,
+      "max_open_sightline_m": 30.0,
+      "combat_arena_size_m": 25.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.4,
+      "restricted_area_count": 1,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 6.0,
+      "rooftop_connection_density": 0.3,
+      "verticality_score": 0.4
+    },
+    "exploration": {
+      "landmark_count_min": 1,
+      "vista_count_min": 1,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.2
+    }
+  },
+  "recommended_llm_brief": "Generate an industrial port scene. Container stacks on the west forming a maze, a loading dock on the east as the main objective, a control office overlooking the yard, and a vehicle yard for approach. Stealth and shooter routes should both work.",
+  "generation_recipe_id": "industrial"
+}

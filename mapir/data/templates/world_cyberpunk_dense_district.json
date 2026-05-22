@@ -1,0 +1,124 @@
+{
+  "template_id": "world_cyberpunk_dense_district",
+  "name": "Dense Cyberpunk Urban District",
+  "document_type": "world",
+  "genre": "cyberpunk",
+  "description": "Vertical, neon-lit urban district. Narrow alleys, a central avenue, a neon plaza, walkable rooftops. Tuned for stealth, parkour, shooter, and exploration.",
+  "default_size": {"width_m": 1500.0, "depth_m": 1500.0},
+  "default_gameplay_profiles": ["stealth", "parkour", "shooter", "exploration"],
+  "default_districts": [
+    {
+      "name": "Main Avenue",
+      "district_type": "downtown",
+      "role": "spine",
+      "theme": "neon_signs_skyscrapers",
+      "density": "very_high",
+      "height_profile": "high",
+      "building_style": "cyberpunk",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter", "driving"],
+      "bbox": [600.0, 100.0, 900.0, 1400.0],
+      "tags": ["arterial", "crowd"]
+    },
+    {
+      "name": "Alley Quarter East",
+      "district_type": "alley_block",
+      "role": "stealth_zone",
+      "theme": "narrow_alleys_pipes",
+      "density": "very_high",
+      "height_profile": "high",
+      "building_style": "cyberpunk",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["stealth", "parkour"],
+      "bbox": [900.0, 100.0, 1400.0, 1400.0],
+      "tags": ["narrow", "verticality"]
+    },
+    {
+      "name": "Alley Quarter West",
+      "district_type": "alley_block",
+      "role": "stealth_zone",
+      "theme": "narrow_alleys_market_stalls",
+      "density": "very_high",
+      "height_profile": "high",
+      "building_style": "cyberpunk",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["stealth", "parkour"],
+      "bbox": [100.0, 100.0, 600.0, 1400.0],
+      "tags": ["narrow", "verticality"]
+    },
+    {
+      "name": "Neon Plaza",
+      "district_type": "plaza",
+      "role": "landmark",
+      "theme": "advertising_holograms",
+      "density": "high",
+      "height_profile": "high",
+      "building_style": "cyberpunk",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["exploration", "shooter"],
+      "bbox": [650.0, 650.0, 850.0, 850.0],
+      "tags": ["landmark", "focal_point"]
+    },
+    {
+      "name": "Rooftop Walkway",
+      "district_type": "rooftop_network",
+      "role": "parkour_layer",
+      "theme": "neon_billboards",
+      "density": "high",
+      "height_profile": "high",
+      "building_style": "cyberpunk",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["parkour", "stealth"],
+      "bbox": [200.0, 200.0, 1300.0, 1300.0],
+      "tags": ["verticality", "overlay"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "parkour", "shooter", "exploration"],
+    "road": {
+      "arterial_width_m": 10.0,
+      "collector_width_m": 6.0,
+      "local_width_m": 4.0,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.2,
+      "intersection_spacing_m": 60.0,
+      "shortcut_density": 0.5,
+      "dead_end_ratio_max": 0.25
+    },
+    "building": {
+      "parcel_min_width_m": 6.0,
+      "parcel_max_width_m": 18.0,
+      "parcel_depth_m": 14.0,
+      "building_setback_m": 0.5,
+      "building_height_min_m": 12.0,
+      "building_height_max_m": 80.0,
+      "building_density": 0.85
+    },
+    "shooter": {
+      "cover_interval_m": 4.0,
+      "cover_width_min_m": 0.8,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 25.0,
+      "combat_arena_size_m": 20.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 4,
+      "concealment_density": 0.55,
+      "restricted_area_count": 3,
+      "patrol_route_hint_count": 3
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 5.0,
+      "rooftop_connection_density": 0.6,
+      "verticality_score": 0.75
+    },
+    "exploration": {
+      "landmark_count_min": 3,
+      "vista_count_min": 2,
+      "secret_path_count_min": 2,
+      "breadcrumb_density": 0.3
+    }
+  },
+  "recommended_llm_brief": "Generate a dense cyberpunk urban district. Vertical buildings, narrow alleys on either side of a main avenue, a neon plaza as the central landmark, and a rooftop walkway layer for parkour. Stealth, parkour, shooter, and exploration should all be supported.",
+  "generation_recipe_id": "dense_urban"
+}

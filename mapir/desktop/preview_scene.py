@@ -5,12 +5,23 @@ mirroring the layout rules used by the SVG renderer (same y-flip, same
 fit-to-bounds, same element order) but with the dark-theme palette so the
 preview looks good inside the studio window.
 
-The SVG renderer remains canonical for export — this module is the *live*
-view in the desktop app and exists so the user can zoom and pan without
+v0.5 adds:
+
+* ``PreviewOptions.label_scale`` — global multiplier for label font size.
+* ``PreviewOptions.layer_visibility`` — per-layer toggles (districts, roads,
+  pois, scene slots, zones, paths, entrances, objects, markers, water).
+* Greedy overlap suppression for labels — when bboxes collide, later labels
+  drop out so the preview doesn't scream.
+* Heuristic auto-scaling based on world / scene width.
+
+The SVG renderer remains canonical for export. This module is the *live*
+view in the desktop app; the user can change ``PreviewOptions`` without
 re-rendering an SVG on every change.
 """
 
 from __future__ import annotations
+
+from dataclasses import dataclass, field
 
 from PySide6.QtCore import QPointF, QRectF, Qt
 from PySide6.QtGui import QBrush, QColor, QFont, QPen, QPolygonF
@@ -34,8 +45,63 @@ from ..core.models import (
 )
 from .theme import PALETTE
 
-_LABEL_FONT = QFont("Segoe UI", 9)
-_LABEL_FONT_BOLD = QFont("Segoe UI", 10, QFont.DemiBold)
+
+# ---------- layers ----------
+
+WORLD_LAYERS: tuple[str, ...] = (
+    "districts",
+    "water",
+    "roads",
+    "pois",
+    "scene_slots",
+)
+SCENE_LAYERS: tuple[str, ...] = (
+    "zones",
+    "objects",
+    "paths",
+    "entrances",
+    "markers",
+)
+ALL_LAYERS: tuple[str, ...] = tuple(dict.fromkeys(WORLD_LAYERS + SCENE_LAYERS))
+
+
+def default_layer_visibility() -> dict[str, bool]:
+    return {layer: True for layer in ALL_LAYERS}
+
+
+@dataclass
+class PreviewOptions:
+    """Knobs for :func:`build_scene`.
+
+    * ``label_scale``: multiplier on top of the auto-computed font size.
+      ``1.0`` keeps the v0.4 baseline of 9pt; ``0.5`` halves it; ``2.0``
+      doubles it.
+    * ``layer_visibility``: per-layer toggles. Unknown keys are ignored.
+    * ``suppress_overlap``: when True, the renderer drops labels whose bbox
+      collides with an already-placed label.
+    * ``auto_scale``: when True, shrinks labels for large worlds so a
+      4000m world doesn't render 9pt text the size of buildings.
+    """
+
+    label_scale: float = 1.0
+    layer_visibility: dict[str, bool] = field(default_factory=default_layer_visibility)
+    suppress_overlap: bool = True
+    auto_scale: bool = True
+    dropped_labels: int = 0  # populated by build_scene, useful for validators
+
+
+def _is_visible(options: PreviewOptions, layer: str) -> bool:
+    return options.layer_visibility.get(layer, True)
+
+
+def _label_pointsize(options: PreviewOptions, world_width: float) -> int:
+    base = 9.0
+    if options.auto_scale and world_width > 0.0:
+        # heuristic: scale down once the canvas exceeds ~1500m
+        auto = min(1.0, 1500.0 / world_width) ** 0.5
+        base = base * max(0.55, auto)
+    pt = int(round(base * max(0.4, options.label_scale)))
+    return max(5, pt)
 
 
 def _c(key: str) -> QColor:
@@ -60,13 +126,51 @@ def _bbox_center(poly: Polygon2D) -> tuple[float, float]:
     return (sum(xs) / len(xs), sum(ys) / len(ys))
 
 
+def _bbox_overlap(a: QRectF, b: QRectF) -> bool:
+    return a.intersects(b)
+
+
+class _LabelTracker:
+    """Greedy bbox-overlap suppressor."""
+
+    def __init__(self, enabled: bool) -> None:
+        self.enabled = enabled
+        self.placed: list[QRectF] = []
+        self.dropped = 0
+
+    def place(self, rect: QRectF) -> bool:
+        if not self.enabled:
+            self.placed.append(rect)
+            return True
+        for existing in self.placed:
+            if _bbox_overlap(rect, existing):
+                self.dropped += 1
+                return False
+        self.placed.append(rect)
+        return True
+
+
 def _add_label(
-    scene: QGraphicsScene, x: float, y_flipped: float, text: str, *, bold: bool = False
+    scene: QGraphicsScene,
+    tracker: _LabelTracker,
+    font: QFont,
+    bold_font: QFont,
+    x: float,
+    y_flipped: float,
+    text: str,
+    *,
+    bold: bool = False,
 ) -> None:
-    item = scene.addSimpleText(text, _LABEL_FONT_BOLD if bold else _LABEL_FONT)
+    if not text:
+        return
+    item = scene.addSimpleText(text, bold_font if bold else font)
     item.setBrush(QBrush(_c("prev_label")))
     br = item.boundingRect()
-    item.setPos(x - br.width() / 2.0, y_flipped - br.height() / 2.0)
+    rect = QRectF(x - br.width() / 2.0, y_flipped - br.height() / 2.0, br.width(), br.height())
+    if not tracker.place(rect):
+        scene.removeItem(item)
+        return
+    item.setPos(rect.x(), rect.y())
     item.setZValue(1000)
 
 
@@ -75,14 +179,23 @@ def _add_label(
 # ============================================================
 
 
-def build_scene(ir: WorldIR | SceneIR) -> QGraphicsScene:
-    """Construct a fresh QGraphicsScene that contains the whole IR rendered."""
+def build_scene(
+    ir: WorldIR | SceneIR,
+    options: PreviewOptions | None = None,
+) -> QGraphicsScene:
+    """Construct a fresh QGraphicsScene that contains the whole IR rendered.
+
+    ``options`` may be ``None`` for backward compatibility — that path is
+    equivalent to the v0.4 defaults: all layers on, label_scale=1.0, auto
+    scaling on, overlap suppression on.
+    """
+    options = options or PreviewOptions()
     scene = QGraphicsScene()
     scene.setBackgroundBrush(QBrush(_c("prev_bg")))
     if isinstance(ir, WorldIR):
-        _build_world(scene, ir)
+        _build_world(scene, ir, options)
     else:
-        _build_scene_ir(scene, ir)
+        _build_scene_ir(scene, ir, options)
     return scene
 
 
@@ -91,7 +204,7 @@ def build_scene(ir: WorldIR | SceneIR) -> QGraphicsScene:
 # ============================================================
 
 
-def _build_world(scene: QGraphicsScene, world: WorldIR) -> None:
+def _build_world(scene: QGraphicsScene, world: WorldIR, options: PreviewOptions) -> None:
     w, d = world.scale.width_m, world.scale.depth_m
     bounds_pen = QPen(_c("prev_bounds"))
     bounds_pen.setStyle(Qt.DashLine)
@@ -100,19 +213,33 @@ def _build_world(scene: QGraphicsScene, world: WorldIR) -> None:
     scene.addRect(QRectF(0, 0, w, d), bounds_pen, QBrush(_c("panel")))
     scene.setSceneRect(QRectF(0, 0, w, d))
 
-    for district in world.districts:
-        _draw_district(scene, district, d)
-    for water in world.water_bodies:
-        _draw_water(scene, water, d)
-    for road in world.roads:
-        _draw_road(scene, road, d)
-    for poi in world.pois:
-        _draw_poi(scene, poi, d)
-    for slot in world.scene_slots:
-        _draw_scene_slot(scene, slot, d)
+    pt = _label_pointsize(options, w)
+    font = QFont("Segoe UI", pt)
+    font_bold = QFont("Segoe UI", pt + 1, QFont.DemiBold)
+    tracker = _LabelTracker(enabled=options.suppress_overlap)
+
+    if _is_visible(options, "districts"):
+        for district in world.districts:
+            _draw_district(scene, district, d, font, font_bold, tracker)
+    if _is_visible(options, "water"):
+        for water in world.water_bodies:
+            _draw_water(scene, water, d, font, font_bold, tracker)
+    if _is_visible(options, "roads"):
+        for road in world.roads:
+            _draw_road(scene, road, d)
+    if _is_visible(options, "pois"):
+        for poi in world.pois:
+            _draw_poi(scene, poi, d, font, font_bold, tracker)
+    if _is_visible(options, "scene_slots"):
+        for slot in world.scene_slots:
+            _draw_scene_slot(scene, slot, d, font, font_bold, tracker)
+
+    options.dropped_labels = tracker.dropped
 
 
-def _draw_district(scene: QGraphicsScene, district, depth: float) -> None:
+def _draw_district(
+    scene, district, depth, font, font_bold, tracker
+) -> None:
     pen = QPen(_c("border"))
     pen.setWidthF(0.6)
     pen.setCosmetic(True)
@@ -120,10 +247,10 @@ def _draw_district(scene: QGraphicsScene, district, depth: float) -> None:
     item = scene.addPolygon(_qpoly(district.polygon, depth), pen, brush)
     item.setOpacity(0.65)
     cx, cy = _bbox_center(district.polygon)
-    _add_label(scene, cx, _fy(cy, depth), district.name, bold=True)
+    _add_label(scene, tracker, font, font_bold, cx, _fy(cy, depth), district.name, bold=True)
 
 
-def _draw_water(scene: QGraphicsScene, water: WaterBody, depth: float) -> None:
+def _draw_water(scene, water: WaterBody, depth, font, font_bold, tracker) -> None:
     pen = QPen(_c("prev_water"))
     pen.setWidthF(0.5)
     pen.setCosmetic(True)
@@ -131,10 +258,10 @@ def _draw_water(scene: QGraphicsScene, water: WaterBody, depth: float) -> None:
     item = scene.addPolygon(_qpoly(water.polygon, depth), pen, brush)
     item.setOpacity(0.7)
     cx, cy = _bbox_center(water.polygon)
-    _add_label(scene, cx, _fy(cy, depth), water.name)
+    _add_label(scene, tracker, font, font_bold, cx, _fy(cy, depth), water.name)
 
 
-def _draw_road(scene: QGraphicsScene, road: Road, depth: float) -> None:
+def _draw_road(scene, road: Road, depth) -> None:
     pen = QPen(_c("prev_road"))
     pen.setWidthF(max(1.5, road.width_m))
     pen.setCapStyle(Qt.RoundCap)
@@ -147,17 +274,17 @@ def _draw_road(scene: QGraphicsScene, road: Road, depth: float) -> None:
         scene.addLine(a.x(), a.y(), b.x(), b.y(), pen)
 
 
-def _draw_poi(scene: QGraphicsScene, poi: POI, depth: float) -> None:
+def _draw_poi(scene, poi: POI, depth, font, font_bold, tracker) -> None:
     r = 4.0
     pen = QPen(QColor("#6e2117"))
     pen.setWidthF(0.5)
     pen.setCosmetic(True)
     brush = QBrush(_c("prev_poi"))
     scene.addEllipse(poi.position.x - r, _fy(poi.position.y, depth) - r, r * 2, r * 2, pen, brush)
-    _add_label(scene, poi.position.x, _fy(poi.position.y, depth) - 10.0, poi.name)
+    _add_label(scene, tracker, font, font_bold, poi.position.x, _fy(poi.position.y, depth) - 10.0, poi.name)
 
 
-def _draw_scene_slot(scene: QGraphicsScene, slot: SceneSlot, depth: float) -> None:
+def _draw_scene_slot(scene, slot: SceneSlot, depth, font, font_bold, tracker) -> None:
     half_w = slot.size.width_m / 2.0
     half_d = slot.size.depth_m / 2.0
     x = slot.position.x - half_w
@@ -167,7 +294,7 @@ def _draw_scene_slot(scene: QGraphicsScene, slot: SceneSlot, depth: float) -> No
     pen.setWidthF(1.2)
     pen.setCosmetic(True)
     scene.addRect(QRectF(x, y_top, slot.size.width_m, slot.size.depth_m), pen)
-    _add_label(scene, slot.position.x, _fy(slot.position.y, depth), slot.name)
+    _add_label(scene, tracker, font, font_bold, slot.position.x, _fy(slot.position.y, depth), slot.name)
 
 
 # ============================================================
@@ -206,7 +333,7 @@ _MARKER_KEY = {
 }
 
 
-def _build_scene_ir(scene: QGraphicsScene, scene_ir: SceneIR) -> None:
+def _build_scene_ir(scene: QGraphicsScene, scene_ir: SceneIR, options: PreviewOptions) -> None:
     w, d = scene_ir.bounds.width_m, scene_ir.bounds.depth_m
     bounds_pen = QPen(_c("prev_bounds"))
     bounds_pen.setStyle(Qt.DashLine)
@@ -214,19 +341,31 @@ def _build_scene_ir(scene: QGraphicsScene, scene_ir: SceneIR) -> None:
     scene.addRect(QRectF(0, 0, w, d), bounds_pen, QBrush(_c("panel")))
     scene.setSceneRect(QRectF(0, 0, w, d))
 
-    for zone in scene_ir.zones:
-        _draw_zone(scene, zone, d)
-    for obj in scene_ir.objects:
-        _draw_object(scene, obj, d)
-    for path in scene_ir.paths:
-        _draw_path(scene, path, d)
-    for entrance in scene_ir.entrances:
-        _draw_entrance(scene, entrance, d)
-    for marker in scene_ir.gameplay_markers:
-        _draw_marker(scene, marker, d)
+    pt = _label_pointsize(options, w)
+    font = QFont("Segoe UI", pt)
+    font_bold = QFont("Segoe UI", pt + 1, QFont.DemiBold)
+    tracker = _LabelTracker(enabled=options.suppress_overlap)
+
+    if _is_visible(options, "zones"):
+        for zone in scene_ir.zones:
+            _draw_zone(scene, zone, d, font, font_bold, tracker)
+    if _is_visible(options, "objects"):
+        for obj in scene_ir.objects:
+            _draw_object(scene, obj, d)
+    if _is_visible(options, "paths"):
+        for path in scene_ir.paths:
+            _draw_path(scene, path, d)
+    if _is_visible(options, "entrances"):
+        for entrance in scene_ir.entrances:
+            _draw_entrance(scene, entrance, d)
+    if _is_visible(options, "markers"):
+        for marker in scene_ir.gameplay_markers:
+            _draw_marker(scene, marker, d)
+
+    options.dropped_labels = tracker.dropped
 
 
-def _draw_zone(scene: QGraphicsScene, zone: SceneZone, depth: float) -> None:
+def _draw_zone(scene, zone: SceneZone, depth, font, font_bold, tracker) -> None:
     color = _c(_ZONE_KEY.get(zone.zone_type, "prev_zone"))
     pen = QPen(_c("border"))
     pen.setWidthF(0.4)
@@ -234,10 +373,10 @@ def _draw_zone(scene: QGraphicsScene, zone: SceneZone, depth: float) -> None:
     item = scene.addPolygon(_qpoly(zone.polygon, depth), pen, QBrush(color))
     item.setOpacity(0.65)
     cx, cy = _bbox_center(zone.polygon)
-    _add_label(scene, cx, _fy(cy, depth), zone.name)
+    _add_label(scene, tracker, font, font_bold, cx, _fy(cy, depth), zone.name)
 
 
-def _draw_object(scene: QGraphicsScene, obj: SceneObject, depth: float) -> None:
+def _draw_object(scene, obj: SceneObject, depth) -> None:
     w_m = obj.size.width_m * obj.transform.scale
     d_m = obj.size.depth_m * obj.transform.scale
     x = obj.transform.position.x - w_m / 2.0
@@ -254,7 +393,7 @@ def _draw_object(scene: QGraphicsScene, obj: SceneObject, depth: float) -> None:
     scene.addRect(QRectF(x, y_top, w_m, d_m), pen, brush)
 
 
-def _draw_path(scene: QGraphicsScene, path: ScenePath, depth: float) -> None:
+def _draw_path(scene, path: ScenePath, depth) -> None:
     color = _c(_PATH_KEY.get(path.path_type.value, "prev_path"))
     pen = QPen(color)
     pen.setWidthF(max(1.0, path.width_m * 0.7))
@@ -266,7 +405,7 @@ def _draw_path(scene: QGraphicsScene, path: ScenePath, depth: float) -> None:
         scene.addLine(a.x(), a.y(), b.x(), b.y(), pen)
 
 
-def _draw_entrance(scene: QGraphicsScene, ent: Entrance, depth: float) -> None:
+def _draw_entrance(scene, ent: Entrance, depth) -> None:
     x, y = ent.position.x, _fy(ent.position.y, depth)
     r = 1.4
     triangle = QPolygonF(
@@ -282,7 +421,7 @@ def _draw_entrance(scene: QGraphicsScene, ent: Entrance, depth: float) -> None:
     scene.addPolygon(triangle, pen, QBrush(_c("prev_entrance")))
 
 
-def _draw_marker(scene: QGraphicsScene, marker: GameplayMarker, depth: float) -> None:
+def _draw_marker(scene, marker: GameplayMarker, depth) -> None:
     color = _c(_MARKER_KEY.get(marker.marker_type, "muted"))
     r = marker.radius_m if marker.radius_m else 1.0
     pen = QPen(color.darker(150))

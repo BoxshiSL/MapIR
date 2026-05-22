@@ -11,17 +11,14 @@ call ".venv\Scripts\activate.bat"
 
 set FAILED=0
 
-echo === Validating worlds ===
-for %%F in (examples\worlds\*.json) do (
-    echo.
-    echo --- %%F ---
-    python -m mapir.cli validate "%%F"
-    if errorlevel 1 set FAILED=1
-)
+REM Make sure demos are up-to-date before validating. The script is idempotent.
+echo === Rebuilding demo fixtures from templates ===
+python scripts\build_demo_fixtures.py
+if errorlevel 1 set FAILED=1
 
 echo.
-echo === Validating scenes ===
-for %%F in (examples\scenes\*.json) do (
+echo === Validating demos ===
+for %%F in (examples\demos\*.json) do (
     echo.
     echo --- %%F ---
     python -m mapir.cli validate "%%F"
@@ -34,7 +31,7 @@ if "%FAILED%"=="1" (
     popd
     exit /b 1
 )
-echo [OK] All examples validated successfully.
+echo [OK] All demos validated successfully.
 
 popd
 endlocal

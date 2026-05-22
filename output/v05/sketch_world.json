@@ -1,0 +1,369 @@
+{
+  "sketch_id": "sketch_beb546bacc",
+  "name": "GTA-like Modern Island City",
+  "document_type": "world",
+  "template_id": "world_modern_island_city",
+  "size": {
+    "width_m": 4000.0,
+    "depth_m": 4000.0
+  },
+  "created_at": "2026-05-22T12:30:54.914607Z",
+  "updated_at": "2026-05-22T12:30:54.914614Z",
+  "districts": [
+    {
+      "id": "d_00_downtown_core",
+      "name": "Downtown Core",
+      "polygon": {
+        "points": [
+          {
+            "x": 1700.0,
+            "y": 1700.0
+          },
+          {
+            "x": 2600.0,
+            "y": 1700.0
+          },
+          {
+            "x": 2600.0,
+            "y": 2600.0
+          },
+          {
+            "x": 1700.0,
+            "y": 2600.0
+          }
+        ]
+      },
+      "district_type": "downtown",
+      "role": "civic_hub",
+      "theme": "modern_skyscrapers",
+      "density": "very_high",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "grid",
+      "gameplay_profiles": [
+        "driving",
+        "shooter",
+        "exploration"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "landmark_candidate",
+        "high_density"
+      ]
+    },
+    {
+      "id": "d_01_old_town_quarter",
+      "name": "Old Town Quarter",
+      "polygon": {
+        "points": [
+          {
+            "x": 900.0,
+            "y": 1400.0
+          },
+          {
+            "x": 1700.0,
+            "y": 1400.0
+          },
+          {
+            "x": 1700.0,
+            "y": 2200.0
+          },
+          {
+            "x": 900.0,
+            "y": 2200.0
+          }
+        ]
+      },
+      "district_type": "historic",
+      "role": "tourist_walkable",
+      "theme": "narrow_streets_old",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "modern_city",
+      "road_pattern": "organic",
+      "gameplay_profiles": [
+        "stealth",
+        "exploration"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "walkable",
+        "narrow"
+      ]
+    },
+    {
+      "id": "d_02_waterfront_port",
+      "name": "Waterfront Port",
+      "polygon": {
+        "points": [
+          {
+            "x": 200.0,
+            "y": 200.0
+          },
+          {
+            "x": 1700.0,
+            "y": 200.0
+          },
+          {
+            "x": 1700.0,
+            "y": 1000.0
+          },
+          {
+            "x": 200.0,
+            "y": 1000.0
+          }
+        ]
+      },
+      "district_type": "port",
+      "role": "industrial_harbor",
+      "theme": "containers_cranes",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": [
+        "shooter",
+        "stealth"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "coastline",
+        "industrial"
+      ]
+    },
+    {
+      "id": "d_03_airport_island",
+      "name": "Airport Island",
+      "polygon": {
+        "points": [
+          {
+            "x": 2700.0,
+            "y": 200.0
+          },
+          {
+            "x": 3900.0,
+            "y": 200.0
+          },
+          {
+            "x": 3900.0,
+            "y": 1300.0
+          },
+          {
+            "x": 2700.0,
+            "y": 1300.0
+          }
+        ]
+      },
+      "district_type": "airport",
+      "role": "transport_hub",
+      "theme": "runways_terminals",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": [
+        "driving",
+        "shooter"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "island",
+        "controlled_zone"
+      ]
+    },
+    {
+      "id": "d_04_residential_belt",
+      "name": "Residential Belt",
+      "polygon": {
+        "points": [
+          {
+            "x": 1500.0,
+            "y": 2700.0
+          },
+          {
+            "x": 3700.0,
+            "y": 2700.0
+          },
+          {
+            "x": 3700.0,
+            "y": 3800.0
+          },
+          {
+            "x": 1500.0,
+            "y": 3800.0
+          }
+        ]
+      },
+      "district_type": "residential",
+      "role": "suburban",
+      "theme": "low_rise_houses",
+      "density": "medium",
+      "height_profile": "low",
+      "building_style": "modern_city",
+      "road_pattern": "grid",
+      "gameplay_profiles": [
+        "driving",
+        "exploration"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "residential"
+      ]
+    },
+    {
+      "id": "d_05_coastal_highway_strip",
+      "name": "Coastal Highway Strip",
+      "polygon": {
+        "points": [
+          {
+            "x": 2700.0,
+            "y": 1500.0
+          },
+          {
+            "x": 3900.0,
+            "y": 1500.0
+          },
+          {
+            "x": 3900.0,
+            "y": 2400.0
+          },
+          {
+            "x": 2700.0,
+            "y": 2400.0
+          }
+        ]
+      },
+      "district_type": "highway_strip",
+      "role": "driving_corridor",
+      "theme": "billboards_palms",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "modern_city",
+      "road_pattern": "coastal",
+      "gameplay_profiles": [
+        "driving"
+      ],
+      "llm_brief": "",
+      "generation_settings": {
+        "provider": null,
+        "model": null,
+        "temperature": null,
+        "max_tokens": null
+      },
+      "metrics_override": null,
+      "tags": [
+        "scenic",
+        "highway"
+      ]
+    }
+  ],
+  "roads": [],
+  "pois": [],
+  "scene_slots": [
+    {
+      "id": "slot_initial",
+      "name": "Downtown Core Scene Slot",
+      "position": {
+        "x": 2150.0,
+        "y": 2150.0
+      },
+      "size": {
+        "width_m": 60.0,
+        "depth_m": 40.0
+      },
+      "district_id": "d_00_downtown_core",
+      "allowed_scene_types": [
+        "exterior_location"
+      ],
+      "gameplay_role": "initial",
+      "tags": []
+    }
+  ],
+  "notes": [],
+  "metrics": {
+    "gameplay_profiles": [
+      "driving",
+      "shooter",
+      "exploration"
+    ],
+    "road": {
+      "arterial_width_m": 18.0,
+      "collector_width_m": 11.0,
+      "local_width_m": 7.0,
+      "alley_width_m": 3.0,
+      "trail_width_m": 1.5,
+      "intersection_spacing_m": 90.0,
+      "shortcut_density": 0.25,
+      "dead_end_ratio_max": 0.1
+    },
+    "building": {
+      "parcel_min_width_m": 12.0,
+      "parcel_max_width_m": 30.0,
+      "parcel_depth_m": 22.0,
+      "building_setback_m": 2.0,
+      "building_height_min_m": 6.0,
+      "building_height_max_m": 90.0,
+      "building_density": 0.7
+    },
+    "shooter": {
+      "cover_interval_m": 6.0,
+      "cover_width_min_m": 1.0,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 50.0,
+      "combat_arena_size_m": 40.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.3,
+      "restricted_area_count": 2,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 12.0,
+      "rooftop_connection_density": 0.2,
+      "verticality_score": 0.4
+    },
+    "exploration": {
+      "landmark_count_min": 4,
+      "vista_count_min": 2,
+      "secret_path_count_min": 2,
+      "breadcrumb_density": 0.25
+    }
+  },
+  "llm_brief": "Generate a modern island city with a clear downtown skyline, a historic old-town quarter, an industrial port on the western coast, an airport island connected by bridge, a residential belt, and a coastal highway. Driving, shooter, and exploration should all work. Landmarks should be visible from the highway."
+}

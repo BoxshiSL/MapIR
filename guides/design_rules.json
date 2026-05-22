@@ -1,0 +1,184 @@
+{
+  "version": "0.5.0",
+  "rules": [
+    {
+      "id": "planning_blockout_first",
+      "category": "planning",
+      "name": "Blockout before detail",
+      "description": "Build the 2D plan and a low-detail blockout before placing detailed art. Detailing early locks in decisions that gameplay testing will overturn.",
+      "applies_to": ["world", "scene", "interior"],
+      "severity": "info",
+      "validator_hint": "n/a",
+      "prompt_hint": "Prefer rough blockout-level intent over detail-heavy descriptions.",
+      "source_note": "Urban playgrounds + level design fundamentals"
+    },
+    {
+      "id": "planning_gameplay_first",
+      "category": "planning",
+      "name": "Identify gameplay locations first",
+      "description": "Locate gameplay anchors (objectives, vistas, encounters) before laying roads and districts. The environment funnels the player toward gameplay.",
+      "applies_to": ["world", "district"],
+      "severity": "info",
+      "prompt_hint": "List the gameplay anchors first; the environment radiates outward from them.",
+      "source_note": "Urban playgrounds"
+    },
+    {
+      "id": "navigation_district_road_connection",
+      "category": "navigation",
+      "name": "Every major district must connect to the road graph",
+      "description": "A district without an incoming road is unreachable unless the design intentionally hides it as a discovery target.",
+      "applies_to": ["world", "district"],
+      "severity": "warning",
+      "validator_hint": "district has at least one road within its bbox or a road point inside its polygon",
+      "prompt_hint": "Each district has at least one road tying it into the rest of the world.",
+      "source_note": "Open-world city production"
+    },
+    {
+      "id": "navigation_multiple_routes",
+      "category": "navigation",
+      "name": "Stealth profiles need alternate routes",
+      "description": "Districts whose gameplay profile includes stealth should have ≥ 2 ways in or out.",
+      "applies_to": ["district"],
+      "severity": "warning",
+      "validator_hint": "stealth districts: alternate_route_count >= metrics.stealth.alternate_route_count_min",
+      "prompt_hint": "Stealth zones offer multiple alternative entries (back doors, vents, alleys).",
+      "source_note": "Level design fundamentals + gameplay metrics"
+    },
+    {
+      "id": "landmarks_one_per_district",
+      "category": "landmarks",
+      "name": "Each major district carries a landmark",
+      "description": "Landmarks reduce confusion, create scale, and reward exploration. Districts marked as focal/objective/landmark/hub should have at least one.",
+      "applies_to": ["world", "district"],
+      "severity": "warning",
+      "validator_hint": "every district with focal/hub/objective/landmark role has ≥ 1 Landmark inside its bbox",
+      "prompt_hint": "Highlight a single visible landmark per major district.",
+      "source_note": "Urban playgrounds + scale-illusion guide"
+    },
+    {
+      "id": "landmarks_meaningful_payoff",
+      "category": "landmarks",
+      "name": "Landmarks need payoff",
+      "description": "If a landmark is reachable it should reward the player with a vista, an objective, loot, story, or a unique scene slot — not nothing.",
+      "applies_to": ["world", "scene"],
+      "severity": "info",
+      "prompt_hint": "When proposing a landmark, also name the payoff (vista / objective / loot / story).",
+      "source_note": "Open-world city production"
+    },
+    {
+      "id": "streets_road_hierarchy",
+      "category": "streets",
+      "name": "Use arterial → collector → local hierarchy",
+      "description": "City templates should distribute road types so player vehicles can find arterials and on-foot routes can find narrow streets.",
+      "applies_to": ["world"],
+      "severity": "info",
+      "prompt_hint": "Plan arterial, collector, and local roads — not one road type everywhere.",
+      "source_note": "Urban playgrounds"
+    },
+    {
+      "id": "gameplay_metrics_driving_widths",
+      "category": "gameplay_metrics",
+      "name": "Driving profile demands arterial width",
+      "description": "Districts with the driving profile need arterials ≥ the metrics.road.arterial_width_m floor (default 14m).",
+      "applies_to": ["district", "world"],
+      "severity": "warning",
+      "validator_hint": "driving districts: every arterial road has width_m >= metrics.road.arterial_width_m",
+      "prompt_hint": "Driving zones use wide arterials, not narrow alleys.",
+      "source_note": "Gameplay metrics §7.2"
+    },
+    {
+      "id": "gameplay_metrics_shooter_cover",
+      "category": "gameplay_metrics",
+      "name": "Shooter encounters need cover intervals",
+      "description": "Scenes with the shooter profile need cover at least every metrics.shooter.cover_interval_m metres.",
+      "applies_to": ["scene", "district"],
+      "severity": "warning",
+      "validator_hint": "shooter zones: ≥ 1 cover marker or cover-tagged object per cover_interval_m sqm",
+      "prompt_hint": "Place cover roughly every 4-6m for shooter encounters.",
+      "source_note": "Gameplay metrics §7.2"
+    },
+    {
+      "id": "readability_label_clutter",
+      "category": "readability",
+      "name": "Preview labels should not all overlap",
+      "description": "If the preview suppresses many overlapping labels the world is probably too dense to read at a glance. Increase district size or thin out POIs.",
+      "applies_to": ["world", "scene"],
+      "severity": "warning",
+      "validator_hint": "if preview reports >5 dropped labels, surface a warning",
+      "prompt_hint": "Avoid placing many tiny POIs in the same region — readability suffers.",
+      "source_note": "Open-world scale illusion guide"
+    },
+    {
+      "id": "district_identity_differentiator",
+      "category": "districts",
+      "name": "Districts need a differentiating feature",
+      "description": "Each district must carry a type / theme / gameplay tag so it reads as distinct.",
+      "applies_to": ["world", "district"],
+      "severity": "warning",
+      "validator_hint": "district.tags or theme or distinct district_type must be set",
+      "prompt_hint": "Give every district a theme, role, or unique gameplay tag.",
+      "source_note": "Worldbuilding guide"
+    },
+    {
+      "id": "worldbuilding_arena_boundaries",
+      "category": "worldbuilding",
+      "name": "Define the arena's boundaries",
+      "description": "Worldbuilding should establish where the world starts and ends, the dominant conflict, and the factions in tension.",
+      "applies_to": ["world"],
+      "severity": "info",
+      "prompt_hint": "State the world's boundaries, central conflict, and the factions involved.",
+      "source_note": "Worldbuilding guides"
+    },
+    {
+      "id": "guidance_leading_lines",
+      "category": "guidance",
+      "name": "Lead the eye toward the next goal",
+      "description": "Roads, shadows, light contrast, and silhouettes should point toward the next gameplay focal point.",
+      "applies_to": ["world", "scene"],
+      "severity": "info",
+      "prompt_hint": "Use leading lines (a road, a shadow, a row of lanterns) toward each major landmark.",
+      "source_note": "Level design thesis"
+    },
+    {
+      "id": "guidance_breadcrumbs",
+      "category": "guidance",
+      "name": "Breadcrumbs create organic paths",
+      "description": "Small repeated cues (lanterns, footprints, flowers) imply a path without UI markers.",
+      "applies_to": ["world", "scene"],
+      "severity": "info",
+      "prompt_hint": "Use breadcrumbs of small props to suggest a route.",
+      "source_note": "Level design thesis"
+    },
+    {
+      "id": "scale_illusion_hide_some",
+      "category": "scale_illusion",
+      "name": "Hide some map content",
+      "description": "Avoid filling the entire world with markers at start — fog of war / partial visibility supports curiosity. Balance against frustration.",
+      "applies_to": ["world"],
+      "severity": "info",
+      "prompt_hint": "Reveal half the map at a time; the rest is for discovery.",
+      "source_note": "Open-world scale illusion guide"
+    },
+    {
+      "id": "geometry_buildings_inside_parcels",
+      "category": "geometry",
+      "name": "Buildings live inside parcels",
+      "description": "Generated buildings must lie inside their declared parcel polygon (set-back permitted).",
+      "applies_to": ["world", "scene"],
+      "severity": "error",
+      "validator_hint": "building bbox ⊆ parcel bbox (within tolerance)",
+      "prompt_hint": "Building footprints sit inside their parcels.",
+      "source_note": "Geometry sanity"
+    },
+    {
+      "id": "iteration_throwaway_blockouts",
+      "category": "iteration",
+      "name": "Expect to discard early blockouts",
+      "description": "First passes are wrong on purpose. Playtest and iterate before detailing.",
+      "applies_to": ["world", "scene"],
+      "severity": "info",
+      "prompt_hint": "Treat the first pass as throwaway; do not over-commit detail.",
+      "source_note": "Level design fundamentals"
+    }
+  ]
+}

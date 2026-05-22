@@ -1,0 +1,98 @@
+{
+  "template_id": "scene_urban_alley",
+  "name": "Urban Alley",
+  "document_type": "scene",
+  "genre": "urban",
+  "description": "Tight back alley between brick walls, with a fire escape, a side recess, and a dumpster. Designed for stealth, shooter, and parkour.",
+  "default_size": {"width_m": 80.0, "depth_m": 45.0},
+  "default_gameplay_profiles": ["stealth", "shooter", "parkour"],
+  "default_districts": [
+    {
+      "name": "Alley Main",
+      "district_type": "alley",
+      "role": "combat_path",
+      "theme": "brick_walls_dumpsters",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["stealth", "shooter"],
+      "bbox": [5.0, 5.0, 75.0, 25.0],
+      "tags": ["narrow", "cover"]
+    },
+    {
+      "name": "Side Recess",
+      "district_type": "alcove",
+      "role": "hiding",
+      "theme": "service_door",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["stealth"],
+      "bbox": [30.0, 25.0, 45.0, 40.0],
+      "tags": ["concealment"]
+    },
+    {
+      "name": "Fire Escape Wall",
+      "district_type": "wall_facade",
+      "role": "parkour_layer",
+      "theme": "metal_stairs",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["parkour"],
+      "bbox": [10.0, 25.0, 28.0, 40.0],
+      "tags": ["verticality", "climbable"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "shooter", "parkour"],
+    "road": {
+      "arterial_width_m": 4.0,
+      "collector_width_m": 3.0,
+      "local_width_m": 2.5,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 25.0,
+      "shortcut_density": 0.2,
+      "dead_end_ratio_max": 0.3
+    },
+    "building": {
+      "parcel_min_width_m": 6.0,
+      "parcel_max_width_m": 18.0,
+      "parcel_depth_m": 12.0,
+      "building_setback_m": 0.0,
+      "building_height_min_m": 8.0,
+      "building_height_max_m": 24.0,
+      "building_density": 0.95
+    },
+    "shooter": {
+      "cover_interval_m": 3.0,
+      "cover_width_min_m": 0.6,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 20.0,
+      "combat_arena_size_m": 15.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.55,
+      "restricted_area_count": 0,
+      "patrol_route_hint_count": 1
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 5.0,
+      "rooftop_connection_density": 0.4,
+      "verticality_score": 0.6
+    },
+    "exploration": {
+      "landmark_count_min": 1,
+      "vista_count_min": 0,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.15
+    }
+  },
+  "recommended_llm_brief": "Generate an urban back alley scene. Tight corridor between brick walls with dumpsters as cover, a side recess for hiding, and a fire escape on one wall for parkour. Stealth and short-range shooter engagements both viable.",
+  "generation_recipe_id": "dense_urban"
+}

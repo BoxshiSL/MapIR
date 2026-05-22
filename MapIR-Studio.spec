@@ -2,8 +2,9 @@
 """PyInstaller spec for MapIR Studio.
 
 Builds a one-folder distribution at ``dist/MapIR-Studio/`` with
-``MapIR Studio.exe`` at its root. Examples and JSON schemas are bundled
-so the application works without any external files.
+``MapIR Studio.exe`` at its root. Examples, JSON schemas, the v0.5 template
+gallery, guides, and docs are bundled so the application works without any
+external files.
 """
 
 from pathlib import Path
@@ -13,12 +14,15 @@ block_cipher = None
 repo_root = Path(SPECPATH).resolve()
 entry_script = str(repo_root / "mapir_studio.py")
 
-# Bundle examples + schemas + README so the desktop app can find them via
-# mapir.utils.paths.examples_dir() / schemas_dir() inside the frozen exe.
+# Bundle data so the desktop app can find it via mapir.utils.paths helpers
+# inside the frozen exe.
 datas = [
-    (str(repo_root / "examples"),       "examples"),
-    (str(repo_root / "mapir" / "schemas"), "mapir/schemas"),
-    (str(repo_root / "README.md"),      "."),
+    (str(repo_root / "examples"),           "examples"),
+    (str(repo_root / "mapir" / "schemas"),  "mapir/schemas"),
+    (str(repo_root / "mapir" / "data"),     "mapir/data"),     # v0.5 templates
+    (str(repo_root / "guides"),             "guides"),         # v0.5 design rules
+    (str(repo_root / "docs"),               "docs"),
+    (str(repo_root / "README.md"),          "."),
 ]
 
 hiddenimports = [
@@ -38,22 +42,36 @@ hiddenimports = [
     "mapir.utils",
     "mapir.utils.io",
     "mapir.utils.paths",
+    # v0.5 generation layer
+    "mapir.generation",
+    "mapir.generation.templates",
+    "mapir.generation.gameplay_metrics",
+    "mapir.generation.template_instantiation",
+    # Desktop
     "mapir.desktop",
     "mapir.desktop.app",
     "mapir.desktop.main_window",
     "mapir.desktop.state",
     "mapir.desktop.theme",
     "mapir.desktop.preview_scene",
-    "mapir.desktop.widgets.dashboard",
-    "mapir.desktop.widgets.examples_panel",
-    "mapir.desktop.widgets.world_panel",
-    "mapir.desktop.widgets.scene_panel",
-    "mapir.desktop.widgets.inspector_panel",
+    "mapir.desktop.dialogs.new_project_wizard",
+    "mapir.desktop.widgets.home_page",
+    "mapir.desktop.widgets.templates_gallery",
+    "mapir.desktop.widgets.canvas_page",
+    "mapir.desktop.widgets.districts_page",
+    "mapir.desktop.widgets.generation_page",
     "mapir.desktop.widgets.preview_panel",
     "mapir.desktop.widgets.validation_panel",
     "mapir.desktop.widgets.export_panel",
+    "mapir.desktop.widgets.inspector_panel",
+    "mapir.desktop.widgets.llm_draft_panel",
+    "mapir.desktop.widgets.world_panel",
+    "mapir.desktop.widgets.scene_panel",
     "mapir.desktop.widgets.settings_panel",
     "mapir.desktop.widgets.sidebar",
+    # Legacy v0.4 widgets kept available
+    "mapir.desktop.widgets.dashboard",
+    "mapir.desktop.widgets.examples_panel",
 ]
 
 a = Analysis(

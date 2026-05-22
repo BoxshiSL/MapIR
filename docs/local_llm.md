@@ -1,10 +1,29 @@
 # Local LLM Drafting
 
-MapIR v0.4 ships a small **local** LLM drafting layer. You describe what you
-want (a city, a port, an alley, a warehouse interior); a local model produces
-a high-level **Plan**; MapIR's deterministic code converts the plan into
-validator-friendly **WorldIR / SceneIR**; and your existing validators decide
-whether the draft is ever shown as `OK`.
+MapIR v0.4 introduced a small **local** LLM drafting layer; v0.5 keeps it
+and wires it into the workflow:
+
+* **Wizard** — choose provider + model + temperature when creating a new
+  project.
+* **District Inspector (Phase B)** — per-district `llm_brief` + per-task
+  override (`LLMSettingsOverride`).
+* **Generation page** — each pipeline stage can carry its own override on
+  top of the global defaults.
+* **New v0.5 prompts** in `mapir.llm.prompts` —
+  `build_template_world_brief_prompt`,
+  `build_district_generation_prompt`,
+  `build_road_network_prompt`,
+  `build_building_style_prompt`,
+  `build_guidance_cues_prompt`,
+  `build_repair_generated_layout_prompt`. All of them accept an optional
+  `design_hints` list drawn from `guides/design_rules.json` so the model
+  is steered toward level-design-aware suggestions.
+
+You describe what you want (a city, a port, an alley, a warehouse
+interior); a local model produces a high-level **Plan**; MapIR's
+deterministic code converts the plan into validator-friendly **WorldIR /
+SceneIR**; and your existing validators decide whether the draft is ever
+shown as `OK`.
 
 The LLM is an **assistant**, not a source of truth. The source of truth stays:
 

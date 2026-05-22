@@ -1,0 +1,137 @@
+{
+  "template_id": "world_modern_island_city",
+  "name": "GTA-like Modern Island City",
+  "document_type": "world",
+  "genre": "modern_open_world",
+  "description": "Compact modern island city with coastal arterial, downtown core, old town quarter, port waterfront, airport island, and a residential belt. Designed around driving, shooter, and exploration loops.",
+  "default_size": {"width_m": 4000.0, "depth_m": 4000.0},
+  "default_gameplay_profiles": ["driving", "shooter", "exploration"],
+  "default_districts": [
+    {
+      "name": "Downtown Core",
+      "district_type": "downtown",
+      "role": "civic_hub",
+      "theme": "modern_skyscrapers",
+      "density": "very_high",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["driving", "shooter", "exploration"],
+      "bbox": [1700.0, 1700.0, 2600.0, 2600.0],
+      "tags": ["landmark_candidate", "high_density"]
+    },
+    {
+      "name": "Old Town Quarter",
+      "district_type": "historic",
+      "role": "tourist_walkable",
+      "theme": "narrow_streets_old",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "modern_city",
+      "road_pattern": "organic",
+      "gameplay_profiles": ["stealth", "exploration"],
+      "bbox": [900.0, 1400.0, 1700.0, 2200.0],
+      "tags": ["walkable", "narrow"]
+    },
+    {
+      "name": "Waterfront Port",
+      "district_type": "port",
+      "role": "industrial_harbor",
+      "theme": "containers_cranes",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [200.0, 200.0, 1700.0, 1000.0],
+      "tags": ["coastline", "industrial"]
+    },
+    {
+      "name": "Airport Island",
+      "district_type": "airport",
+      "role": "transport_hub",
+      "theme": "runways_terminals",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "industrial",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["driving", "shooter"],
+      "bbox": [2700.0, 200.0, 3900.0, 1300.0],
+      "tags": ["island", "controlled_zone"]
+    },
+    {
+      "name": "Residential Belt",
+      "district_type": "residential",
+      "role": "suburban",
+      "theme": "low_rise_houses",
+      "density": "medium",
+      "height_profile": "low",
+      "building_style": "modern_city",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["driving", "exploration"],
+      "bbox": [1500.0, 2700.0, 3700.0, 3800.0],
+      "tags": ["residential"]
+    },
+    {
+      "name": "Coastal Highway Strip",
+      "district_type": "highway_strip",
+      "role": "driving_corridor",
+      "theme": "billboards_palms",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "modern_city",
+      "road_pattern": "coastal",
+      "gameplay_profiles": ["driving"],
+      "bbox": [2700.0, 1500.0, 3900.0, 2400.0],
+      "tags": ["scenic", "highway"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["driving", "shooter", "exploration"],
+    "road": {
+      "arterial_width_m": 18.0,
+      "collector_width_m": 11.0,
+      "local_width_m": 7.0,
+      "alley_width_m": 3.0,
+      "trail_width_m": 1.5,
+      "intersection_spacing_m": 90.0,
+      "shortcut_density": 0.25,
+      "dead_end_ratio_max": 0.1
+    },
+    "building": {
+      "parcel_min_width_m": 12.0,
+      "parcel_max_width_m": 30.0,
+      "parcel_depth_m": 22.0,
+      "building_setback_m": 2.0,
+      "building_height_min_m": 6.0,
+      "building_height_max_m": 90.0,
+      "building_density": 0.7
+    },
+    "shooter": {
+      "cover_interval_m": 6.0,
+      "cover_width_min_m": 1.0,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 50.0,
+      "combat_arena_size_m": 40.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.3,
+      "restricted_area_count": 2,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 12.0,
+      "rooftop_connection_density": 0.2,
+      "verticality_score": 0.4
+    },
+    "exploration": {
+      "landmark_count_min": 4,
+      "vista_count_min": 2,
+      "secret_path_count_min": 2,
+      "breadcrumb_density": 0.25
+    }
+  },
+  "recommended_llm_brief": "Generate a modern island city with a clear downtown skyline, a historic old-town quarter, an industrial port on the western coast, an airport island connected by bridge, a residential belt, and a coastal highway. Driving, shooter, and exploration should all work. Landmarks should be visible from the highway.",
+  "generation_recipe_id": "coastal_city"
+}

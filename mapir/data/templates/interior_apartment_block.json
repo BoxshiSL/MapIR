@@ -1,0 +1,124 @@
+{
+  "template_id": "interior_apartment_block",
+  "name": "Apartment Block Floor",
+  "document_type": "interior",
+  "genre": "urban",
+  "description": "One floor of an apartment block: central hallway with stair core, four apartment units, and a back service corridor. Tuned for stealth and shooter.",
+  "default_size": {"width_m": 50.0, "depth_m": 30.0},
+  "default_gameplay_profiles": ["stealth", "shooter"],
+  "default_districts": [
+    {
+      "name": "Central Hallway",
+      "district_type": "interior_corridor",
+      "role": "spine",
+      "theme": "carpet_doors",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["stealth", "shooter"],
+      "bbox": [5.0, 12.0, 45.0, 18.0],
+      "tags": ["spine"]
+    },
+    {
+      "name": "Apartment Unit NW",
+      "district_type": "interior_apartment",
+      "role": "room_unit",
+      "theme": "living_room_kitchen",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["stealth"],
+      "bbox": [5.0, 3.0, 22.0, 11.0],
+      "tags": ["room"]
+    },
+    {
+      "name": "Apartment Unit NE",
+      "district_type": "interior_apartment",
+      "role": "room_unit",
+      "theme": "living_room_kitchen",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["stealth"],
+      "bbox": [25.0, 3.0, 45.0, 11.0],
+      "tags": ["room"]
+    },
+    {
+      "name": "Apartment Unit SW",
+      "district_type": "interior_apartment",
+      "role": "objective",
+      "theme": "living_room_kitchen",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [5.0, 19.0, 22.0, 27.0],
+      "tags": ["room", "objective"]
+    },
+    {
+      "name": "Apartment Unit SE",
+      "district_type": "interior_apartment",
+      "role": "room_unit",
+      "theme": "living_room_kitchen",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "grid",
+      "gameplay_profiles": ["stealth"],
+      "bbox": [25.0, 19.0, 45.0, 27.0],
+      "tags": ["room"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "shooter"],
+    "road": {
+      "arterial_width_m": 2.5,
+      "collector_width_m": 2.0,
+      "local_width_m": 1.8,
+      "alley_width_m": 1.2,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 8.0,
+      "shortcut_density": 0.1,
+      "dead_end_ratio_max": 0.4
+    },
+    "building": {
+      "parcel_min_width_m": 4.0,
+      "parcel_max_width_m": 14.0,
+      "parcel_depth_m": 8.0,
+      "building_setback_m": 0.0,
+      "building_height_min_m": 2.5,
+      "building_height_max_m": 3.5,
+      "building_density": 0.85
+    },
+    "shooter": {
+      "cover_interval_m": 2.5,
+      "cover_width_min_m": 0.7,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 15.0,
+      "combat_arena_size_m": 10.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.4,
+      "restricted_area_count": 1,
+      "patrol_route_hint_count": 1
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 12.0,
+      "rooftop_connection_density": 0.05,
+      "verticality_score": 0.15
+    },
+    "exploration": {
+      "landmark_count_min": 0,
+      "vista_count_min": 0,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.1
+    }
+  },
+  "recommended_llm_brief": "Generate one floor of an apartment block. Central hallway with stair core, four apartment units around it (one is the objective), and a back service corridor. Tight stealth-focused engagements.",
+  "generation_recipe_id": "grid"
+}

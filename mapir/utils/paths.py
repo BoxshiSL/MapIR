@@ -48,6 +48,20 @@ def schemas_dir() -> Path:
     return resource_path("mapir", "schemas")
 
 
+def templates_dir() -> Path:
+    """v0.5 — bundled neutral template gallery."""
+    return resource_path("mapir", "data", "templates")
+
+
+def guides_dir() -> Path:
+    """v0.5 — curated design rules and reference PDFs."""
+    return resource_path("guides")
+
+
+def docs_dir() -> Path:
+    return resource_path("docs")
+
+
 def output_dir() -> Path:
     """User-writable output directory.
 

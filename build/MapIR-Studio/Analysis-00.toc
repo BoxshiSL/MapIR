@@ -4423,17 +4423,17 @@
    'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click\\exceptions.py',
    'PYMODULE'),
   ('mapir', 'H:\\BLUME PROJECTS\\MapIR\\mapir\\__init__.py', 'PYMODULE'),
-  ('_py_abc',
+  ('stringprep',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_py_abc.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\stringprep.py',
    'PYMODULE'),
   ('tracemalloc',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\tracemalloc.py',
    'PYMODULE'),
-  ('stringprep',
+  ('_py_abc',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\stringprep.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_py_abc.py',
    'PYMODULE'),
   ('mapir.desktop.app',
    'H:\\BLUME PROJECTS\\MapIR\\mapir\\desktop\\app.py',
@@ -4450,45 +4450,37 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\styles\\qmodernwindowsstyle.dll',
    'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qico.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qico.dll',
+   'BINARY'),
   ('PySide6\\plugins\\platforminputcontexts\\qtvirtualkeyboardplugin.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforminputcontexts\\qtvirtualkeyboardplugin.dll',
    'BINARY'),
-  ('PySide6\\plugins\\platforms\\qminimal.dll',
+  ('PySide6\\plugins\\imageformats\\qtga.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qminimal.dll',
-   'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qpdf.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qpdf.dll',
-   'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qwebp.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwebp.dll',
-   'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qwbmp.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwbmp.dll',
-   'BINARY'),
-  ('PySide6\\plugins\\iconengines\\qsvgicon.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\iconengines\\qsvgicon.dll',
-   'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qicns.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qicns.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qtga.dll',
    'BINARY'),
   ('PySide6\\plugins\\imageformats\\qjpeg.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qjpeg.dll',
    'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qgif.dll',
+  ('PySide6\\plugins\\imageformats\\qwebp.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qgif.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwebp.dll',
    'BINARY'),
   ('PySide6\\plugins\\platforms\\qoffscreen.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qicns.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qpdf.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qpdf.dll',
    'BINARY'),
   ('PySide6\\plugins\\imageformats\\qtiff.dll',
    'H:\\BLUME '
@@ -4498,45 +4490,53 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qsvg.dll',
    'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qico.dll',
+  ('PySide6\\plugins\\platforms\\qdirect2d.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qico.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qdirect2d.dll',
    'BINARY'),
-  ('PySide6\\plugins\\imageformats\\qtga.dll',
+  ('PySide6\\plugins\\imageformats\\qwbmp.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qtga.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwbmp.dll',
    'BINARY'),
-  ('PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+  ('PySide6\\plugins\\iconengines\\qsvgicon.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\iconengines\\qsvgicon.dll',
    'BINARY'),
   ('PySide6\\plugins\\platforms\\qwindows.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qwindows.dll',
    'BINARY'),
-  ('PySide6\\plugins\\platforms\\qdirect2d.dll',
+  ('PySide6\\plugins\\imageformats\\qgif.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qdirect2d.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qgif.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qminimal.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qminimal.dll',
    'BINARY'),
   ('PySide6\\opengl32sw.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\opengl32sw.dll',
    'BINARY'),
-  ('PySide6\\plugins\\tls\\qopensslbackend.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qopensslbackend.dll',
-   'BINARY'),
   ('PySide6\\plugins\\networkinformation\\qnetworklistmanager.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\networkinformation\\qnetworklistmanager.dll',
    'BINARY'),
-  ('PySide6\\plugins\\tls\\qcertonlybackend.dll',
+  ('PySide6\\plugins\\tls\\qopensslbackend.dll',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qcertonlybackend.dll',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qopensslbackend.dll',
    'BINARY'),
   ('PySide6\\plugins\\tls\\qschannelbackend.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qschannelbackend.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qcertonlybackend.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qcertonlybackend.dll',
    'BINARY'),
   ('unicodedata.pyd',
    'C:\\Program '
@@ -4628,21 +4628,49 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic_core\\_pydantic_core.cp313-win_amd64.pyd',
    'EXTENSION'),
-  ('api-ms-win-crt-process-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-process-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-conio-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+  ('VCRUNTIME140.dll',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\VCRUNTIME140.dll',
    'BINARY'),
   ('api-ms-win-crt-locale-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
    'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
   ('api-ms-win-crt-filesystem-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-runtime-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
@@ -4652,69 +4680,41 @@
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-time-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-heap-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-environment-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
-   'BINARY'),
-  ('VCRUNTIME140.dll',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\VCRUNTIME140.dll',
-   'BINARY'),
-  ('api-ms-win-crt-stdio-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-math-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-string-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
-   'BINARY'),
-  ('PySide6\\Qt6Core.dll',
-   'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Core.dll',
-   'BINARY'),
   ('PySide6\\Qt6Gui.dll',
    'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Gui.dll',
    'BINARY'),
-  ('shiboken6\\MSVCP140.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\shiboken6\\MSVCP140.dll',
+  ('PySide6\\Qt6Core.dll',
+   'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Core.dll',
    'BINARY'),
   ('PySide6\\Qt6Widgets.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Widgets.dll',
    'BINARY'),
+  ('shiboken6\\MSVCP140.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\shiboken6\\MSVCP140.dll',
+   'BINARY'),
   ('PySide6\\Qt6VirtualKeyboard.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6VirtualKeyboard.dll',
-   'BINARY'),
-  ('PySide6\\Qt6Pdf.dll',
-   'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Pdf.dll',
    'BINARY'),
   ('api-ms-win-crt-utility-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
    'BINARY'),
+  ('PySide6\\Qt6Pdf.dll',
+   'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Pdf.dll',
+   'BINARY'),
   ('PySide6\\Qt6Svg.dll',
    'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Svg.dll',
-   'BINARY'),
-  ('PySide6\\Qt6Network.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Network.dll',
    'BINARY'),
   ('VCRUNTIME140_1.dll',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Network.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Network.dll',
    'BINARY'),
   ('libcrypto-3.dll',
    'C:\\Program '
@@ -4732,10 +4732,6 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\MSVCP140.dll',
    'BINARY'),
-  ('PySide6\\VCRUNTIME140_1.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\VCRUNTIME140_1.dll',
-   'BINARY'),
   ('PySide6\\pyside6.abi3.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\pyside6.abi3.dll',
@@ -4751,6 +4747,10 @@
   ('shiboken6\\shiboken6.abi3.dll',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\shiboken6\\shiboken6.abi3.dll',
+   'BINARY'),
+  ('PySide6\\VCRUNTIME140_1.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\VCRUNTIME140_1.dll',
    'BINARY'),
   ('shiboken6\\VCRUNTIME140.dll',
    'H:\\BLUME '
@@ -4776,36 +4776,52 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\MSVCP140_1.dll',
    'BINARY'),
-  ('PySide6\\Qt6Quick.dll',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Quick.dll',
-   'BINARY'),
   ('PySide6\\Qt6Qml.dll',
    'H:\\BLUME PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Qml.dll',
    'BINARY'),
-  ('api-ms-win-core-processthreads-l1-1-1.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
-   'BINARY'),
-  ('api-ms-win-core-errorhandling-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-namedpipe-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-debug-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+  ('PySide6\\Qt6Quick.dll',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\Qt6Quick.dll',
    'BINARY'),
   ('api-ms-win-core-libraryloader-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
    'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
   ('api-ms-win-core-datetime-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
    'BINARY'),
   ('api-ms-win-core-file-l2-1-0.dll',
    'C:\\Program Files\\Eclipse '
@@ -4815,73 +4831,57 @@
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+  ('api-ms-win-core-heap-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-string-l1-1-0.dll',
+  ('api-ms-win-core-debug-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-string-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-profile-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-memory-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-memory-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-handle-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-interlocked-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-console-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-fibers-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-fibers-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-core-localization-l1-2-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-localization-l1-2-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-timezone-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-file-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-file-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-heap-l1-1-0.dll',
+  ('api-ms-win-core-string-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-synch-l1-1-0.dll',
-   'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-string-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-file-l1-2-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-file-l1-2-0.dll',
    'BINARY'),
+  ('api-ms-win-core-fibers-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-fibers-l1-1-0.dll',
+   'BINARY'),
   ('api-ms-win-core-processenvironment-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
    'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-util-l1-1-0.dll',
+  ('api-ms-win-core-console-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+  ('api-ms-win-core-timezone-l1-1-0.dll',
    'C:\\Program Files\\Eclipse '
-   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-21.0.3.9-hotspot\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
    'BINARY'),
   ('PySide6\\Qt6QmlMeta.dll',
    'H:\\BLUME '
@@ -4932,413 +4932,413 @@
   ('mapir\\schemas\\world_ir.schema.json',
    'H:\\BLUME PROJECTS\\MapIR\\mapir\\schemas\\world_ir.schema.json',
    'DATA'),
-  ('PySide6\\translations\\qtbase_he.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_he.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_lt.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lt.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_he.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_he.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_hu.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hu.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_fa.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fa.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_hu.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hu.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_hr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_bg.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_bg.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_sk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_fr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_sl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_ja.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ja.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_pl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_cs.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_cs.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_zh_CN.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_CN.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_de.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_de.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_bg.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_bg.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_gl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_gl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_fa.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fa.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_cs.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_cs.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_es.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_es.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_nl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_lg.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lg.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ja.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ja.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_ka.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ka.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_gd.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_gd.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_sk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_nl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_tr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_tr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_sv.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sv.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ar.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ar.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_zh_TW.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_TW.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_gl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_gl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_es.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_es.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_pt_BR.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_BR.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_ca.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ca.qm',
-   'DATA'),
   ('PySide6\\translations\\qt_help_ko.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ko.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_nn.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nn.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_fi.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fi.qm',
    'DATA'),
   ('PySide6\\translations\\qt_gd.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_gd.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_help_pt_BR.qm',
+  ('PySide6\\translations\\qtbase_lg.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pt_BR.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_pl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_pt_PT.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_PT.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_uk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_uk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_it.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_it.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_tr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_tr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_ca.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ca.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_en.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_en.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_en.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_en.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_zh_CN.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_CN.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_pt_BR.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pt_BR.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_hu.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hu.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_nl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_sk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_lg.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lg.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_hr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hr.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lg.qm',
    'DATA'),
   ('PySide6\\translations\\qtbase_ko.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ko.qm',
    'DATA'),
-  ('PySide6\\translations\\qtbase_ar.qm',
+  ('PySide6\\translations\\qt_help_ja.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ar.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_it.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_it.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_nn.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nn.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_fr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_fr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_sv.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sv.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_pl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_en.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_en.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_uk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_uk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ru.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ru.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_tr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_tr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_uk.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_uk.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_da.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_da.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_cs.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_cs.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_da.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_da.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_de.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_de.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ca.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ca.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_es.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_es.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_fr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ka.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ka.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_it.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_it.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_zh_TW.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_zh_TW.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_sl.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sl.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_hr.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hr.qm',
-   'DATA'),
-  ('PySide6\\translations\\qtbase_ja.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ja.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_de.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_de.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_ar.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ar.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_da.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_da.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_ko.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ko.qm',
-   'DATA'),
-  ('PySide6\\translations\\qt_help_nn.qm',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nn.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ja.qm',
    'DATA'),
   ('PySide6\\translations\\qtbase_ka.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ka.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_help_zh_TW.qm',
+  ('PySide6\\translations\\qt_fa.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_TW.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fa.qm',
    'DATA'),
-  ('PySide6\\translations\\qtbase_lv.qm',
+  ('PySide6\\translations\\qtbase_ja.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lv.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ja.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_fi.qm',
+  ('PySide6\\translations\\qt_tr.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fi.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_tr.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_sv.qm',
+  ('PySide6\\translations\\qtbase_nn.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sv.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nn.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_help_ru.qm',
+  ('PySide6\\translations\\qtbase_pl.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ru.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pl.qm',
    'DATA'),
-  ('PySide6\\translations\\qt_lv.qm',
+  ('PySide6\\translations\\qtbase_tr.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lv.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_tr.qm',
    'DATA'),
-  ('PySide6\\translations\\qtbase_ru.qm',
+  ('PySide6\\translations\\qt_help_it.qm',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ru.qm',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_cs.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_cs.qm',
    'DATA'),
   ('PySide6\\translations\\qt_bg.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_bg.qm',
    'DATA'),
+  ('PySide6\\translations\\qt_help_en.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_nl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_he.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_he.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_bg.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_bg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sv.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ca.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_nl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nl.qm',
+   'DATA'),
   ('PySide6\\translations\\qtbase_zh_CN.qm',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_es.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ru.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pt_PT.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_PT.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_pt_BR.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pt_BR.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ja.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ja.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_zh_CN.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ar.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_en.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_nn.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nn.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lv.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_da.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_pt_BR.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lt.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lt.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_gd.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_gd.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_uk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_fi.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fi.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fi.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fi.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lg.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_es.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_zh_TW.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_pl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_zh_CN.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_hr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_zh_TW.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_lv.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_en.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_sv.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_it.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_uk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_fr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ko.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ko.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ru.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_fr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_tr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_tr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_nn.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nn.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_hr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ar.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ca.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ca.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ka.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ka.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fa.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fa.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_he.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_he.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_hu.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_hu.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_da.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_de.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_de.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ru.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_it.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ka.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ka.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_es.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_nl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_hu.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_zh_TW.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sv.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_de.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_hr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_bg.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_bg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fr.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_cs.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_cs.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_sk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ar.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_gl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_gl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_uk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sk.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_da.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_cs.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_cs.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_gl.qm',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_gl.qm',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\licenses\\LICENSE',
    'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\RECORD',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\RECORD',
    'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\WHEEL',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\top_level.txt',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\REQUESTED',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.7.1.dist-info\\INSTALLER',
    'H:\\BLUME '
@@ -5349,37 +5349,13 @@
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\Lorem '
    'ipsum.txt',
    'DATA'),
-  ('click-8.4.0.dist-info\\WHEEL',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\WHEEL',
-   'DATA'),
-  ('pydantic-2.13.4.dist-info\\REQUESTED',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\REQUESTED',
-   'DATA'),
-  ('click-8.4.0.dist-info\\RECORD',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\RECORD',
-   'DATA'),
-  ('pydantic-2.13.4.dist-info\\licenses\\LICENSE',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\licenses\\LICENSE',
-   'DATA'),
   ('pydantic-2.13.4.dist-info\\METADATA',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\METADATA',
    'DATA'),
-  ('pydantic-2.13.4.dist-info\\INSTALLER',
+  ('pydantic-2.13.4.dist-info\\licenses\\LICENSE',
    'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\INSTALLER',
-   'DATA'),
-  ('click-8.4.0.dist-info\\licenses\\LICENSE.txt',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\licenses\\LICENSE.txt',
-   'DATA'),
-  ('click-8.4.0.dist-info\\INSTALLER',
-   'H:\\BLUME '
-   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\INSTALLER',
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\licenses\\LICENSE',
    'DATA'),
   ('pydantic-2.13.4.dist-info\\WHEEL',
    'H:\\BLUME '
@@ -5389,24 +5365,40 @@
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\METADATA',
    'DATA'),
+  ('click-8.4.0.dist-info\\licenses\\LICENSE.txt',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('click-8.4.0.dist-info\\INSTALLER',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('pydantic-2.13.4.dist-info\\REQUESTED',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\REQUESTED',
+   'DATA'),
+  ('click-8.4.0.dist-info\\WHEEL',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\WHEEL',
+   'DATA'),
+  ('click-8.4.0.dist-info\\RECORD',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\click-8.4.0.dist-info\\RECORD',
+   'DATA'),
   ('pydantic-2.13.4.dist-info\\RECORD',
    'H:\\BLUME '
    'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\RECORD',
    'DATA'),
+  ('pydantic-2.13.4.dist-info\\INSTALLER',
+   'H:\\BLUME '
+   'PROJECTS\\MapIR\\.venv\\Lib\\site-packages\\pydantic-2.13.4.dist-info\\INSTALLER',
+   'DATA'),
   ('base_library.zip',
    'H:\\BLUME PROJECTS\\MapIR\\build\\MapIR-Studio\\base_library.zip',
    'DATA')],
- [('stat',
+ [('reprlib',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\stat.py',
-   'PYMODULE'),
-  ('sre_compile',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\sre_compile.py',
-   'PYMODULE'),
-  ('io',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\io.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\reprlib.py',
    'PYMODULE'),
   ('re._parser',
    'C:\\Program '
@@ -5428,97 +5420,81 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\re\\__init__.py',
    'PYMODULE'),
-  ('copyreg',
+  ('stat',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\copyreg.py',
-   'PYMODULE'),
-  ('_collections_abc',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_collections_abc.py',
-   'PYMODULE'),
-  ('os',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\os.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\stat.py',
    'PYMODULE'),
   ('sre_parse',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\sre_parse.py',
    'PYMODULE'),
-  ('types',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\types.py',
-   'PYMODULE'),
-  ('reprlib',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\reprlib.py',
-   'PYMODULE'),
-  ('_weakrefset',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_weakrefset.py',
-   'PYMODULE'),
-  ('sre_constants',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\sre_constants.py',
-   'PYMODULE'),
-  ('traceback',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py',
-   'PYMODULE'),
-  ('linecache',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\linecache.py',
-   'PYMODULE'),
-  ('operator',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\operator.py',
-   'PYMODULE'),
   ('codecs',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\codecs.py',
    'PYMODULE'),
-  ('abc',
+  ('os',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\abc.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\os.py',
    'PYMODULE'),
   ('enum',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\enum.py',
    'PYMODULE'),
-  ('warnings',
+  ('sre_constants',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\warnings.py',
-   'PYMODULE'),
-  ('keyword',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\keyword.py',
-   'PYMODULE'),
-  ('posixpath',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\posixpath.py',
-   'PYMODULE'),
-  ('collections',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\collections\\__init__.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\sre_constants.py',
    'PYMODULE'),
   ('heapq',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\heapq.py',
    'PYMODULE'),
-  ('weakref',
+  ('_weakrefset',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\weakref.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_weakrefset.py',
    'PYMODULE'),
   ('locale',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\locale.py',
    'PYMODULE'),
-  ('genericpath',
+  ('traceback',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\genericpath.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py',
+   'PYMODULE'),
+  ('posixpath',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\posixpath.py',
+   'PYMODULE'),
+  ('operator',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\operator.py',
+   'PYMODULE'),
+  ('io',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\io.py',
+   'PYMODULE'),
+  ('_collections_abc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\_collections_abc.py',
    'PYMODULE'),
   ('ntpath',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\ntpath.py',
+   'PYMODULE'),
+  ('copyreg',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\copyreg.py',
+   'PYMODULE'),
+  ('functools',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\functools.py',
+   'PYMODULE'),
+  ('linecache',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\linecache.py',
+   'PYMODULE'),
+  ('weakref',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\weakref.py',
    'PYMODULE'),
   ('encodings.zlib_codec',
    'C:\\Program '
@@ -6008,7 +5984,31 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\encodings\\__init__.py',
    'PYMODULE'),
-  ('functools',
+  ('types',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\functools.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\types.py',
+   'PYMODULE'),
+  ('collections',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\collections\\__init__.py',
+   'PYMODULE'),
+  ('warnings',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\warnings.py',
+   'PYMODULE'),
+  ('abc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\abc.py',
+   'PYMODULE'),
+  ('sre_compile',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\sre_compile.py',
+   'PYMODULE'),
+  ('genericpath',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\genericpath.py',
+   'PYMODULE'),
+  ('keyword',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\\Lib\\keyword.py',
    'PYMODULE')])

@@ -1,0 +1,283 @@
+{
+  "ir_type": "scene",
+  "version": "0.1",
+  "scene_id": "from_interior_warehouse",
+  "name": "[Demo] Warehouse Interior",
+  "description": "Large warehouse interior with two storage aisles, a loading dock, and a corner office. Designed for shooter, stealth, and exploration.",
+  "scene_type": "interior",
+  "preset": "custom",
+  "standalone": true,
+  "parent_world_id": null,
+  "parent_scene_slot_id": null,
+  "bounds": {
+    "width_m": 80.0,
+    "depth_m": 60.0,
+    "height_m": 6.0
+  },
+  "theme": "industrial",
+  "tags": [
+    "from_template",
+    "v0.5",
+    "industrial"
+  ],
+  "zones": [
+    {
+      "id": "z_00_storage_aisle_a",
+      "name": "Storage Aisle A",
+      "zone_type": "storage",
+      "polygon": {
+        "points": [
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 35.0,
+            "y": 5.0
+          },
+          {
+            "x": 35.0,
+            "y": 30.0
+          },
+          {
+            "x": 5.0,
+            "y": 30.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "cover_rich",
+        "concealment"
+      ],
+      "gameplay_tags": [
+        "stealth",
+        "shooter"
+      ]
+    },
+    {
+      "id": "z_01_storage_aisle_b",
+      "name": "Storage Aisle B",
+      "zone_type": "storage",
+      "polygon": {
+        "points": [
+          {
+            "x": 5.0,
+            "y": 32.0
+          },
+          {
+            "x": 35.0,
+            "y": 32.0
+          },
+          {
+            "x": 35.0,
+            "y": 55.0
+          },
+          {
+            "x": 5.0,
+            "y": 55.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "cover_rich",
+        "concealment"
+      ],
+      "gameplay_tags": [
+        "stealth",
+        "shooter"
+      ]
+    },
+    {
+      "id": "z_02_loading_dock",
+      "name": "Loading Dock",
+      "zone_type": "room",
+      "polygon": {
+        "points": [
+          {
+            "x": 40.0,
+            "y": 5.0
+          },
+          {
+            "x": 75.0,
+            "y": 5.0
+          },
+          {
+            "x": 75.0,
+            "y": 30.0
+          },
+          {
+            "x": 40.0,
+            "y": 30.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "open",
+        "entry"
+      ],
+      "gameplay_tags": [
+        "shooter"
+      ]
+    },
+    {
+      "id": "z_03_office_corner",
+      "name": "Office Corner",
+      "zone_type": "room",
+      "polygon": {
+        "points": [
+          {
+            "x": 55.0,
+            "y": 35.0
+          },
+          {
+            "x": 75.0,
+            "y": 35.0
+          },
+          {
+            "x": 75.0,
+            "y": 55.0
+          },
+          {
+            "x": 55.0,
+            "y": 55.0
+          }
+        ]
+      },
+      "height_m": null,
+      "tags": [
+        "objective"
+      ],
+      "gameplay_tags": [
+        "shooter",
+        "exploration"
+      ]
+    }
+  ],
+  "entrances": [
+    {
+      "id": "e_main",
+      "name": "Main Entrance",
+      "position": {
+        "x": 1.6,
+        "y": 30.0
+      },
+      "entrance_type": "main",
+      "connects_to": null,
+      "tags": []
+    }
+  ],
+  "paths": [],
+  "objects": [
+    {
+      "id": "obj_cover_00",
+      "name": "Cover 1",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 20.0,
+          "y": 17.5,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    },
+    {
+      "id": "obj_cover_01",
+      "name": "Cover 2",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 20.0,
+          "y": 43.5,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    },
+    {
+      "id": "obj_cover_02",
+      "name": "Cover 3",
+      "object_type": "cover",
+      "transform": {
+        "position": {
+          "x": 57.5,
+          "y": 17.5,
+          "z": 0.0
+        },
+        "rotation_deg": 0.0,
+        "scale": 1.0
+      },
+      "size": {
+        "width_m": 1.2,
+        "depth_m": 1.2,
+        "height_m": 1.1
+      },
+      "asset_ref": null,
+      "tags": [],
+      "gameplay_tags": [
+        "cover"
+      ],
+      "locked": false
+    }
+  ],
+  "gameplay_markers": [
+    {
+      "id": "mk_cover_00",
+      "marker_type": "cover",
+      "position": {
+        "x": 20.0,
+        "y": 17.5
+      },
+      "radius_m": 0.8,
+      "tags": []
+    },
+    {
+      "id": "mk_cover_01",
+      "marker_type": "cover",
+      "position": {
+        "x": 20.0,
+        "y": 43.5
+      },
+      "radius_m": 0.8,
+      "tags": []
+    },
+    {
+      "id": "mk_cover_02",
+      "marker_type": "cover",
+      "position": {
+        "x": 57.5,
+        "y": 17.5
+      },
+      "radius_m": 0.8,
+      "tags": []
+    }
+  ],
+  "constraints": []
+}

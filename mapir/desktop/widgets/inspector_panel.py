@@ -28,8 +28,9 @@ class InspectorPage(QWidget):
         title = QLabel("Inspector")
         title.setProperty("role", "pageTitle")
         subtitle = QLabel(
-            "Raw JSON of the loaded document. Read-only in v0.3 — editing will "
-            "land in v0.4 with explicit Apply/Validate."
+            "Advanced view. Raw JSON of the loaded document. Editing here is "
+            "kept read-only on purpose — use the Canvas, the District Inspector, "
+            "and the Generation page to make changes."
         )
         subtitle.setProperty("role", "pageSubtitle")
         subtitle.setWordWrap(True)

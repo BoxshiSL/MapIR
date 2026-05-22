@@ -73,15 +73,21 @@ class SettingsPage(QWidget):
         paths_lay.addWidget(paths_text)
         root.addWidget(paths_box)
 
-        scope_box = QGroupBox("What MapIR v0.3 is — and what it is not yet")
+        scope_box = QGroupBox("What MapIR v0.5 is — and what it is not yet")
         scope_lay = QVBoxLayout(scope_box)
         scope_text = QLabel(
-            "<b>v0.3 is:</b> a Windows-first desktop application for browsing, "
-            "validating, previewing, and exporting structured game-space IR.<br><br>"
-            "<b>v0.3 is not yet:</b> a procedural world generator, an AI / "
-            "prompt-to-IR system, a UE5 or Unity exporter, a marketplace asset "
-            "importer, or a finished art pipeline. Those are tracked on the "
-            "roadmap (v0.4 – v0.6)."
+            "<b>v0.5 is:</b> a guided desktop tool for designing game worlds, "
+            "scenes, and interiors. It bundles a New Project Wizard, a neutral "
+            "template gallery, a sketch canvas (polygons, roads, POIs, scene "
+            "slots), a District Inspector with gameplay profiles, a "
+            "deterministic generation pipeline (roads → parcels → buildings → "
+            "landmarks → scene slots → guidance), curated design rules, and "
+            "structural plus design-aware validation. Local LLM drafting from "
+            "v0.4 is kept and integrated into the workflow.<br><br>"
+            "<b>v0.5 is not yet:</b> a UE5 / Unity exporter, a real GLB/FBX "
+            "asset importer, a full 3D viewport, an installer, a freehand "
+            "sketch recognizer, or a final art pipeline. Those remain on the "
+            "v0.6+ roadmap."
         )
         scope_text.setWordWrap(True)
         scope_text.setTextFormat(Qt.RichText)

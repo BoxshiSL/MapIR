@@ -1,0 +1,98 @@
+{
+  "template_id": "scene_rooftop_encounter",
+  "name": "Rooftop Encounter",
+  "document_type": "scene",
+  "genre": "urban",
+  "description": "Three connected rooftops at different heights with a helipad, vent housings as cover, and a maintenance ladder. Designed for shooter, parkour, and stealth.",
+  "default_size": {"width_m": 120.0, "depth_m": 90.0},
+  "default_gameplay_profiles": ["shooter", "parkour", "stealth"],
+  "default_districts": [
+    {
+      "name": "Main Roof",
+      "district_type": "rooftop",
+      "role": "combat_arena",
+      "theme": "concrete_vents",
+      "density": "medium",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter", "parkour"],
+      "bbox": [10.0, 10.0, 70.0, 70.0],
+      "tags": ["arena", "elevated"]
+    },
+    {
+      "name": "Lower Roof",
+      "district_type": "rooftop",
+      "role": "flank",
+      "theme": "vents_pipes",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["parkour", "stealth"],
+      "bbox": [75.0, 50.0, 115.0, 85.0],
+      "tags": ["flank", "elevated"]
+    },
+    {
+      "name": "Helipad",
+      "district_type": "landmark",
+      "role": "objective",
+      "theme": "helipad_lights",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "modern_city",
+      "road_pattern": "dense_urban",
+      "gameplay_profiles": ["shooter"],
+      "bbox": [75.0, 5.0, 115.0, 45.0],
+      "tags": ["objective", "open", "landmark"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["shooter", "parkour", "stealth"],
+    "road": {
+      "arterial_width_m": 4.0,
+      "collector_width_m": 3.0,
+      "local_width_m": 2.5,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 25.0,
+      "shortcut_density": 0.3,
+      "dead_end_ratio_max": 0.35
+    },
+    "building": {
+      "parcel_min_width_m": 5.0,
+      "parcel_max_width_m": 15.0,
+      "parcel_depth_m": 10.0,
+      "building_setback_m": 0.5,
+      "building_height_min_m": 1.0,
+      "building_height_max_m": 4.0,
+      "building_density": 0.4
+    },
+    "shooter": {
+      "cover_interval_m": 4.0,
+      "cover_width_min_m": 1.0,
+      "cover_height_min_m": 1.2,
+      "max_open_sightline_m": 35.0,
+      "combat_arena_size_m": 20.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.3,
+      "restricted_area_count": 0,
+      "patrol_route_hint_count": 1
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 4.0,
+      "rooftop_connection_density": 0.7,
+      "verticality_score": 0.85
+    },
+    "exploration": {
+      "landmark_count_min": 1,
+      "vista_count_min": 1,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.15
+    }
+  },
+  "recommended_llm_brief": "Generate a rooftop encounter scene. Three connected rooftops at different heights with vents and pipes as cover, a helipad as objective and landmark, and a maintenance ladder for parkour traversal between levels. Shooter and parkour focus.",
+  "generation_recipe_id": "dense_urban"
+}

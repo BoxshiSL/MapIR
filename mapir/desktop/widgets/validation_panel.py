@@ -1,4 +1,9 @@
-"""Validation page — colour-coded issue list."""
+"""Validation page — colour-coded issue list.
+
+v0.5: in addition to the structural validators from ``mapir.core.validation``,
+the page now also runs the design-aware validators from
+``mapir.design.validators`` when a ``GeneratedLayout`` is available.
+"""
 
 from __future__ import annotations
 
@@ -15,6 +20,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from ...design.validators import run_design_validators
+from ...generation.gameplay_metrics import GameplayMetrics
 from ..state import AppState
 from ..theme import PALETTE
 
@@ -62,11 +69,14 @@ class ValidationPage(QWidget):
         header.addWidget(self.btn_revalidate)
         root.addLayout(header)
 
-        self.table = QTableWidget(0, 4)
-        self.table.setHorizontalHeaderLabels(["Severity", "Code", "Message", "Path"])
+        self.table = QTableWidget(0, 5)
+        self.table.setHorizontalHeaderLabels(
+            ["Severity", "Category", "Code", "Message", "Path / Rule"]
+        )
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeToContents)
         self.table.verticalHeader().setVisible(False)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
@@ -74,6 +84,7 @@ class ValidationPage(QWidget):
 
         state.validation_changed.connect(self._refresh)
         state.document_loaded.connect(self._refresh)
+        state.layout_changed.connect(self._refresh)
         self._refresh()
 
     def _refresh(self) -> None:
@@ -91,15 +102,52 @@ class ValidationPage(QWidget):
         else:
             self.status_label.setText("✘ INVALID")
             self.status_label.setStyleSheet(f"color: {PALETTE['danger']}; font-weight: 700;")
+
+        # v0.5 — also run the design validators when a layout is available.
+        design_report = None
+        try:
+            doc = self._state.current_document
+            layout = getattr(self._state, "current_layout", None)
+            if doc is not None:
+                metrics = (
+                    layout.metrics if layout is not None else GameplayMetrics()
+                )
+                design_report = run_design_validators(doc, layout, metrics)
+        except Exception:  # noqa: BLE001 — design validation should never crash the UI
+            design_report = None
+
+        n_design = len(design_report.warnings) if design_report else 0
         self.counts_label.setText(
-            f"errors={len(report.errors)}  warnings={len(report.warnings)}  "
-            f"infos={len(report.infos)}"
+            f"structural: errors={len(report.errors)}  "
+            f"warnings={len(report.warnings)}  infos={len(report.infos)}    "
+            f"design: {n_design}"
         )
 
-        issues = report.all()
-        self.table.setRowCount(len(issues))
-        for r, issue in enumerate(issues):
-            sev = issue.severity.value
+        rows: list[tuple[str, str, str, str, str]] = []
+        for issue in report.all():
+            rows.append(
+                (
+                    issue.severity.value,
+                    "structural",
+                    issue.code,
+                    issue.message,
+                    issue.path,
+                )
+            )
+        if design_report is not None:
+            for w in design_report.warnings:
+                rows.append(
+                    (
+                        w.severity.value,
+                        w.category.value,
+                        w.code,
+                        w.message,
+                        w.rule_id or w.target_id or "",
+                    )
+                )
+
+        self.table.setRowCount(len(rows))
+        for r, (sev, category, code, message, path) in enumerate(rows):
             sev_item = QTableWidgetItem(sev.upper())
             color = QColor(_SEVERITY_COLORS.get(sev, PALETTE["muted"]))
             sev_item.setForeground(QBrush(color))
@@ -108,6 +156,7 @@ class ValidationPage(QWidget):
             sev_item.setFont(font)
             sev_item.setTextAlignment(Qt.AlignCenter)
             self.table.setItem(r, 0, sev_item)
-            self.table.setItem(r, 1, QTableWidgetItem(issue.code))
-            self.table.setItem(r, 2, QTableWidgetItem(issue.message))
-            self.table.setItem(r, 3, QTableWidgetItem(issue.path))
+            self.table.setItem(r, 1, QTableWidgetItem(category))
+            self.table.setItem(r, 2, QTableWidgetItem(code))
+            self.table.setItem(r, 3, QTableWidgetItem(message))
+            self.table.setItem(r, 4, QTableWidgetItem(path))

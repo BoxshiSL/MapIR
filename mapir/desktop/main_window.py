@@ -1,4 +1,10 @@
-"""Main window — top bar, sidebar, stacked pages, menubar, statusbar."""
+"""Main window — top bar, sidebar, stacked pages, menubar, statusbar.
+
+v0.5 reshapes the workflow around Home → Templates → Canvas → Districts →
+Generation. Old v0.4 pages (World Mode, Scene Mode, Inspector, LLM Draft)
+stay available under "Advanced" / "Summary" labels but are no longer the
+default landing.
+"""
 
 from __future__ import annotations
 
@@ -20,20 +26,24 @@ from PySide6.QtWidgets import (
 )
 
 from .. import __version__
+from .dialogs.new_project_wizard import NewProjectWizard
 from .state import AppState
-from .widgets.dashboard import DashboardPage
-from .widgets.examples_panel import ExamplesPage
+from .widgets.canvas_page import CanvasPage
+from .widgets.districts_page import DistrictsPage
 from .widgets.export_panel import ExportPage
+from .widgets.generation_page import GenerationPage
+from .widgets.home_page import HomePage
 from .widgets.inspector_panel import InspectorPage
 from .widgets.llm_draft_panel import LLMDraftPanel
 from .widgets.preview_panel import PreviewPage
 from .widgets.scene_panel import ScenePage
 from .widgets.settings_panel import SettingsPage
 from .widgets.sidebar import NAV_ITEMS, Sidebar
+from .widgets.templates_gallery import TemplatesGalleryPage
 from .widgets.validation_panel import ValidationPage
 from .widgets.world_panel import WorldPage
 
-PAGE_INDEX = {key: i for i, (key, _label) in enumerate(NAV_ITEMS)}
+PAGE_INDEX = {key: i for i, (key, _label, _flag) in enumerate(NAV_ITEMS)}
 
 
 class _TopBar(QFrame):
@@ -69,7 +79,11 @@ class _TopBar(QFrame):
             self.badge.setObjectName("BadgeNeutral")
             self.badge.setText("READY")
         else:
-            self.path.setText(str(state.current_path) if state.current_path else "(in-memory)")
+            self.path.setText(
+                str(state.current_path)
+                if state.current_path
+                else f"(in-memory · template={state.current_template_id or '—'})"
+            )
             report = state.validation_report
             if report is None:
                 self.badge.setObjectName("BadgeNeutral")
@@ -83,7 +97,6 @@ class _TopBar(QFrame):
             else:
                 self.badge.setObjectName("BadgeError")
                 self.badge.setText("INVALID")
-        # Force stylesheet re-evaluation after object-name swap
         self.badge.style().unpolish(self.badge)
         self.badge.style().polish(self.badge)
 
@@ -97,54 +110,61 @@ class MainWindow(QMainWindow):
 
         self.state = state or AppState(self)
 
-        # Top bar
         self.top_bar = _TopBar(self.state)
 
-        # Sidebar
         self.sidebar = Sidebar()
         self.sidebar.page_selected.connect(self._on_nav)
 
-        # Pages
+        # Pages — instantiation order matters because it determines stack
+        # indices. Keep in sync with sidebar.NAV_ITEMS.
         self.stack = QStackedWidget()
-        self.dashboard = DashboardPage(self.state)
-        self.examples = ExamplesPage(self.state)
-        self.world = WorldPage(self.state)
-        self.scene_page = ScenePage(self.state)
-        self.inspector = InspectorPage(self.state)
+        self.home = HomePage(self.state)
+        self.templates = TemplatesGalleryPage(self.state)
+        self.canvas = CanvasPage(self.state)
+        self.districts = DistrictsPage(self.state)
+        self.generation = GenerationPage(self.state)
         self.preview = PreviewPage(self.state)
         self.validation = ValidationPage(self.state)
         self.export = ExportPage(self.state)
+        self.inspector = InspectorPage(self.state)
         self.llm_draft = LLMDraftPanel(self.state)
+        self.world = WorldPage(self.state)
+        self.scene_page = ScenePage(self.state)
         self.settings = SettingsPage()
 
         for page in (
-            self.dashboard,
-            self.examples,
-            self.world,
-            self.scene_page,
-            self.inspector,
+            self.home,
+            self.templates,
+            self.canvas,
+            self.districts,
+            self.generation,
             self.preview,
             self.validation,
             self.export,
+            self.inspector,
             self.llm_draft,
+            self.world,
+            self.scene_page,
             self.settings,
         ):
             self.stack.addWidget(page)
 
-        # Wire dashboard quick actions
-        self.dashboard.show_examples_requested.connect(lambda: self._select_page("examples"))
-        self.dashboard.open_file_requested.connect(self._action_open)
-        self.dashboard.validate_requested.connect(self._action_validate)
-        self.dashboard.render_svg_requested.connect(lambda: self._select_page("preview"))
-        self.dashboard.export_obj_requested.connect(lambda: self._select_page("export"))
-        self.dashboard.export_blender_requested.connect(lambda: self._select_page("export"))
+        # Wire Home actions
+        self.home.new_project_requested.connect(self._action_new_project)
+        self.home.open_file_requested.connect(self._action_open)
+        self.home.show_templates_requested.connect(lambda: self._select_page("templates"))
+        self.home.validate_requested.connect(self._action_validate)
+        self.home.export_requested.connect(lambda: self._select_page("export"))
 
+        # Wire Templates Gallery
+        self.templates.template_selected.connect(self._action_create_from_template)
+
+        # Wire legacy actions
         self.world.render_requested.connect(lambda: self._select_page("preview"))
         self.world.export_obj_requested.connect(lambda: self._select_page("export"))
         self.scene_page.render_requested.connect(lambda: self._select_page("preview"))
         self.scene_page.export_obj_requested.connect(lambda: self._select_page("export"))
         self.validation.revalidate_requested.connect(self._action_validate)
-        self.examples.error_signal.connect(self._show_load_error)
 
         # Central layout
         body = QWidget()
@@ -162,7 +182,6 @@ class MainWindow(QMainWindow):
         root_lay.addWidget(body, 1)
         self.setCentralWidget(root)
 
-        # Status bar
         bar = QStatusBar()
         bar.showMessage("Ready")
         self.setStatusBar(bar)
@@ -178,6 +197,11 @@ class MainWindow(QMainWindow):
     def _build_menu(self) -> None:
         menu = self.menuBar()
         file_menu = menu.addMenu("&File")
+
+        new_act = QAction("&New Project…", self)
+        new_act.setShortcut(QKeySequence.New)
+        new_act.triggered.connect(lambda: self._action_new_project(""))
+        file_menu.addAction(new_act)
 
         open_act = QAction("&Open JSON…", self)
         open_act.setShortcut(QKeySequence.Open)
@@ -209,6 +233,10 @@ class MainWindow(QMainWindow):
         export_act.triggered.connect(lambda: self._select_page("export"))
         tools_menu.addAction(export_act)
 
+        templates_act = QAction("Browse &Templates", self)
+        templates_act.triggered.connect(lambda: self._select_page("templates"))
+        tools_menu.addAction(templates_act)
+
         help_menu = menu.addMenu("&Help")
         about_act = QAction("&About MapIR Studio", self)
         about_act.triggered.connect(self._action_about)
@@ -222,6 +250,10 @@ class MainWindow(QMainWindow):
         if idx is not None:
             self.sidebar.set_current(idx)
             self.stack.setCurrentIndex(idx)
+
+    # ------------------------------------------------------------------
+    # Actions
+    # ------------------------------------------------------------------
 
     def _action_open(self) -> None:
         start_dir = self.state.paths.last_open_dir or Path.cwd()
@@ -242,12 +274,34 @@ class MainWindow(QMainWindow):
         self.state.validate_current()
         self._select_page("validation")
 
+    def _action_new_project(self, initial_type: str = "") -> None:
+        wizard = NewProjectWizard(self)
+        if initial_type:
+            wizard.set_initial_document_type(initial_type)
+        if wizard.exec() != NewProjectWizard.Accepted:
+            return
+        result = wizard.result_payload()
+        if result is None:
+            return
+        self._action_create_from_template(result.template_id)
+
+    def _action_create_from_template(self, template_id: str) -> None:
+        try:
+            self.state.load_from_template(template_id)
+        except Exception as exc:  # noqa: BLE001
+            QMessageBox.critical(self, "Create from template failed", str(exc))
+            return
+        # Drop the user on the Canvas page after creation — that's the
+        # primary workflow surface in v0.5.
+        self._select_page("canvas")
+
     def _action_about(self) -> None:
         QMessageBox.information(
             self,
             "About MapIR Studio",
             f"MapIR Studio v{__version__}\n\n"
-            "Structured World & Scene IR Toolchain.\n"
+            "Guided desktop tool for designing game worlds, scenes, and "
+            "interiors.\n"
             "Built with PySide6 / Qt.\n\n"
             "Source: https://github.com/BoxshiSL/MapIR",
         )
@@ -260,17 +314,16 @@ class MainWindow(QMainWindow):
     # ------------------------------------------------------------------
 
     def select_first_example(self) -> Path | None:
-        """Load the first available example, used by the headless smoke test."""
+        """Headless smoke test helper: load the first available demo."""
         from ..utils.paths import examples_dir
 
-        for sub in ("scenes", "worlds"):
-            folder = examples_dir() / sub
-            if folder.is_dir():
-                files = sorted(folder.glob("*.json"))
-                if files:
-                    try:
-                        self.state.load_json_file(files[0])
-                    except Exception:
-                        return None
-                    return files[0]
+        folder = examples_dir() / "demos"
+        if folder.is_dir():
+            files = sorted(folder.glob("*.json"))
+            if files:
+                try:
+                    self.state.load_json_file(files[0])
+                except Exception:
+                    return None
+                return files[0]
         return None

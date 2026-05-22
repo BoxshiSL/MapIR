@@ -1,0 +1,124 @@
+{
+  "template_id": "scene_forest_checkpoint",
+  "name": "Forest Checkpoint",
+  "document_type": "scene",
+  "genre": "rural",
+  "description": "Wooden checkpoint across a forest road with a guardhouse, sandbags, a lookout tower, and forest concealment on either side. Designed for stealth, shooter, and exploration.",
+  "default_size": {"width_m": 150.0, "depth_m": 100.0},
+  "default_gameplay_profiles": ["stealth", "shooter", "exploration"],
+  "default_districts": [
+    {
+      "name": "Guard House",
+      "district_type": "building",
+      "role": "objective",
+      "theme": "wood_cabin",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["shooter"],
+      "bbox": [60.0, 40.0, 90.0, 60.0],
+      "tags": ["objective"]
+    },
+    {
+      "name": "Road Block",
+      "district_type": "checkpoint",
+      "role": "gate",
+      "theme": "sandbags_barrier",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["shooter", "stealth"],
+      "bbox": [30.0, 40.0, 60.0, 60.0],
+      "tags": ["cover", "control_point"]
+    },
+    {
+      "name": "Forest Perimeter West",
+      "district_type": "forest",
+      "role": "approach_route",
+      "theme": "pine_underbrush",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["stealth", "exploration"],
+      "bbox": [0.0, 0.0, 30.0, 100.0],
+      "tags": ["concealment"]
+    },
+    {
+      "name": "Forest Perimeter East",
+      "district_type": "forest",
+      "role": "flank",
+      "theme": "pine_underbrush",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["stealth", "exploration"],
+      "bbox": [120.0, 0.0, 150.0, 100.0],
+      "tags": ["concealment"]
+    },
+    {
+      "name": "Lookout Tower",
+      "district_type": "landmark",
+      "role": "vista",
+      "theme": "wooden_tower",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [95.0, 20.0, 110.0, 35.0],
+      "tags": ["vista", "elevated"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["stealth", "shooter", "exploration"],
+    "road": {
+      "arterial_width_m": 6.0,
+      "collector_width_m": 4.5,
+      "local_width_m": 3.0,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 40.0,
+      "shortcut_density": 0.2,
+      "dead_end_ratio_max": 0.4
+    },
+    "building": {
+      "parcel_min_width_m": 8.0,
+      "parcel_max_width_m": 16.0,
+      "parcel_depth_m": 10.0,
+      "building_setback_m": 2.0,
+      "building_height_min_m": 3.0,
+      "building_height_max_m": 10.0,
+      "building_density": 0.2
+    },
+    "shooter": {
+      "cover_interval_m": 5.0,
+      "cover_width_min_m": 1.0,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 40.0,
+      "combat_arena_size_m": 20.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 2,
+      "concealment_density": 0.65,
+      "restricted_area_count": 1,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 15.0,
+      "rooftop_connection_density": 0.05,
+      "verticality_score": 0.15
+    },
+    "exploration": {
+      "landmark_count_min": 1,
+      "vista_count_min": 1,
+      "secret_path_count_min": 2,
+      "breadcrumb_density": 0.3
+    }
+  },
+  "recommended_llm_brief": "Generate a forest road checkpoint. A wooden guardhouse, sandbag road block, lookout tower for vista, and forest on either side for flanking. Player can approach with stealth or engage from cover.",
+  "generation_recipe_id": "rural"
+}

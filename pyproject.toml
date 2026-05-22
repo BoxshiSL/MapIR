@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mapir"
-version = "0.4.0"
-description = "MapIR — structured IR and desktop toolchain for game worlds, scenes, interiors, validation, preview, blockout export, and local LLM drafting"
+version = "0.5.0"
+description = "MapIR — guided desktop tool for designing game worlds, scenes, and interiors with templates, sketch canvas, gameplay-aware generation, local LLM, validation, preview, and blockout export"
 requires-python = ">=3.11"
 authors = [{ name = "BLUME" }]
 license = { text = "Proprietary" }
@@ -33,7 +33,7 @@ include = ["mapir*", "scripts*"]
 exclude = ["tests*", "examples*", "output*", "build*", "dist*", "projects*", "docs*"]
 
 [tool.setuptools.package-data]
-mapir = ["schemas/*.json"]
+mapir = ["schemas/*.json", "data/templates/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

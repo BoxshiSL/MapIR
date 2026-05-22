@@ -1,0 +1,137 @@
+{
+  "template_id": "world_medieval_magical_forest",
+  "name": "Medieval RPG Magical Forest",
+  "document_type": "world",
+  "genre": "medieval_fantasy",
+  "description": "Forested region with ruins, a small village, a mage tower, a forgotten grove, and a stone bridge. Walking trails replace highways. Tuned for exploration, stealth, and combat encounters.",
+  "default_size": {"width_m": 4000.0, "depth_m": 4000.0},
+  "default_gameplay_profiles": ["exploration", "stealth", "shooter"],
+  "default_districts": [
+    {
+      "name": "Village Center",
+      "district_type": "village",
+      "role": "hub",
+      "theme": "wooden_houses_market",
+      "density": "medium",
+      "height_profile": "low",
+      "building_style": "medieval",
+      "road_pattern": "medieval",
+      "gameplay_profiles": ["exploration"],
+      "bbox": [1700.0, 1700.0, 2300.0, 2300.0],
+      "tags": ["safe_zone", "merchants"]
+    },
+    {
+      "name": "Forest Belt West",
+      "district_type": "forest",
+      "role": "wilderness",
+      "theme": "dense_pine",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["exploration", "stealth"],
+      "bbox": [0.0, 1000.0, 1500.0, 3000.0],
+      "tags": ["wilderness", "concealment"]
+    },
+    {
+      "name": "Forest Belt East",
+      "district_type": "forest",
+      "role": "wilderness",
+      "theme": "ancient_oaks",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["exploration", "stealth"],
+      "bbox": [2500.0, 1000.0, 4000.0, 3000.0],
+      "tags": ["wilderness", "concealment"]
+    },
+    {
+      "name": "Ruins Overlook",
+      "district_type": "ruins",
+      "role": "dungeon",
+      "theme": "stone_arches_overgrown",
+      "density": "low",
+      "height_profile": "mid",
+      "building_style": "medieval",
+      "road_pattern": "medieval",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [600.0, 300.0, 1400.0, 900.0],
+      "tags": ["dungeon", "loot"]
+    },
+    {
+      "name": "Mage Tower",
+      "district_type": "landmark",
+      "role": "focal_point",
+      "theme": "stone_tower_glyphs",
+      "density": "low",
+      "height_profile": "high",
+      "building_style": "medieval",
+      "road_pattern": "medieval",
+      "gameplay_profiles": ["exploration"],
+      "bbox": [2800.0, 300.0, 3400.0, 900.0],
+      "tags": ["landmark", "objective"]
+    },
+    {
+      "name": "Magical Grove",
+      "district_type": "grove",
+      "role": "secret",
+      "theme": "glowing_flowers",
+      "density": "low",
+      "height_profile": "low",
+      "building_style": "rural",
+      "road_pattern": "rural",
+      "gameplay_profiles": ["exploration"],
+      "bbox": [1700.0, 3100.0, 2600.0, 3800.0],
+      "tags": ["secret", "vista"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["exploration", "stealth", "shooter"],
+    "road": {
+      "arterial_width_m": 5.0,
+      "collector_width_m": 4.0,
+      "local_width_m": 3.0,
+      "alley_width_m": 2.0,
+      "trail_width_m": 1.2,
+      "intersection_spacing_m": 200.0,
+      "shortcut_density": 0.1,
+      "dead_end_ratio_max": 0.4
+    },
+    "building": {
+      "parcel_min_width_m": 6.0,
+      "parcel_max_width_m": 14.0,
+      "parcel_depth_m": 10.0,
+      "building_setback_m": 1.0,
+      "building_height_min_m": 3.0,
+      "building_height_max_m": 18.0,
+      "building_density": 0.35
+    },
+    "shooter": {
+      "cover_interval_m": 5.0,
+      "cover_width_min_m": 0.8,
+      "cover_height_min_m": 1.0,
+      "max_open_sightline_m": 25.0,
+      "combat_arena_size_m": 25.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 3,
+      "concealment_density": 0.6,
+      "restricted_area_count": 2,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 10.0,
+      "rooftop_connection_density": 0.1,
+      "verticality_score": 0.25
+    },
+    "exploration": {
+      "landmark_count_min": 5,
+      "vista_count_min": 3,
+      "secret_path_count_min": 3,
+      "breadcrumb_density": 0.35
+    }
+  },
+  "recommended_llm_brief": "Generate a medieval magical-forest region. A small village hub at the center, dense forest belts on either side, stone ruins to the north, a mage tower as a visible landmark, and a hidden magical grove to the south. Trails connect them; no highways.",
+  "generation_recipe_id": "organic_wilderness"
+}

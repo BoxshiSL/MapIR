@@ -27,47 +27,56 @@ from ..core.models import (
 )
 
 # ---------- shared CSS ----------
+#
+# v0.5: the label font sizes are templated so the caller can pass
+# ``label_scale`` to :func:`render` and rescale ``.label-sm`` / ``.label-md``
+# without touching the rest of the stylesheet.
 
-_STYLE = """
-.bg            { fill: #ffffff; stroke: #222; stroke-width: 0.3%; }
-.world-bounds  { fill: #fafafa; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
-.scene-bounds  { fill: #fbfbf6; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }
-.district      { fill: #f0e6d2; stroke: #b48a3b; stroke-width: 0.2%; fill-opacity: 0.65; }
-.water         { fill: #b3d9ff; stroke: #4a7ab2; stroke-width: 0.15%; fill-opacity: 0.7; }
-.road          { fill: none; stroke: #555; stroke-linecap: round; stroke-linejoin: round; }
-.alley         { stroke: #888; stroke-dasharray: 4 2; }
-.poi           { fill: #c0392b; stroke: #6e2117; stroke-width: 0.1%; }
-.scene-slot    { fill: none; stroke: #2e8b57; stroke-width: 0.25%; stroke-dasharray: 3 2; }
-.zone          { fill: #e8eef5; stroke: #4a6178; stroke-width: 0.2%; fill-opacity: 0.55; }
-.zone-room     { fill: #fff1c2; }
-.zone-storage  { fill: #f4dcb8; }
-.zone-service  { fill: #d6e7ff; }
-.zone-combat   { fill: #ffd6d6; }
-.zone-stealth  { fill: #d5e7d2; }
-.zone-danger   { fill: #ffc1b3; }
-.zone-safe     { fill: #d2f0d2; }
-.zone-path     { fill: #e0e0e0; }
-.path-main     { fill: none; stroke: #d35400; stroke-width: 1.5; stroke-linecap: round; }
-.path-stealth  { fill: none; stroke: #16a085; stroke-width: 1.2; stroke-dasharray: 3 2; }
-.path-escape   { fill: none; stroke: #c0392b; stroke-width: 1.5; stroke-dasharray: 5 2; }
-.path-alt      { fill: none; stroke: #f39c12; stroke-width: 1.2; stroke-dasharray: 2 2; }
-.path-patrol   { fill: none; stroke: #7d3c98; stroke-width: 1.0; stroke-dasharray: 1 2; }
-.object        { fill: #cccccc; stroke: #555; stroke-width: 0.15%; }
-.entrance      { fill: #f1c40f; stroke: #6e5b00; stroke-width: 0.1%; }
-.marker-cover     { fill: #2980b9; }
-.marker-ambush    { fill: #c0392b; }
-.marker-objective { fill: #f1c40f; stroke: #7d6608; stroke-width: 0.15%; }
-.marker-enemy     { fill: #8e44ad; }
-.marker-player    { fill: #27ae60; }
-.marker-extract   { fill: #1abc9c; }
-.marker-other     { fill: #95a5a6; }
-.label         { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-                 fill: #222; pointer-events: none; }
-.label-sm      { font-size: 9px; }
-.label-md      { font-size: 11px; }
-.legend-box    { fill: #ffffff; stroke: #999; stroke-width: 0.5; opacity: 0.9; }
-.legend-text   { font-family: "Segoe UI", Arial, sans-serif; font-size: 10px; fill: #222; }
+_STYLE_TEMPLATE = """
+.bg            {{ fill: #ffffff; stroke: #222; stroke-width: 0.3%; }}
+.world-bounds  {{ fill: #fafafa; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }}
+.scene-bounds  {{ fill: #fbfbf6; stroke: #444; stroke-width: 0.25%; stroke-dasharray: 4 2; }}
+.district      {{ fill: #f0e6d2; stroke: #b48a3b; stroke-width: 0.2%; fill-opacity: 0.65; }}
+.water         {{ fill: #b3d9ff; stroke: #4a7ab2; stroke-width: 0.15%; fill-opacity: 0.7; }}
+.road          {{ fill: none; stroke: #555; stroke-linecap: round; stroke-linejoin: round; }}
+.alley         {{ stroke: #888; stroke-dasharray: 4 2; }}
+.poi           {{ fill: #c0392b; stroke: #6e2117; stroke-width: 0.1%; }}
+.scene-slot    {{ fill: none; stroke: #2e8b57; stroke-width: 0.25%; stroke-dasharray: 3 2; }}
+.zone          {{ fill: #e8eef5; stroke: #4a6178; stroke-width: 0.2%; fill-opacity: 0.55; }}
+.zone-room     {{ fill: #fff1c2; }}
+.zone-storage  {{ fill: #f4dcb8; }}
+.zone-service  {{ fill: #d6e7ff; }}
+.zone-combat   {{ fill: #ffd6d6; }}
+.zone-stealth  {{ fill: #d5e7d2; }}
+.zone-danger   {{ fill: #ffc1b3; }}
+.zone-safe     {{ fill: #d2f0d2; }}
+.zone-path     {{ fill: #e0e0e0; }}
+.path-main     {{ fill: none; stroke: #d35400; stroke-width: 1.5; stroke-linecap: round; }}
+.path-stealth  {{ fill: none; stroke: #16a085; stroke-width: 1.2; stroke-dasharray: 3 2; }}
+.path-escape   {{ fill: none; stroke: #c0392b; stroke-width: 1.5; stroke-dasharray: 5 2; }}
+.path-alt      {{ fill: none; stroke: #f39c12; stroke-width: 1.2; stroke-dasharray: 2 2; }}
+.path-patrol   {{ fill: none; stroke: #7d3c98; stroke-width: 1.0; stroke-dasharray: 1 2; }}
+.object        {{ fill: #cccccc; stroke: #555; stroke-width: 0.15%; }}
+.entrance      {{ fill: #f1c40f; stroke: #6e5b00; stroke-width: 0.1%; }}
+.marker-cover     {{ fill: #2980b9; }}
+.marker-ambush    {{ fill: #c0392b; }}
+.marker-objective {{ fill: #f1c40f; stroke: #7d6608; stroke-width: 0.15%; }}
+.marker-enemy     {{ fill: #8e44ad; }}
+.marker-player    {{ fill: #27ae60; }}
+.marker-extract   {{ fill: #1abc9c; }}
+.marker-other     {{ fill: #95a5a6; }}
+.label         {{ font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+                  fill: #222; pointer-events: none; }}
+.label-sm      {{ font-size: {label_sm:.1f}px; }}
+.label-md      {{ font-size: {label_md:.1f}px; }}
+.legend-box    {{ fill: #ffffff; stroke: #999; stroke-width: 0.5; opacity: 0.9; }}
+.legend-text   {{ font-family: "Segoe UI", Arial, sans-serif; font-size: 10px; fill: #222; }}
 """.strip()
+
+
+def _style(label_scale: float) -> str:
+    scale = max(0.4, float(label_scale))
+    return _STYLE_TEMPLATE.format(label_sm=9.0 * scale, label_md=11.0 * scale)
 
 
 # ============================================================
@@ -75,10 +84,16 @@ _STYLE = """
 # ============================================================
 
 
-def render(ir: WorldIR | SceneIR) -> str:
+def render(ir: WorldIR | SceneIR, *, label_scale: float = 1.0) -> str:
+    """Render IR to SVG XML.
+
+    ``label_scale`` (v0.5) scales the ``.label-sm`` / ``.label-md`` font sizes
+    relative to the v0.4 baseline (9px / 11px). The geometry is otherwise
+    unchanged, so the rendered file remains valid SVG.
+    """
     if isinstance(ir, WorldIR):
-        return _render_world(ir)
-    return _render_scene(ir)
+        return _render_world(ir, label_scale=label_scale)
+    return _render_scene(ir, label_scale=label_scale)
 
 
 # ============================================================
@@ -113,7 +128,7 @@ def _label(x: float, y: float, depth: float, text: str, cls: str = "label label-
     )
 
 
-def _svg_open(width: float, depth: float) -> str:
+def _svg_open(width: float, depth: float, label_scale: float = 1.0) -> str:
     # Pixel size capped so previews are usable in a browser
     px_w = min(1600, max(600, width))
     px_h = px_w * (depth / max(width, 1.0))
@@ -122,7 +137,7 @@ def _svg_open(width: float, depth: float) -> str:
         f'viewBox="0 0 {width:.2f} {depth:.2f}" '
         f'width="{px_w:.0f}" height="{px_h:.0f}" '
         f'preserveAspectRatio="xMidYMid meet">'
-        f"<style>{_STYLE}</style>"
+        f"<style>{_style(label_scale)}</style>"
     )
 
 
@@ -153,9 +168,9 @@ def _legend(items: list[tuple[str, str]]) -> str:
 # ============================================================
 
 
-def _render_world(world: WorldIR) -> str:
+def _render_world(world: WorldIR, *, label_scale: float = 1.0) -> str:
     w, d = world.scale.width_m, world.scale.depth_m
-    parts: list[str] = [_svg_open(w, d)]
+    parts: list[str] = [_svg_open(w, d, label_scale)]
 
     parts.append(f'<rect class="world-bounds" x="0" y="0" width="{w:.2f}" height="{d:.2f}"/>')
 
@@ -259,9 +274,9 @@ _MARKER_CLASS = {
 }
 
 
-def _render_scene(scene: SceneIR) -> str:
+def _render_scene(scene: SceneIR, *, label_scale: float = 1.0) -> str:
     w, d = scene.bounds.width_m, scene.bounds.depth_m
-    parts: list[str] = [_svg_open(w, d)]
+    parts: list[str] = [_svg_open(w, d, label_scale)]
     parts.append(f'<rect class="scene-bounds" x="0" y="0" width="{w:.2f}" height="{d:.2f}"/>')
 
     for zone in scene.zones:

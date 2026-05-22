@@ -1,0 +1,111 @@
+{
+  "template_id": "interior_warehouse",
+  "name": "Warehouse Interior",
+  "document_type": "interior",
+  "genre": "industrial",
+  "description": "Large warehouse interior with two storage aisles, a loading dock, and a corner office. Designed for shooter, stealth, and exploration.",
+  "default_size": {"width_m": 80.0, "depth_m": 60.0},
+  "default_gameplay_profiles": ["shooter", "stealth", "exploration"],
+  "default_districts": [
+    {
+      "name": "Storage Aisle A",
+      "district_type": "interior_storage",
+      "role": "cover_path",
+      "theme": "shelves_crates",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["stealth", "shooter"],
+      "bbox": [5.0, 5.0, 35.0, 30.0],
+      "tags": ["cover_rich", "concealment"]
+    },
+    {
+      "name": "Storage Aisle B",
+      "district_type": "interior_storage",
+      "role": "cover_path",
+      "theme": "shelves_pallets",
+      "density": "high",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["stealth", "shooter"],
+      "bbox": [5.0, 32.0, 35.0, 55.0],
+      "tags": ["cover_rich", "concealment"]
+    },
+    {
+      "name": "Loading Dock",
+      "district_type": "interior_yard",
+      "role": "entry",
+      "theme": "rollup_doors_pallets",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter"],
+      "bbox": [40.0, 5.0, 75.0, 30.0],
+      "tags": ["open", "entry"]
+    },
+    {
+      "name": "Office Corner",
+      "district_type": "interior_office",
+      "role": "objective",
+      "theme": "glass_partitions",
+      "density": "medium",
+      "height_profile": "mid",
+      "building_style": "generic_interior",
+      "road_pattern": "industrial",
+      "gameplay_profiles": ["shooter", "exploration"],
+      "bbox": [55.0, 35.0, 75.0, 55.0],
+      "tags": ["objective"]
+    }
+  ],
+  "default_metrics": {
+    "gameplay_profiles": ["shooter", "stealth", "exploration"],
+    "road": {
+      "arterial_width_m": 4.0,
+      "collector_width_m": 3.0,
+      "local_width_m": 2.5,
+      "alley_width_m": 1.5,
+      "trail_width_m": 1.0,
+      "intersection_spacing_m": 20.0,
+      "shortcut_density": 0.2,
+      "dead_end_ratio_max": 0.35
+    },
+    "building": {
+      "parcel_min_width_m": 4.0,
+      "parcel_max_width_m": 14.0,
+      "parcel_depth_m": 10.0,
+      "building_setback_m": 0.0,
+      "building_height_min_m": 2.5,
+      "building_height_max_m": 6.0,
+      "building_density": 0.65
+    },
+    "shooter": {
+      "cover_interval_m": 3.0,
+      "cover_width_min_m": 0.8,
+      "cover_height_min_m": 1.2,
+      "max_open_sightline_m": 20.0,
+      "combat_arena_size_m": 18.0
+    },
+    "stealth": {
+      "alternate_route_count_min": 3,
+      "concealment_density": 0.55,
+      "restricted_area_count": 1,
+      "patrol_route_hint_count": 2
+    },
+    "parkour": {
+      "climbable_edge_interval_m": 8.0,
+      "rooftop_connection_density": 0.2,
+      "verticality_score": 0.3
+    },
+    "exploration": {
+      "landmark_count_min": 0,
+      "vista_count_min": 0,
+      "secret_path_count_min": 1,
+      "breadcrumb_density": 0.15
+    }
+  },
+  "recommended_llm_brief": "Generate a warehouse interior. Two long storage aisles for stealth approach, an open loading dock as entry/exit, and a glass-partitioned office corner as the objective. Cover is plentiful from shelves and crates.",
+  "generation_recipe_id": "industrial"
+}
